@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hi I'm Sonic Wu</title>
+	<!-- ▼▼▼ 使用 Emoji 作為 Favicon ▼▼▼ -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦉</text></svg>">
+    
+    <style>
+        /* --- 全局樣式 --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            line-height: 1.8;
+            margin: 0;
+            color: #333;
+            background-color: #f9f9f9;
+            scroll-behavior: smooth; /* 讓頁面內跳轉更平滑 */
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            font-family: "Noto Sans TC", sans-serif;
+            color: #1a237e; /* 深藍色 */
+            border-left: 5px solid #ff8f00; /* 橘色點綴 */
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+        h1 {
+            font-size: 2.5em;
+            border-left: none;
+            padding-left: 0;
+            text-align: center;
+        }
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        p, li {
+            font-size: 1.1em;
+            color: #424242;
+        }
+        a {
+            color: #1565c0; /* 藍色連結 */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #ff8f00;
+            text-decoration: underline;
+        }
+
+        /* --- 導覽列 --- */
+        .navbar {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap; /* 在小螢幕上換行 */
+        }
+        .nav-item {
+            margin: 5px 15px; /* 調整邊距 */
+        }
+        .nav-item a {
+            font-size: 1.1em;
+            font-weight: 500;
+            color: #1a237e;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .nav-item a:hover {
+            background-color: #1a237e;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* --- 區塊樣式 --- */
+        section {
+            background-color: #fff;
+            margin: 30px 0;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        #hero {
+            text-align: center;
+            background: none;
+            box-shadow: none;
+        }
+        #hero .title {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        #hero .subtitle {
+            font-size: 1.2em;
+            color: #555;
+            margin-top: 0;
+        }
+        
+        /* --- 內容排版 --- */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .interest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .interest-card {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+        .interest-card h3 {
+            margin-top: 0;
+            font-size: 1.3em;
+            border-left: 3px solid #ff8f00;
+        }
+
+        /* --- 新增：手風琴/折疊式選單樣式 --- */
+        .accordion-item {
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+        .accordion-button {
+            width: 100%;
+            background-color: transparent;
+            border: none;
+            text-align: left;
+            padding: 18px 10px;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #1a237e;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accordion-button:hover {
+            background-color: #f5f5f5;
+        }
+        .accordion-button .icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .accordion-button.open .icon {
+            transform: rotate(180deg);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out;
+            background-color: #fafafa;
+        }
+        .accordion-content ul {
+            list-style-type: '📖 '; /* 用表情符號當作項目符號 */
+            padding: 20px 20px 20px 40px;
+            margin: 0;
+        }
+        .accordion-content li {
+            margin-bottom: 12px;
+        }
+        .accordion-content li a {
+            font-weight: 500;
+        }
+
+
+        /* --- 頁尾 --- */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #777;
+        }
+        
+        /* --- 響應式設計 (RWD) --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.5em; }
+            .nav-item { margin: 5px 8px; }
+            .nav-item a { font-size: 1em; padding: 8px 10px; }
+            .content-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <ul class="nav-container">
+            <li class="nav-item"><a href="#about">關於我</a></li>
+            <li class="nav-item"><a href="#research">研究與教學</a></li>
+            <li class="nav-item"><a href="#lifelong-learning">終身教育</a></li>
+            <li class="nav-item"><a href="#beyond-academia">學術之外</a></li>
+            <!-- 新增的導覽連結 -->
+            <li class="nav-item"><a href="#works">寫作與作品</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <header id="hero">
+            <h1 class="title">吳相勳</h1>
+            <p class="subtitle">元智大學管理學院 助理教授</p>
+        </header>
+
+        <main>
+            <!-- ========================== -->
+            <!--        關於我 Section       -->
+            <!-- ========================== -->
+            <section id="about">
+                <h2>關於我</h2>
+                <p>
+                    我目前任教於元智大學管理學院，同時擔任終身教育部的負責人。我的核心熱情在於組織與傳遞知識，並透過有效的教學方式啟發不同年齡層的學習者。我相信，真正的學習是跨越領域、永無止境的。
+                </p>
+                <p>
+                    我的學術研究聚焦於較高層次的演化與變革議題，習慣採用歷史、經濟與技術的混合視角，來分析組織、產業乃至國家層級的動態變化。我的目標不僅是理解理論，更是將這些洞見應用於解決真實世界的挑戰。
+                </p>
+            </section>
+
+            <!-- ========================== -->
+            <!--     研究與教學 Section      -->
+            <!-- ========================== -->
+            <section id="research">
+                <h2>研究與教學</h2>
+                <div class="content-grid">
+                    <div>
+                        <h3>主要研究領域</h3>
+                        <ul>
+                            <li>策略管理 (Strategy)</li>
+                            <li>組織理論 (Organizational Theory)</li>
+                            <li>創新與創業 (Innovation & Entrepreneurship)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>核心教學領域</h3>
+                        <ul>
+                            <li>國際企業管理</li>
+                            <li>數位轉型</li>
+                            <li>組織文化與領導力</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================== -->
+            <!--      終身教育 Section       -->
+            <!-- ========================== -->
+            <section id="lifelong-learning">
+                <h2>元智大學終身教育部主任</h2>
+                <p>
+                    除了學術研究與大學課堂教學，我也很榮幸能帶領元智大學的終身教育部。我們致力於打破學習的圍牆，為所有年齡層的學習者提供多元化的課程，內容涵蓋心靈健康、運動、專業證照、實用語言等。
+                </p>
+                <p>
+                    同時，我們也積極與各級政府機關及企業合作，規劃客製化的教育訓練方案，將大學的知識能量，轉化為推動社會與產業進步的動力。
+                </p>
+            </section>
+
+            <!-- ========================== -->
+            <!--      學術之外 Section       -->
+            <!-- ========================== -->
+            <section id="beyond-academia">
+                <h2>學術之外</h2>
+                <p>我相信，豐富的生活體驗能為學術研究與教學注入活水。在研究室與教室之外，我的生活主要由以下幾個面向構成：</p>
+                <div class="interest-grid">
+                    <div class="interest-card">
+                        <h3>體能鍛鍊：跑步與重訓</h3>
+                        <p>我長期維持跑步習慣，近年更投入重訓。這不僅是為了維持繁忙工作所需的體能，更成為我觀察產業動態的窗口。我對運動產品創新、運動科學、品牌競爭與商業代言等議題有著濃厚興趣，並時常將這些實務洞察融入我的課程中。</p>
+                    </div>
+                    <div class="interest-card">
+                        <h3>流行文化：ACG 與 Pop Music</h3>
+                        <p>雖然不再像年輕時那般狂熱，但我持續關注動畫、漫畫、遊戲 (ACG) 及流行音樂 (Pop Music) 的發展。這是我理解當代流行文化樣貌，並與年輕世代保持同步的方式，也為我觀察文化產業的演進提供了獨特視角。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================================= -->
+            <!--      新增：寫作與作品 Section       -->
+            <!-- ================================= -->
+            <section id="works">
+                <h2>寫作與作品</h2>
+                <p>這是一些我為教學、研究或個人興趣所撰寫的文章與製作的互動式教材。它們反映了我對於如何結合理論與實務、並透過科技輔助學習的思考。</p>
+                
+                <div class="accordion-container mt-6">
+                    <!-- 分類一：互動式教材與學習工具 -->
+                    <div class="accordion-item">
+                        <button class="accordion-button">
+                            <span>互動式教材與學習工具</span>
+                            <span class="icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <ul>
+                                <li><a href="https://537sonic.github.io/SONIC/greatproposal.html" target="_blank">《王牌提案力》- 我的專案</a></li>
+                                <li><a href="https://537sonic.github.io/SONIC/preposition_3d_world.html" target="_blank">方塊內外的動感世界 - 3D介詞學習</a></li>
+								<li><a href="https://537sonic.github.io/SONIC/vocfun.html" target="_blank">單字記憶遊樂園（小學三年級）</a></li>
+                                <li><a href="https://537sonic.github.io/SONIC/rumeltstrategy.html" target="_blank">Rumelt 策略思考互動學習中心</a></li>
+                                <li><a href="https://537sonic.github.io/SONIC/dpdstrategyworkshop.html" target="_blank">宇迅策略思考工作坊｜互動講義</a></li>
+                                <li><a href="https://537sonic.github.io/SONIC/failurecouldhelp.html" target="_blank">創新失敗學：從災難到機會的生存遊戲</a></li>
+								<li><a href="https://537sonic.github.io/SONIC/ai_coach_tutorial.html" target="_blank">五小時！從零打造一個「菜鳥主管專屬 AI 教練」的完整實戰經驗分享</a></li>
+								<li><a href="https://537sonic.github.io/SONIC/AIUP.html" target="_blank">一份給未來AI創新者的互動式簡報指南</a></li>
+								<li><a href="https://537sonic.github.io/SONIC/stythk.html" target="_blank">策略思考工作台(v3.7)</a></li>
+                                <!-- 
+                                    未來若要新增此分類的作品，請複製上面任一個 <li>...</li> 標籤，
+                                    貼在此處，並修改 href="連結" 和 <a>...</a> 之間的標題即可。
+                                -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 分類二：策略分析與個案研究 -->
+                    <div class="accordion-item">
+                        <button class="accordion-button">
+                            <span>策略分析與個案研究</span>
+                            <span class="icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <ul>
+                                <li><a href="https://537sonic.github.io/SONIC/rogermartin.html" target="_blank">當代策略思想光譜：Roger Martin 理論對話分析</a></li>
+                                <li><a href="https://537sonic.github.io/SONIC/Biotech_TN.html" target="_blank">《百鷗的博弈》課堂思辨之旅</a></li>
+								<li><a href="https://537sonic.github.io/SONIC/biotech_case_study.html" target="_blank">《百鷗的博弈》互動式個案討論</a></li>
+                                <li><a href="https://537sonic.github.io/SONIC/yallvend_case_study.html" target="_blank">《業安科技：為日本自動販賣機王國編寫新劇本》互動式個案討論</a></li>
+								<li><a href="https://537sonic.github.io/SONIC/yallvend_case_sharing.html" target="_blank">《業安科技：G Camp 2025》講義</a></li>
+								<li><a href="https://537sonic.github.io/SONIC/plenty_case_study.html" target="_blank">《Plenty：隕落的獨角獸，還可以重生嗎？》互動式個案討論</a></li>
+								<li><a href="https://537sonic.github.io/SONIC/frances_tn.html" target="_blank">《穆欣牙醫的十字路口》互動式個案討論</a></li>
+<li><a href="https://537sonic.github.io/SONIC/hyrox_case_study.html" target="_blank">《Hyrox 終極解析》互動式個案討論</a></li>
+
+                                <!-- 
+                                    未來若要新增此分類的作品，請複製上面任一個 <li>...</li> 標籤，
+                                    貼在此處，並修改 href="連結" 和 <a>...</a> 之間的標題即可。
+                                -->
+                            </ul>
+                        </div>
+                    </div>
+
+					<!-- 分類三：GPT工具 -->
+                    <div class="accordion-item">
+                        <button class="accordion-button">
+                            <span>GPT工具</span>
+                            <span class="icon">🤖</span>
+                        </button>
+                        <div class="accordion-content">
+                            <ul>
+                                <li><a href="https://chatgpt.com/g/g-68a09787d2608191928a2838c0241fe4-rui-zhi-coach-j" target="_blank">睿智（Coach J.）：菜鳥主管的好幫手</a></li>
+								<li><a href="https://chatgpt.com/g/g-68a70abca4848191baf56edd114a96dc-ling-yue" target="_blank">領越：專為資深主管設計的對話式陪練專家</a></li>
+								<li><a href="https://chatgpt.com/g/g-68a3524e95f88191b79a4f55befd9e77-ce-lue-ji-xiao-huo-ban-ai" target="_blank">策略績效夥伴：這是一位幫你將策略目標與績效體系連結起來的好顧問</a></li>
+                                <li><a href="https://chatgpt.com/g/g-6889df0083f481919b6ca79d69308f6d-bpmn-master" target="_blank">BPMN Master：幫你把業務流程畫出來</a></li>
+                                <li><a href="https://chatgpt.com/g/g-686315ee74a48191b27974063a8cbae1-cjm-master" target="_blank">CJM Master：懂客戶旅程地圖的大師</a></li>
+								<li><a href="https://chatgpt.com/g/g-689e56f9d63481918f1f44243122b117-case-study-guider?model=gpt-5" target="_blank">Case Study Guider：幫你讀出商業競爭的關鍵議題</a></li>
+								<li><a href="https://chatgpt.com/g/g-6829f4c93b248191aab8ace31cb157f0-shi-chang-li-liang-ping-gu" target="_blank">市場力量評估：看懂你該有的競爭優勢</a></li>
+								<!-- 
+                                    未來若要新增此分類的作品，請複製上面任一個 <li>...</li> 標籤，
+                                    貼在此處，並修改 href="連結" 和 <a>...</a> 之間的標題即可。
+                                -->
+                            </ul>
+                        </div>
+                    </div>
+
+					
+                    <!-- 
+                        未來若要新增一個全新的「分類」，可以複製上面任一個 <div class="accordion-item">...</div>
+                        的完整區塊，貼在此處，並修改分類標題與裡面的作品連結。
+                    -->
+
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <p>
+                <a href="https://www.cm.yzu.edu.tw/CH/Page/Teacher.aspx?ID=sonicwu" target="_blank">教師簡歷</a> | 
+                <a href="https://linktr.ee/sonicwu" target="_blank">作品集</a> | 
+                <a href="https://vocus.cc/salon/sonicwu" target="_blank">吳相勲的沙龍</a> | 
+                <a href="mailto:sonicsonicsonic@gmail.com">聯絡我</a>
+            </p>
+            <p>&copy; 2025 吳相勲. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript for Accordion -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const accordionButtons = document.querySelectorAll('.accordion-button');
+
+            accordionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    const isOpen = button.classList.contains('open');
+
+                    // 關閉所有已開啟的項目 (如果需要一次只開一個)
+                    // accordionButtons.forEach(btn => {
+                    //     btn.classList.remove('open');
+                    //     btn.nextElementSibling.style.maxHeight = null;
+                    // });
+
+                    if (!isOpen) {
+                        button.classList.add('open');
+                        // 設定 max-height 以觸發 CSS 動畫
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    } else {
+                        button.classList.remove('open');
+                        content.style.maxHeight = null;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
