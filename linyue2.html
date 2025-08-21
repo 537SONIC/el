@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>領越 (LingYue) - 您的 AI 教練夥伴</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: Warm Neutral Gray -->
+    <!-- Application Structure Plan: The SPA is designed as a top-to-bottom narrative journey. It starts with a hook (the user's pain points), presents the solution's value (Before/After), dives into a detailed, interactive simulation of the core product workflow (the 5-step coaching process), and ends with a clear call to action. This structure transforms a passive presentation into an active, self-paced exploration, with the interactive simulation being the centerpiece. This is more effective for user engagement and understanding than a simple linear document because it allows users to "feel" the product's flow. A sticky navigation bar allows users to jump between sections, accommodating both linear readers and those who want to explore specific topics. -->
+    <!-- Visualization & Content Choices: Report Info: Manager's Pain Points -> Goal: Empathy/Inform -> Viz: Interactive Cards -> Interaction: Hover effect -> Justification: More engaging than a static list. | Report Info: Before/After workflow -> Goal: Compare/Show Value -> Viz: Two-column toggle layout -> Interaction: Button click to switch views -> Justification: Visually reinforces the transformation. | Report Info: 5-Step Coaching Process -> Goal: Explain/Demonstrate -> Viz: Interactive step-by-step simulation UI -> Interaction: User clicks to advance through steps, revealing mockups of the AI conversation -> Justification: The most crucial interaction. It makes the abstract process tangible and demonstrates the product's core functionality in a controlled, easy-to-digest manner. | Report Info: Key Takeaways -> Goal: Summarize -> Viz: Simple cards -> Interaction: None -> Justification: Clear, concise summary. CONFIRMING NO SVG/Mermaid. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f8f7f4;
+            color: #3d3d3d;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+        }
+        .step-item.active {
+            background-color: #00796b;
+            color: white;
+            border-color: #00796b;
+        }
+        .step-item {
+            transition: all 0.3s ease;
+        }
+        .content-panel {
+            display: none;
+        }
+        .content-panel.active {
+            display: block;
+        }
+        .chat-bubble-ai {
+            background-color: #e0f2f1;
+            border-radius: 20px 20px 20px 5px;
+        }
+        .chat-bubble-user {
+            background-color: #d1e7ff;
+            border-radius: 20px 20px 5px 20px;
+        }
+        .btn-primary {
+            background-color: #00796b;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #004d40;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: #00796b;
+            margin-top: 8px;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-teal-800">領越</a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#pain-points" class="text-gray-600 hover:text-teal-700">管理者痛點</a>
+                <a href="#transformation" class="text-gray-600 hover:text-teal-700">流程轉變</a>
+                <a href="#simulation" class="text-gray-600 hover:text-teal-700">實戰演練</a>
+                <a href="#cta" class="text-gray-600 hover:text-teal-700">立即行動</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-gradient py-20 md:py-32">
+            <div class="container mx-auto text-center px-6">
+                <h1 class="text-4xl md:text-5xl font-bold text-teal-900 mb-4">您的隨身 AI 教練夥伴</h1>
+                <p class="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">將每一次棘手的部屬對話，都轉化為團隊與個人的成長契機。</p>
+            </div>
+        </section>
+
+        <section id="pain-points" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold section-title inline-block">「我知道要 Coaching，但…」</h2>
+                    <p class="mt-4 text-gray-600 max-w-2xl mx-auto">每個主管心中，都有一份關於教練的未竟清單。我們理解您的挑戰。</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-xl font-bold text-teal-800 mb-4">情境的兩難</h3>
+                        <ul class="space-y-2 text-gray-600 list-disc list-inside">
+                            <li>部屬績效不佳，想給答案又怕他無法成長。</li>
+                            <li>部屬態度消極，想好好談談又怕引發衝突。</li>
+                            <li>部屬情緒低落，想表達關心又怕踩到地雷。</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-xl font-bold text-teal-800 mb-4">時間的壓力</h3>
+                        <p class="text-gray-600">日常工作滿載，會議接踵而至，根本沒有足夠的心力去準備一場「有品質」的教練對話。</p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-xl font-bold text-teal-800 mb-4">方法的匱乏</h3>
+                        <p class="text-gray-600">知道各種管理模型，但實際應用時卻常常卡關，對話流於表面，無法觸及核心。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="transformation" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold section-title inline-block">從「單打獨鬥」到「AI 神隊友」</h2>
+                    <p class="mt-4 text-gray-600 max-w-2xl mx-auto">「領越」如何徹底改變您的教練工作流程。</p>
+                </div>
+                <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div id="before-col">
+                            <h3 class="text-2xl font-bold text-center text-red-700 mb-4">Before</h3>
+                            <ul class="space-y-3 text-gray-600">
+                                <li><span class="font-bold text-red-500 mr-2">●</span>憑直覺與零散經驗應對，效果時好時壞。</li>
+                                <li><span class="font-bold text-red-500 mr-2">●</span>缺乏準備，對話容易失焦，甚至造成誤解。</li>
+                                <li><span class="font-bold text-red-500 mr-2">●</span>高風險低成效，一次失敗的對話可能破壞信任。</li>
+                                <li><span class="font-bold text-red-500 mr-2">●</span>心中充滿不確定性：「我這樣說對嗎？」</li>
+                            </ul>
+                        </div>
+                        <div id="after-col">
+                            <h3 class="text-2xl font-bold text-center text-green-700 mb-4">After</h3>
+                            <ul class="space-y-3 text-gray-600">
+                                <li><span class="font-bold text-green-500 mr-2">●</span>結構化流程引導，從診斷到行動清晰有序。</li>
+                                <li><span class="font-bold text-green-500 mr-2">●</span>安全的對話模擬，讓您在談話前充分準備。</li>
+                                <li><span class="font-bold text-green-500 mr-2">●</span>同理先行策略在後，大幅提高對話成功率。</li>
+                                <li><span class="font-bold text-green-500 mr-2">●</span>賦能主管，建立信心，提升自身教練能力。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="simulation" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold section-title inline-block">實戰演練：一場成功的教練對話</h2>
+                    <p class="mt-4 text-gray-600 max-w-3xl mx-auto">跟隨專案經理 Alex 的腳步，看「領越」如何引導他處理與部屬 Ben 之間，關於「工作品質」的棘手對話。</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg shadow-xl p-4 md:p-8 max-w-6xl mx-auto">
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="w-full md:w-1/3">
+                            <h3 class="text-xl font-bold mb-4">教練五步驟</h3>
+                            <div id="steps-container" class="space-y-2">
+                                <button data-step="1" class="step-item w-full text-left p-3 border-l-4 border-gray-300 active">1. 情境蒐集</button>
+                                <button data-step="2" class="step-item w-full text-left p-3 border-l-4 border-gray-300">2. 情境診斷</button>
+                                <button data-step="3" class="step-item w-full text-left p-3 border-l-4 border-gray-300">3. 策略與模擬</button>
+                                <button data-step="4" class="step-item w-full text-left p-3 border-l-4 border-gray-300">4. 覆盤與計畫</button>
+                                <button data-step="5" class="step-item w-full text-left p-3 border-l-4 border-gray-300">5. 迭代與收尾</button>
+                            </div>
+                        </div>
+
+                        <div class="w-full md:w-2/3 bg-white rounded-lg p-6 min-h-[400px]">
+                            <div id="step-1" class="content-panel active">
+                                <h4 class="font-bold text-lg mb-2 text-teal-800">步驟 1: 開場與情境蒐集</h4>
+                                <p class="text-gray-600 mb-4">Alex 選擇「完整診斷」，並輸入他對部屬 Ben 的觀察與挑戰。</p>
+                                <div class="space-y-3 p-4 bg-gray-100 rounded-lg">
+                                    <div class="flex justify-end"><div class="chat-bubble-user p-3 max-w-xs">我的部屬 Ben 最近提交的報告連續兩次出錯，他是個有潛力但粗心的人。</div></div>
+                                    <div class="flex justify-start"><div class="chat-bubble-ai p-3 max-w-xs">了解。為了更精準地協助您，您認為這次挑戰的核心比較偏向： A.能力問題 B.意願問題 C.關係問題</div></div>
+                                </div>
+                            </div>
+                            <div id="step-2" class="content-panel">
+                                <h4 class="font-bold text-lg mb-2 text-teal-800">步驟 2: 情境診斷</h4>
+                                <p class="text-gray-600 mb-4">Alex 判斷偏向「意願問題」，並提供了雙方 MBTI。「領越」點出潛在的溝通風格衝突。</p>
+                                <div class="space-y-3 p-4 bg-gray-100 rounded-lg">
+                                    <div class="flex justify-end"><div class="chat-bubble-user p-3 max-w-xs">我選 B，這比較像意願問題。我是 INTJ，他是 ESFP。</div></div>
+                                    <div class="flex justify-start"><div class="chat-bubble-ai p-3 max-w-xs">感謝提供資訊。INTJ 的邏輯導向與 ESFP 的情感導向，在溝通「錯誤」這類議題時，可能產生認知差異。這常是問題根源。</div></div>
+                                </div>
+                            </div>
+                            <div id="step-3" class="content-panel">
+                                <h4 class="font-bold text-lg mb-2 text-teal-800">步驟 3: 策略形成與模擬</h4>
+                                <p class="text-gray-600 mb-4">「領越」建議 Alex 採用「同理先行」策略，並提議進行對話模擬。</p>
+                                <div class="space-y-3 p-4 bg-gray-100 rounded-lg">
+                                    <div class="flex justify-start"><div class="chat-bubble-ai p-3 max-w-xs">建議策略是先透過『探詢式對話』理解他對品質的看法，再共同建立連結。您想現在立刻模擬一段這樣的對話嗎？</div></div>
+                                    <div class="flex justify-end"><div class="chat-bubble-user p-3 max-w-xs">好的，我們開始模擬。</div></div>
+                                </div>
+                            </div>
+                            <div id="step-4" class="content-panel">
+                                <h4 class="font-bold text-lg mb-2 text-teal-800">步驟 4: 覆盤與行動計畫</h4>
+                                <p class="text-gray-600 mb-4">模擬後，「領越」提供具體回饋，幫助 Alex 優化他的提問方式。</p>
+                                <div class="space-y-3 p-4 bg-gray-100 rounded-lg">
+                                    <div class="flex justify-start"><div class="chat-bubble-ai p-3 max-w-xs">模擬很棒！您在肯定他投入這點做得很好。當我(扮演的Ben)提到『最近家裡有點事』時，若您能追問『聽起來你最近壓力不小？』，可能會更快建立信任。</div></div>
+                                </div>
+                            </div>
+                            <div id="step-5" class="content-panel">
+                                <h4 class="font-bold text-lg mb-2 text-teal-800">步驟 5: 迭代與收尾</h4>
+                                <p class="text-gray-600 mb-4">最後，「領越」將策略轉化為一份可執行的行動清單。</p>
+                                <div class="space-y-3 p-4 bg-gray-100 rounded-lg">
+                                     <div class="flex justify-start"><div class="chat-bubble-ai p-3 max-w-xs">基於我們的討論，您現在希望我： A. 將策略拆解成一份詳細的行動清單 B. 討論另一個挑戰 C. 重新模擬</div></div>
+                                     <div class="flex justify-end"><div class="chat-bubble-user p-3 max-w-xs">A，請給我行動清單。</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta" class="py-16 md:py-24 hero-gradient">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold section-title inline-block text-teal-900">輪到您了！</h2>
+                <p class="mt-4 text-gray-700 max-w-2xl mx-auto mb-8">把下一次的棘手對話，交給「領越」。體驗成為一個更具同理心與策略性的領導者。</p>
+                <div class="flex justify-center">
+                    <a href="#" class="btn-primary font-bold py-3 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                        立即開始您的第一次教練對話
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-gray-800 text-white py-8">
+            <div class="container mx-auto px-6 text-center">
+                <p>&copy; 2025 領越 (LingYue). All Rights Reserved.</p>
+                <p class="text-sm text-gray-400 mt-2">一個為現代經理人打造的 AI 賦能工具</p>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stepsContainer = document.getElementById('steps-container');
+            const stepButtons = stepsContainer.querySelectorAll('.step-item');
+            const contentPanels = document.querySelectorAll('.content-panel');
+
+            stepsContainer.addEventListener('click', function(e) {
+                const targetButton = e.target.closest('.step-item');
+                if (!targetButton) return;
+
+                const step = targetButton.dataset.step;
+
+                stepButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                targetButton.classList.add('active');
+
+                contentPanels.forEach(panel => {
+                    panel.classList.remove('active');
+                });
+                document.getElementById(`step-${step}`).classList.add('active');
+            });
+            
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('py-2');
+                    header.classList.remove('py-3');
+                } else {
+                    header.classList.add('py-3');
+                    header.classList.remove('py-2');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

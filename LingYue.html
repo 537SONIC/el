@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>領越：為何您需要 AI 教練夥伴，以及如何客製它</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Chosen Palette: Professional Teal and Gray -->
+    <!-- Application Structure Plan: The application is structured as a linear, slide-based presentation to guide the user through a strategic narrative. It starts with the "Why" (addressing manager's pain points), presents the solution ("領越"), explains its adaptability, demonstrates its capability with interactive conversation starters, and then transitions to the "How" (revealing the knowledge base, the prompt logic, and customization options). This slide-deck format is optimal for a focused, persuasive argument. Navigation is controlled via Prev/Next buttons, ensuring a deliberate and clear user flow. -->
+    <!-- Visualization & Content Choices: Report Info: Manager's Pain Points -> Goal: Inform/Empathize -> Viz: Bullet points with icons on a slide -> Justification: Clear, scannable. | Report Info: Adaptability (demo00.txt) -> Goal: Show flexibility -> Viz: Two-column layout with icons -> Justification: Clearly contrasts the two primary user paths. | Report Info: Conversation Starters -> Goal: Demonstrate/Engage -> Viz: Interactive buttons -> Interaction: Click to load a conversation demo -> Justification: Core interactive element showing the product in action. | Report Info: System Prompt -> Goal: Educate/Empower -> Viz: Formatted code block -> Justification: Shows transparency and provides a tangible asset for users to understand and modify. CONFIRMING NO SVG/Mermaid. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .slide {
+            display: none;
+            min-height: 80vh;
+        }
+        .slide.active {
+            display: flex;
+        }
+        .slide-content {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .starter-btn {
+            transition: all 0.3s ease;
+        }
+        .starter-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .chat-bubble-ai {
+            background-color: #e0f2f1;
+            border-radius: 20px 20px 20px 5px;
+        }
+        .chat-bubble-user {
+            background-color: #d1e7ff;
+            border-radius: 20px 20px 5px 20px;
+        }
+        .prompt-code {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .highlight {
+            background-color: rgba(255, 255, 0, 0.2);
+            border-left: 3px solid #ffca28;
+            padding-left: 8px;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100">
+
+    <div id="presentation-container" class="w-full max-w-5xl bg-white shadow-2xl rounded-lg overflow-hidden">
+        <div class="slide-viewport relative flex-grow">
+            
+            <div id="slide-1" class="slide active flex-col justify-center items-center text-center p-8 md:p-16">
+                <div class="slide-content w-full">
+                    <h1 class="text-4xl md:text-5xl font-bold text-teal-800">您需要一位 AI 教練夥伴</h1>
+                    <p class="mt-4 text-lg md:text-xl text-gray-600">以及，如何將它打造成您團隊的專屬利器</p>
+                    <div class="mt-8 border-t-4 border-teal-600 w-24 mx-auto"></div>
+                </div>
+            </div>
+
+            <div id="slide-2" class="slide flex-col justify-center p-8 md:p-12">
+                <div class="slide-content w-full">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">為什麼現在談 AI 教練？因為管理者的挑戰變了。</h2>
+                    <ul class="space-y-4 text-lg text-gray-700">
+                        <li class="flex items-start"><i class="fas fa-exclamation-circle text-red-500 mt-1 mr-3"></i><span><strong class="text-red-700">棘手對話</strong> 越來越多：績效回饋、態度問題、職涯倦怠... 每一場都是高風險溝通。</span></li>
+                        <li class="flex items-start"><i class="fas fa-clock text-blue-500 mt-1 mr-3"></i><span><strong class="text-blue-700">時間永遠不夠</strong>：您沒有心力為每場對話都做好萬全準備，但即興發揮的結果往往不如預期。</span></li>
+                        <li class="flex items-start"><i class="fas fa-brain text-yellow-500 mt-1 mr-3"></i><span><strong class="text-yellow-700">方法論的鴻溝</strong>：知道管理模型，但在壓力下很難有效應用，對話容易流於表面。</span></li>
+                    </ul>
+                    <p class="mt-8 text-xl text-center font-semibold text-teal-800 bg-teal-50 p-4 rounded-lg">您需要的不是另一套理論，而是一個能隨時支援您的「實戰夥伴」。</p>
+                </div>
+            </div>
+
+            <div id="slide-3" class="slide flex-col justify-center items-center text-center p-8 md:p-16">
+                <div class="slide-content w-full">
+                    <h2 class="text-3xl md:text-4xl font-bold text-teal-800">為此，我們打造了「領越」</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">一個專為經理人設計的同理心教練夥伴 AI，它的任務只有一個：將您的教練挑戰，轉化為團隊的成長機會。</p>
+                    <a href="https://chatgpt.com/g/g-68a70abca4848191baf56edd114a96dc-ling-yue?model=gpt-4o" target="_blank" class="mt-8 inline-block bg-teal-600 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg hover:bg-teal-700 transition-transform transform hover:scale-105">
+                        <i class="fas fa-rocket mr-2"></i> 前往體驗「領越」
+                    </a>
+                </div>
+            </div>
+            
+            <div id="slide-4" class="slide flex-col justify-center p-8 md:p-12">
+                <div class="slide-content w-full">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center">工作流程 Before & After</h2>
+                     <p class="text-center text-gray-600 mb-8">「領越」如何將混亂的直覺式管理，轉變為有策略的教練流程。</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-500">
+                             <h3 class="text-xl font-bold text-red-800 text-center mb-4">Before：單打獨鬥</h3>
+                            <ul class="space-y-3 text-gray-600">
+                                <li><span class="font-bold text-red-500 mr-2">●</span>憑直覺與零散經驗應對，效果時好時壞。</li>
+                                <li><span class="font-bold text-red-500 mr-2">●</span>缺乏準備，對話容易失焦，甚至造成誤解。</li>
+                                <li><span class="font-bold text-red-500 mr-2">●</span>高風險低成效，一次失敗的對話可能破壞信任。</li>
+                                <li><span class="font-bold text-red-500 mr-2">●</span>心中充滿不確定性：「我這樣說對嗎？」</li>
+                            </ul>
+                        </div>
+                         <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
+                           <h3 class="text-xl font-bold text-green-800 text-center mb-4">After：AI 神隊友</h3>
+                            <ul class="space-y-3 text-gray-600">
+                                <li><span class="font-bold text-green-500 mr-2">●</span>結構化流程引導，從診斷到行動清晰有序。</li>
+                                <li><span class="font-bold text-green-500 mr-2">●</span>安全的對話模擬，讓您在談話前充分準備。</li>
+                                <li><span class="font-bold text-green-500 mr-2">●</span>同理先行策略在後，大幅提高對話成功率。</li>
+                                <li><span class="font-bold text-green-500 mr-2">●</span>賦能主管，建立信心，提升自身教練能力。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="slide-5" class="slide flex-col justify-center p-8 md:p-12">
+                <div class="slide-content w-full">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center">實際案例介紹</h2>
+                    <p class="text-center text-gray-600 mb-8">讓我們跟隨一位追求效率與品質的專案經理 Alex，看看他如何運用「領越」來應對他團隊中的各種真實挑戰。</p>
+                    <div class="bg-gray-100 p-6 rounded-lg max-w-3xl mx-auto text-center">
+                        <i class="fas fa-user-tie text-5xl text-teal-600 mb-4"></i>
+                        <p class="text-lg font-semibold">您將在接下來的示範中，看到 Alex 如何處理：</p>
+                        <p class="text-gray-700 mt-2">績效回饋、部屬的消極態度、防衛心、甚至是王牌員工的職業倦怠...等經理人日常。 </p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="slide-6" class="slide flex-col justify-center p-8 md:p-12">
+                <div class="slide-content w-full">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center">實戰步驟拆解：應對您的真實場景</h2>
+                    <p class="text-center text-gray-600 mb-8">點擊下方任一情境，看看 Alex 如何在「領越」的協助下展開一場有品質的對話。</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                        <button class="starter-btn text-left p-4 bg-gray-50 border border-gray-200 rounded-lg" onclick="showDemo(2)"><strong>狀況：</strong>剛上任主管，要給部屬負面績效回饋，很緊張。</button>
+                        <button class="starter-btn text-left p-4 bg-gray-50 border border-gray-200 rounded-lg" onclick="showDemo(3)"><strong>狀況：</strong>資深員工很消極，下午就要談，如何切入不讓他反彈？</button>
+                        <button class="starter-btn text-left p-4 bg-gray-50 border border-gray-200 rounded-lg" onclick="showDemo(4)"><strong>狀況：</strong>部屬對進度提問很防衛，如何溝通話術？</button>
+                        <button class="starter-btn text-left p-4 bg-gray-50 border border-gray-200 rounded-lg" onclick="showDemo(5)"><strong>狀況：</strong>團隊王牌出現職業倦怠，如何幫他規劃新挑戰？</button>
+                        <button class="starter-btn text-left p-4 bg-gray-50 border border-gray-200 rounded-lg" onclick="showDemo(6)"><strong>狀況：</strong>聰明部屬產出品質下降，如何釐清問題？</button>
+                        <button class="starter-btn text-left p-4 bg-gray-50 border border-gray-200 rounded-lg" onclick="showDemo(1)"><strong>通用提問：</strong>你會怎麼協助我？</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="slide-7" class="slide flex-col justify-center p-4 md:p-8">
+                <div class="slide-content w-full">
+                    <h2 id="demo-title" class="text-2xl font-bold text-gray-800 mb-4 text-center">情境示範</h2>
+                    <div id="demo-content" class="h-[60vh] overflow-y-auto bg-white p-4 rounded-lg border space-y-4">
+                    </div>
+                </div>
+            </div>
+
+            <div id="slide-8" class="slide flex-col justify-center items-center text-center p-8 md:p-16">
+                <div class="slide-content w-full">
+                    <i class="fas fa-brain text-6xl text-teal-500 mb-6"></i>
+                    <h2 class="text-3xl md:text-4xl font-bold text-teal-800">「領越」有效的原因：它的大腦</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">「領越」並非泛泛空談。它的核心知識庫，是我們為您準備的<strong class="text-teal-700">《兩代主管之間.html》</strong>。這份文件濃縮了跨世代管理的洞見與實戰策略，確保「領越」的每一句回應，都有理論與實務的堅實基礎。</p>
+                    <p class="mt-6 text-gray-500 italic">這就是它能提出深刻洞察，而不只是給出罐頭答案的秘密。</p>
+                </div>
+            </div>
+
+            <div id="slide-9" class="slide flex-col justify-center p-8 md:p-12">
+                <div class="slide-content w-full">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">解密「領越」：Prompt 的設計邏輯</h2>
+                    <p class="text-lg text-gray-700 mb-6">一個強大的 GPT，背後必然有一套精良的系統提示 (System Prompt)。「領越」的 Prompt 設計，旨在成為一個穩定、可靠且具同理心的教練。您可以透過修改它，來打造最適合您團隊的 AI 夥伴。</p>
+                    <div class="prompt-code p-4 rounded-lg text-sm max-h-[40vh] overflow-y-auto">
+                        <p class="text-gray-400">// --- 核心指令：角色與原則 ---</p>
+                        <p>你是「同理心教練夥伴 AI」，專為經理人服務的保密專家教練。</p>
+                        <p>- **任務**：將主管的教練挑戰，轉化為主管與部屬的成長機會。</p>
+                        <p>- **定位**：你是洞見的促進者，而非答案提供者。</p>
+                        <br>
+                        <p class="text-gray-400">// --- 七大原則 ---</p>
+                        <p class="highlight">1. **同理先行，策略在後**：先同理使用者的處境與感受...</p>
+                        <p>2. **結構化回應框架**：所有主要回應皆遵循三階段結構...</p>
+                        <p>6. **人性化專業**：...絕不提「知識庫」、「檔案」...<br>   - **標準說法**："這讓我想起了管理專家在經驗中提到的觀點..."</p>
+                        <br>
+                        <p class="text-gray-400">// --- 主工作流程 ---</p>
+                        <p>必須遵守此序列工作流程，並全程維持對話狀態與上下文。</p>
+                        <p>步驟0. 開場模式選擇</p>
+                        <p>步驟1：情境蒐集</p>
+                        <p>...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="slide-10" class="slide flex-col justify-center p-8 md:p-12">
+                <div class="slide-content w-full">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">如何客製化：讓「領越」說您的團隊語言</h2>
+                    <p class="text-lg text-gray-700 mb-6">您可以輕易地調整 Prompt，讓它更貼近您的管理風格與公司文化。以下是一些建議的修改方向：</p>
+                    <ul class="space-y-4">
+                        <li>
+                            <h3 class="font-bold text-teal-700">1. 注入您的公司價值觀</h3>
+                            <p class="text-gray-600">在「原則」區塊，加入您公司的核心價值。例如，如果貴公司強調「客戶至上」，您可以新增一條原則：「所有建議都需考慮對客戶的影響」。</p>
+                        </li>
+                        <li>
+                            <h3 class="font-bold text-teal-700">2. 調整溝通語氣</h3>
+                            <p class="text-gray-600">在「角色」定義中，您可以微調它的性格。例如，從「專家教練」改為「更像一位資深的前輩」，讓它的語氣更溫和。</p>
+                        </li>
+                        <li>
+                            <h3 class="font-bold text-teal-700">3. 替換核心知識庫</h3>
+                            <p class="text-gray-600">您可以將《兩代主管之間.html》換成貴公司的內部訓練教材或管理聖經，讓 AI 的建議完全基於您公司的標準作業流程。</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="slide-11" class="slide flex-col justify-center items-center text-center p-8 md:p-16">
+                <div class="slide-content w-full">
+                    <h2 class="text-3xl md:text-4xl font-bold text-teal-800">課後行動建議</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">真正的改變，始於一場有準備的對話。我們鼓勵您立即採取行動：</p>
+                     <div class="mt-8 text-left max-w-md mx-auto space-y-4">
+                        <div class="flex items-start"><span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-lg mr-4 flex-shrink-0">1</span><p><strong>立即試用：</strong>前往「領越」GPT，選擇一個您目前最頭痛的管理情境，開始您的第一場 AI 教練對話。</p></div>
+                        <div class="flex items-start"><span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-lg mr-4 flex-shrink-0">2</span><p><strong>嘗試客製：</strong>思考您團隊的獨特文化或溝通風格，嘗試修改 Prompt 的一小部分，看看「領越」的回應有何不同。</p></div>
+                        <div class="flex items-start"><span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-lg mr-4 flex-shrink-0">3</span><p><strong>分享與討論：</strong>將這個工具分享給您的主管同儕，討論如何共同打造一個符合公司文化的 AI 教練團。</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="slide-12" class="slide flex-col justify-center items-center text-center p-8 md:p-16 bg-gray-700 text-white">
+                <div class="slide-content w-full">
+                    <h2 class="text-3xl font-bold mb-6">單元學習重點</h2>
+                    <div class="border-t-2 border-teal-400 w-24 mx-auto mb-6"></div>
+                    <ul class="space-y-4 text-lg max-w-2xl mx-auto">
+                        <li><i class="fas fa-lightbulb text-yellow-300 mr-3"></i>好的教練對話，始於「同理」，終於「行動」。</li>
+                        <li><i class="fas fa-lightbulb text-yellow-300 mr-3"></i>AI 教練能提供穩定、結構化的流程，補足人類在壓力下的溝通盲點。</li>
+                        <li><i class="fas fa-lightbulb text-yellow-300 mr-3"></i>透過「事前模擬」，能大幅降低真實對話的風險，提升成功機率。</li>
+                        <li class="mt-4 font-bold text-teal-300">「領越」的核心目標是：將主管的教練挑戰，轉化為主管與部屬的共同成長機會。</li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="bg-gray-800 p-4 flex justify-between items-center">
+            <button id="prev-btn" class="text-white px-4 py-2 rounded-md bg-gray-600 hover:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"><i class="fas fa-arrow-left"></i> 上一頁</button>
+            <div id="slide-counter" class="text-white text-sm"></div>
+            <button id="next-btn" class="text-white px-4 py-2 rounded-md bg-teal-600 hover:bg-teal-500"><i class="fas fa-arrow-right"></i> 下一頁</button>
+        </div>
+    </div>
+
+<script>
+    let currentSlide = 1;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const slideCounter = document.getElementById('slide-counter');
+    const demoTitle = document.getElementById('demo-title');
+
+    const demoData = {
+        1: {
+            title: "通用提問：你會怎麼協助我？",
+            content: `<div class="flex justify-end"><div class="chat-bubble-user p-3 max-w-md">你會怎麼協助我？</div></div>
+                      <div class="flex justify-start"><div class="chat-bubble-ai p-3 max-w-md">您好，我是您的 AI 教練夥伴。我可以協助您釐清部屬挑戰、拆解對話策略、模擬關鍵對話，並提供具體的行動清單... 您想進行一次完整的診斷，還是針對特定問題快速得到建議？</div></div>`
+        },
+        2: {
+            title: "情境示範：給予負面績效回饋",
+            content: `<div class="flex justify-end"><div class="chat-bubble-user p-3 max-w-md">我剛當上主管，下週要第一次給部屬比較負面的績效回饋。我很緊張...可以陪我演練一下嗎？</div></div>
+                      <div class="flex justify-start"><div class="chat-bubble-ai p-3 max-w-md">完全理解您的擔憂，這幾乎是每位新任主管都會遇到的「壓力測試」。做得好，能建立威信與信任... 讓我們直奔主題，您最需要的幫助是？ A. 具體的策略建議 B. 一段對話模擬 C. 一個行動清單</div></div>`
+        },
+        3: {
+            title: "情境示範：與消極的資深員工對話",
+            content: `<div class="flex justify-end"><div class="chat-bubble-user p-3 max-w-md">我團隊裡有個資深員工，最近很消極，開會老是唱反調...下午三點就要找他聊，我該怎麼切入才不會讓他更反彈？</div></div>
+                      <div class="flex justify-start"><div class="chat-bubble-ai p-3 max-w-md">我完全理解...根據管理教練的經驗，第一步不是給壓力，而是先找回關係的連結...<br><br><strong>你可以這樣開場：</strong><br>「我觀察到最近幾次會議中，你對一些方向有不少不同的看法...我想聽聽你的真實想法...」</div></div>
+                      <div class="flex justify-start"><div class="chat-bubble-ai p-3 max-w-md">...需要的話，我可以立刻陪你模擬這段對話，幫你練習一下回應他的各種可能反應。你想模擬看看嗎？</div></div>`
+        },
+        4: {
+            title: "情境示範：應對防衛心強的部屬",
+            content: `<div class="flex justify-end"><div class="chat-bubble-user p-3 max-w-md">我每次跟我團隊的某個成員討論他的專案進度，他都很防衛，一直找理由...有沒有什麼話術建議？</div></div>
+                      <div class="flex justify-start"><div class="chat-bubble-ai p-3 max-w-md">這是一個非常典型的溝通困境，問題的核心往往不在「事實」，而在「感受」...我建議的策略是「剝離情緒，聚焦事實，共創方案」...您想模擬一段這樣的對話嗎？</div></div>`
+        },
+        5: {
+            title: "情境示範：激勵有職業倦怠的王牌",
+            content: `<div class="flex justify-end"><div class="chat-bubble-user p-3 max-w-md">我們團隊的王牌，業績一直都很好，但我感覺他最近有點職業倦怠...想幫他規劃一些新的挑戰...</div></div>
+                      <div class="flex justify-start"><div class="chat-bubble-ai p-3 max-w-md">您觀察得非常敏銳。留住頂尖人才的關鍵，往往不是加薪，而是持續的「成長感」與「價值感」...讓我們進行一次完整的診斷，請您簡要說明：1. 這位王牌主要的挑戰是什麼？...</div></div>`
+        },
+        6: {
+            title: "情境示範：釐清產出品質下降的原因",
+            content: `<div class="flex justify-end"><div class="chat-bubble-user p-3 max-w-md">我有一個部屬，人很聰明，但最近的產出品質一直往下掉，我不知道問題到底出在哪裡，想好好釐清一下。</div></div>
+                      <div class="flex justify-start"><div class="chat-bubble-ai p-3 max-w-md">好的，這是一個需要細膩處理的狀況。當聰明的員工表現下滑，背後的原因通常比表面看起來更複雜...為了全面理解您的情境，請您簡要說明一下：1. 您想 coaching 的下屬目前主要的挑戰是什麼？...</div></div>`
+        }
+    };
+
+    function updateSlide() {
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active');
+            if ((index + 1) === currentSlide) {
+                slide.classList.add('active');
+            }
+        });
+        prevBtn.disabled = currentSlide === 1;
+        nextBtn.disabled = currentSlide === totalSlides;
+        slideCounter.textContent = `第 ${currentSlide} / ${totalSlides} 頁`;
+    }
+
+    function showDemo(demoId) {
+        const demoContainer = document.getElementById('demo-content');
+        const data = demoData[demoId];
+        if (data) {
+            demoTitle.textContent = data.title;
+            demoContainer.innerHTML = data.content;
+        }
+        currentSlide = 7;
+        updateSlide();
+    }
+
+    prevBtn.addEventListener('click', () => {
+        if (currentSlide > 1) {
+            currentSlide--;
+            updateSlide();
+        }
+    });
+
+    nextBtn.addEventListener('click', () => {
+        if (currentSlide < totalSlides) {
+            currentSlide++;
+            updateSlide();
+        }
+    });
+
+    // Initialize with a default demo
+    showDemo(3);
+    currentSlide = 1;
+    updateSlide();
+
+</script>
+
+</body>
+</html>
