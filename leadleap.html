@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>領越：為何您需要 AI 教練夥伴，以及如何客製它</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap');
+        
+        :root {
+            --bg-dark: #0D0D0D;
+            --text-dark-primary: #E2E2E2;
+            --text-dark-secondary: #A0A0A0;
+            --accent: #007AFF;
+            --border-dark: rgba(255, 255, 255, 0.1);
+        }
+        
+        html.dark {
+            background-color: var(--bg-dark);
+            color: var(--text-dark-primary);
+        }
+        
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .font-noto {
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .glass-effect {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-dark);
+        }
+        
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--text-dark-secondary);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        .nav-dot.active {
+            background-color: var(--accent);
+            transform: scale(1.5);
+        }
+
+        .leadleap-gradient-text {
+            background: linear-gradient(to right, #3B82F6, #A855F7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .step-card {
+            background-color: #1a1a1a;
+            border: 1px solid var(--border-dark);
+        }
+
+        /* Collapsible Box Styles */
+        .collapsible-card summary {
+            list-style: none; /* Hide default marker */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .collapsible-card summary::-webkit-details-marker {
+            display: none; /* Hide default marker for Chrome/Safari */
+        }
+        .collapsible-card .plus-minus-icon {
+            transition: transform 0.3s ease;
+        }
+        .collapsible-card[open] .plus-minus-icon {
+            transform: rotate(45deg);
+        }
+        .collapsible-card .content {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+        }
+
+    </style>
+</head>
+<body class="bg-[var(--bg-dark)]">
+
+    <!-- Floating Navigation -->
+    <nav class="fixed right-4 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center space-y-3 p-2 glass-effect rounded-full">
+        <a href="#hero" class="nav-dot active" data-section="hero"></a>
+        <a href="#challenge" class="nav-dot" data-section="challenge"></a>
+        <a href="#solution" class="nav-dot" data-section="solution"></a>
+        <a href="#practice" class="nav-dot" data-section="practice"></a>
+        <a href="#demo" class="nav-dot" data-section="demo"></a>
+        <a href="#transformation" class="nav-dot" data-section="transformation"></a>
+        <a href="#collaboration" class="nav-dot" data-section="collaboration"></a>
+        <a href="#prompt" class="nav-dot" data-section="prompt"></a>
+        <a href="#knowledge" class="nav-dot" data-section="knowledge"></a>
+        <a href="#takeaways" class="nav-dot" data-section="takeaways"></a>
+        <a href="#podcast" class="nav-dot" data-section="podcast"></a>
+        <a href="#conclusion" class="nav-dot" data-section="conclusion"></a>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header Section -->
+        <header id="hero" class="min-h-screen flex flex-col justify-center text-center py-20">
+            <h1 class="font-noto text-4xl md:text-6xl font-black mb-4 tracking-tight">
+                <span class="leadleap-gradient-text">領越 LeadLeap</span>
+            </h1>
+            <p class="font-noto text-lg md:text-xl text-[var(--text-dark-primary)] mb-8">
+                為何您需要 AI 教練夥伴，以及如何客製它
+            </p>
+            <p class="text-lg text-[var(--text-dark-secondary)] max-w-2xl mx-auto">
+                在變動的時代，領導力不再是單向指導，而是雙向賦能。這篇文章將揭示如何打造一個專屬於您的 AI 教練，協助您應對最棘手的管理挑戰：引導部屬成長。
+            </p>
+            <div class="mt-12">
+                <a href="#challenge" class="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105">
+                    探索旅程
+                </a>
+            </div>
+        </header>
+
+        <main class="space-y-24 md:space-y-32">
+            
+            <!-- The Challenge Section -->
+            <section id="challenge">
+                <h2 class="font-noto text-3xl md:text-4xl font-bold mb-6 text-center">挑戰：當「賦能」說得比做得容易</h2>
+                <p class="text-lg text-[var(--text-dark-secondary)] mb-12 text-center max-w-3xl mx-auto">
+                    每一位主管都曾面臨這樣的兩難：如何在推動團隊目標的同時，真正地賦能部屬，讓他們不僅「完成」任務，更能「成就」自我？
+                </p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="glass-effect p-6 rounded-2xl">
+                        <h3 class="font-noto text-xl font-bold mb-3 text-amber-400">溝通的迷霧</h3>
+                        <p class="text-[var(--text-dark-secondary)]">當部屬的表現不如預期，問題究竟出在哪？是能力不足 (Can't do)，還是意願不高 (Won't do)？我們常陷入自己的假設，缺乏一個客觀的鏡子來反映真實情況。</p>
+                    </div>
+                    <div class="glass-effect p-6 rounded-2xl">
+                        <h3 class="font-noto text-xl font-bold mb-3 text-sky-400">時間的枷鎖</h3>
+                        <p class="text-[var(--text-dark-secondary)]">身為主管，日常營運已耗費大量心力。我們知道「教練式領導」很重要，卻苦於沒有時間、缺乏系統化的方法來準備每一次關鍵對話，導致對話流於形式或錯失良機。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- The Solution Section -->
+            <section id="solution">
+                <h2 class="font-noto text-3xl md:text-4xl font-bold mb-6 text-center">解方：打造您的專屬 AI 教練夥伴</h2>
+                 <p class="text-lg text-[var(--text-dark-secondary)] mb-12 text-center max-w-3xl mx-auto">
+                    AI 的價值不在於提供標準答案，而在於成為一面「高品質的鏡子」，透過結構化的提問與模擬，幫助我們看見盲點，並打磨出最適合當下情境的溝通策略。
+                </p>
+                
+                <div class="relative p-8 glass-effect rounded-2xl">
+                     <div class="absolute top-4 left-4 flex space-x-2">
+                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                    </div>
+                    <div class="mt-8">
+                        <h3 class="font-noto text-xl font-bold mb-4">▶ 領越 (LeadLeap) 的核心理念：</h3>
+                        <ul class="space-y-4 text-[var(--text-dark-secondary)] pl-6" style="list-style-type: '✓  ';">
+                            <li><strong class="text-[var(--text-dark-primary)]">診斷先於處方：</strong> AI 教練的首要任務不是給建議，而是透過精準提問，協助您釐清問題本質。</li>
+                            <li><strong class="text-[var(--text-dark-primary)]">同理先行，策略在後：</strong> 所有互動都始於同理，先理解您的處境與感受，再共同建構解決方案。</li>
+                            <li><strong class="text-[var(--text-dark-primary)]">安全模擬，現實演練：</strong> 在與部屬實際溝通前，提供一個零風險的沙盒環境，讓您模擬對話、預演反應，提升成功率。</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Practice Path Section -->
+            <section id="practice">
+                <h2 class="font-noto text-3xl md:text-4xl font-bold mb-6 text-center">從知道到做到：您的教練修煉之路</h2>
+                <p class="text-lg text-[var(--text-dark-secondary)] mb-12 text-center max-w-3xl mx-auto">
+                    我們設計了最經典的管理情境，模擬主管在挑戰下的教練需求。點擊下方卡片，直接進入對應的 AI 教練模擬情境。
+                </p>
+                <div class="flex justify-center">
+                    <div class="glass-effect p-8 rounded-2xl flex flex-col items-center justify-between hover:border-purple-500 transition border border-transparent max-w-sm text-center">
+                        <h3 class="font-noto text-xl font-bold mb-4">情境：資深員工抗拒改變？</h3>
+                        <p class="text-[var(--text-dark-secondary)] mb-6 flex-grow">面對經驗豐富但固守舊習的團隊核心，如何引導他看見改變的價值，而非感到被挑戰？</p>
+                        <button onclick="showDemo('starter2')" class="bg-purple-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-purple-700 transition">開始模擬</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Demo Section -->
+            <section id="demo">
+                <h2 class="font-noto text-3xl md:text-4xl font-bold mb-12 text-center">AI 陪跑：從兩難到兩全的五個步驟</h2>
+                <div class="space-y-8">
+                    <!-- Step 1 -->
+                    <div class="step-card p-6 rounded-xl flex items-start space-x-6">
+                        <div class="text-3xl text-blue-400 font-black">1</div>
+                        <div>
+                            <h3 class="font-noto text-xl font-bold mb-2">Step 1: 啟動與情境設定 🎯</h3>
+                            <p class="text-[var(--text-dark-secondary)]">您帶著一個真實的管理挑戰來到 AI 教練面前。您的輸入是高品質對話的起點。</p>
+                            <div class="mt-4 p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                                <p class="font-bold text-gray-300">[主管] 🗣️</p>
+                                <p class="text-gray-400">我團隊裡一位資深員工「老吳」，能力很強，但對於導入新的專案管理工具非常抗拒，影響了整個團隊的效率。我該怎麼辦？</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-card p-6 rounded-xl flex items-start space-x-6">
+                        <div class="text-3xl text-blue-400 font-black">2</div>
+                        <div>
+                            <h3 class="font-noto text-xl font-bold mb-2">Step 2: 深度診斷 🔍</h3>
+                            <p class="text-[var(--text-dark-secondary)]">AI 不會立刻給答案，而是啟動診斷模式，透過選擇題幫助您釐清問題的核心。</p>
+                            <div class="mt-4 p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                                <p class="font-bold text-gray-300">[AI 教練] 🤖</p>
+                                <p class="text-gray-400 mb-4">感謝您分享。基於您的描述，您認為這次挑戰的核心更偏向哪一種類型？</p>
+                                <ul class="list-disc pl-5 text-gray-400 space-y-2">
+                                    <li>A. <strong>能力問題 (Can't do)</strong>: 他缺乏使用新工具的技能。</li>
+                                    <li>B. <strong>意願問題 (Won't do)</strong>: 他有能力但動機不足或抗拒改變。</li>
+                                    <li>C. <strong>關係問題 (Relationship)</strong>: 我們之間的溝通或信任出現摩擦。</li>
+                                </ul>
+                                <p class="mt-4 font-bold text-gray-300">[主管] 🗣️ 我選 B，我認為是意願問題。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-card p-6 rounded-xl flex items-start space-x-6">
+                        <div class="text-3xl text-blue-400 font-black">3</div>
+                        <div>
+                            <h3 class="font-noto text-xl font-bold mb-2">Step 3: 策略框架生成 🧠</h3>
+                            <p class="text-[var(--text-dark-secondary)]">診斷完成後，AI 提供一個高層次的、基於領導力理論的策略框架，作為溝通的指導方針。</p>
+                            <div class="mt-4 p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                                <p class="font-bold text-gray-300">[AI 教練] 🤖</p>
+                                <p class="text-gray-400">了解。處理意願問題時，一個有效的框架是「尊重貢獻 -> 連結目標 -> 小步快跑」。這能確保我們在推動改變的同時，也維護對方的價值感。您想根據這個框架，模擬一段對話嗎？</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div class="step-card p-6 rounded-xl flex items-start space-x-6">
+                        <div class="text-3xl text-blue-400 font-black">4</div>
+                        <div>
+                            <h3 class="font-noto text-xl font-bold mb-2">Step 4: 擬定溝通劇本 📝</h3>
+                            <p class="text-[var(--text-dark-secondary)]">您同意後，AI 會基於框架生成一份具體的溝通腳本草稿。這不是標準答案，而是您個人化修改的起點。</p>
+                             <div class="mt-4 p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                                <p class="font-bold text-gray-300">[AI 教練] 🤖</p>
+                                <p class="text-gray-400">這是一個對話開頭的草稿：</p>
+                                <p class="text-gray-300 mt-2 italic">「老吳，我想聊聊新的管理工具。首先，我非常感謝你過去為團隊打下的堅實基礎（尊重貢獻）。現在公司希望提升跨部門協作效率，這個工具是實現我們共同目標的關鍵（連結目標）。我知道改變需要適應期，我們能不能先找一個小專案試試看，你覺得如何（小步快跑）？」</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="step-card p-6 rounded-xl flex items-start space-x-6">
+                        <div class="text-3xl text-blue-400 font-black">5</div>
+                        <div>
+                            <h3 class="font-noto text-xl font-bold mb-2">Step 5: 從洞察到行動 🚀</h3>
+                            <p class="text-[var(--text-dark-secondary)]">經過 AI 的結構化引導與模擬，您不再是憑感覺溝通，而是帶著清晰的策略、同理心與具體方案去進行一場高品質的對話，將管理挑戰轉化為與部屬共同成長的契機。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Before & After Section -->
+            <section id="transformation">
+                <h2 class="font-noto text-3xl md:text-4xl font-bold mb-12 text-center">Before & After：思維的轉變</h2>
+                <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                    <!-- Before -->
+                    <div class="border-2 border-red-500/50 p-6 rounded-2xl">
+                        <h3 class="font-noto text-2xl font-bold mb-4 text-center text-red-400">Before: 憑直覺的管理者</h3>
+                        <ul class="space-y-3 text-[var(--text-dark-secondary)]" style="list-style-type: '✗ '; padding-left: 1.5rem;">
+                            <li>反應式溝通，專注於「滅火」。</li>
+                            <li>對話缺乏明確結構與目標。</li>
+                            <li>容易陷入個人假設，無法客觀診斷。</li>
+                            <li>耗費大量心力準備，效果卻不彰。</li>
+                        </ul>
+                    </div>
+                    <!-- After -->
+                    <div class="border-2 border-green-500/50 p-6 rounded-2xl">
+                        <h3 class="font-noto text-2xl font-bold mb-4 text-center text-green-400">After: 用系統的賦能者</h3>
+                        <ul class="space-y-3 text-[var(--text-dark-secondary)]" style="list-style-type: '✓ '; padding-left: 1.5rem;">
+                            <li>策略性溝通，專注於「賦能」。</li>
+                            <li>運用框架引導，對話有路徑圖。</li>
+                            <li>借助 AI 診斷，看見問題全貌。</li>
+                            <li>高效準備，將心力用於建立連結。</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Collaboration Section -->
+            <section id="collaboration">
+                <h2 class="font-noto text-3xl md:text-4xl font-bold mb-6 text-center">人機協作流程：何時該由你主導？</h2>
+                <p class="text-lg text-[var(--text-dark-secondary)] mb-12 text-center max-w-3xl mx-auto">
+                    AI 是強大的副駕駛，但方向盤始終掌握在您的手中。成功的關鍵在於理解人與 AI 的最佳分工。點擊卡片標題，查看每個階段您的關鍵角色。
+                </p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <details class="collapsible-card bg-[#1c1c1e] rounded-lg border border-[var(--border-dark)] overflow-hidden">
+                        <summary class="p-6 cursor-pointer">
+                            <div class="flex items-center">
+                                <i class="fas fa-bullseye text-2xl text-blue-400 mr-4 w-8 text-center"></i>
+                                <h3 class="font-noto text-xl font-bold">Step 1: 你設定目標</h3>
+                            </div>
+                            <span class="plus-minus-icon text-2xl text-[var(--text-dark-secondary)]">+</span>
+                        </summary>
+                        <div class="content text-center">
+                            <h4 class="font-noto text-lg font-bold mb-2">提供初始情境</h4>
+                            <p class="text-sm text-[var(--text-dark-secondary)]">您的任務是定義問題、提供背景、設定期望成果。AI 無法讀心，高品質的輸入是高品質輸出的前提。</p>
+                        </div>
+                    </details>
+                    <!-- Card 2 -->
+                    <details class="collapsible-card bg-[#1c1c1e] rounded-lg border border-[var(--border-dark)] overflow-hidden">
+                        <summary class="p-6 cursor-pointer">
+                             <div class="flex items-center">
+                                <i class="fas fa-sitemap text-2xl text-green-400 mr-4 w-8 text-center"></i>
+                                <h3 class="font-noto text-xl font-bold">Step 2: AI 診斷框架</h3>
+                            </div>
+                            <span class="plus-minus-icon text-2xl text-[var(--text-dark-secondary)]">+</span>
+                        </summary>
+                        <div class="content text-center">
+                            <h4 class="font-noto text-lg font-bold mb-2">善用 AI 的結構化能力</h4>
+                            <p class="text-sm text-[var(--text-dark-secondary)]">AI 的強項在於提供系統化的診斷工具與經典的管理框架，幫助您擺脫直覺，從更高維度分析問題。</p>
+                        </div>
+                    </details>
+                    <!-- Card 3 -->
+                    <details class="collapsible-card bg-[#1c1c1e] rounded-lg border border-[var(--border-dark)] overflow-hidden">
+                        <summary class="p-6 cursor-pointer">
+                             <div class="flex items-center">
+                                <i class="fas fa-feather-alt text-2xl text-yellow-400 mr-4 w-8 text-center"></i>
+                                <h3 class="font-noto text-xl font-bold">Step 3: 你提供質化資訊</h3>
+                            </div>
+                            <span class="plus-minus-icon text-2xl text-[var(--text-dark-secondary)]">+</span>
+                        </summary>
+                        <div class="content text-center">
+                            <h4 class="font-noto text-lg font-bold mb-2">注入「人」的溫度</h4>
+                            <p class="text-sm text-[var(--text-dark-secondary)]">關於人際關係、團隊氛圍、個人情感等微妙的質化資訊，需要由您提供。這是 AI 無法觸及，卻至關重要的部分。</p>
+                        </div>
+                    </details>
+                     <!-- Card 4 -->
+                    <details class="collapsible-card bg-[#1c1c1e] rounded-lg border border-[var(--border-dark)] overflow-hidden">
+                        <summary class="p-6 cursor-pointer">
+                             <div class="flex items-center">
+                                <i class="fas fa-drafting-compass text-2xl text-purple-400 mr-4 w-8 text-center"></i>
+                                <h3 class="font-noto text-xl font-bold">Step 4: AI 生成草稿</h3>
+                            </div>
+                            <span class="plus-minus-icon text-2xl text-[var(--text-dark-secondary)]">+</span>
+                        </summary>
+                        <div class="content text-center">
+                            <h4 class="font-noto text-lg font-bold mb-2">加速內容產出</h4>
+                            <p class="text-sm text-[var(--text-dark-secondary)]">AI 能基於框架和您的輸入，快速生成溝通腳本、行動方案等草稿，為您節省大量從零開始的時間。</p>
+                        </div>
+                    </details>
+                    <!-- Card 5 -->
+                    <details class="collapsible-card bg-[#1c1c1e] rounded-lg border border-[var(--border-dark)] overflow-hidden">
+                        <summary class="p-6 cursor-pointer">
+                            <div class="flex items-center">
+                                <i class="fas fa-gavel text-2xl text-red-400 mr-4 w-8 text-center"></i>
+                                <h3 class="font-noto text-xl font-bold">Step 5: 你進行決策</h3>
+                            </div>
+                            <span class="plus-minus-icon text-2xl text-[var(--text-dark-secondary)]">+</span>
+                        </summary>
+                        <div class="content text-center">
+                            <h4 class="font-noto text-lg font-bold mb-2">最終的「審美」與定奪</h4>
+                            <p class="text-sm text-[var(--text-dark-secondary)]">最後一步，您需要運用自己的經驗、智慧與直覺，判斷 AI 的建議是否適用，並進行最終的修改與決策。您是最終的負責人。</p>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <!-- Prompt Section -->
+            <section id="prompt">
+                 <h2 class="font-noto text-3xl md:text-4xl font-bold mb-6 text-center">解密「領越」：Prompt 的設計邏輯</h2>
+                 <p class="text-lg text-[var(--text-dark-secondary)] mb-8 text-center max-w-3xl mx-auto">
+                    一個好的 AI 工具，背後必然有一套精良的指令 (Prompt) 設計。我們的「領越」教練，其核心靈魂就來自於一套精心設計的教練原則與互動流程。
+                </p>
+
+                <div class="text-center mb-10">
+                    <a href="https://docs.google.com/document/d/e/2PACX-1vQut6yuDTucr4mmOMJFrmlc8eMty-kQTX1vwrGnOoLsT5bj6qZ1emQGKhAR9B96F_biVntXbbwgamzW/pub" target="_blank" rel="noopener noreferrer" class="inline-block bg-transparent border-2 border-blue-500 text-blue-400 font-bold py-3 px-8 rounded-full text-lg hover:bg-blue-500 hover:text-white transition duration-300">
+                        <i class="fas fa-file-alt mr-2"></i> 查看完整 Prompt
+                    </a>
+                </div>
+
+                <div class="glass-effect p-8 rounded-2xl">
+                    <h3 class="font-noto text-xl font-bold mb-4">▶ Prompt 設計重點：</h3>
+                    <ul class="space-y-4 text-[var(--text-dark-secondary)] pl-6" style="list-style-type: '✓  ';">
+                        <li><strong class="text-[var(--text-dark-primary)]">原則 1 - 診斷先於處方：</strong> 我們為 AI 設下了不可逾越的鐵律——在沒有完成結構化診斷前，絕不提供具體建議。這是確保 AI 不會淪為「標準答案生成器」的核心機制。</li>
+                        <li><strong class="text-[var(--text-dark-primary)]">原則 2 - 結構化回應框架：</strong> AI 的每一次核心回應，都必須遵循「同理理解 -> 診斷分析 -> 可行建議」的三段式結構，確保溝通既有溫度，又有深度。</li>
+                        <li><strong class="text-[var(--text-dark-primary)]">流程設計 - 從開放到聚焦：</strong> 互動流程被設計為一個漏斗。從開放式問題開始收集情境，到用精準的選擇題進行診斷，最後才共同形成策略與模擬，確保每一步都建立在堅實的基礎上。</li>
+                    </ul>
+                </div>
+            </section>
+
+             <!-- Knowledge Base Section -->
+            <section id="knowledge">
+                 <h2 class="font-noto text-3xl md:text-4xl font-bold mb-6 text-center">我們的知識庫：兩代主管之間</h2>
+                 <p class="text-lg text-[var(--text-dark-secondary)] mb-8 text-center max-w-3xl mx-auto">
+                    好的教練，背後需要有深厚的理論基礎。我們透過生成式 AI 的深度研究能力，建構了一個持續更新的領導力知識庫，作為 AI 教練的理論後盾。
+                </p>
+
+                <div class="text-center mb-10">
+                    <a href="https://docs.google.com/document/d/e/2PACX-1vT_nsHoyy4LvIUvl1rjqRuo_YszVlETLKdOT5v51ZA4DQ888dvyKP7jM_OsFOItUCUFt7mQUqsgT2aD/pub" target="_blank" rel="noopener noreferrer" class="inline-block bg-transparent border-2 border-green-500 text-green-400 font-bold py-3 px-8 rounded-full text-lg hover:bg-green-500 hover:text-white transition duration-300">
+                        <i class="fas fa-database mr-2"></i> 探索知識庫
+                    </a>
+                </div>
+
+                <div class="glass-effect p-8 rounded-2xl">
+                    <h3 class="font-noto text-xl font-bold mb-4">▶ 知識庫特色：</h3>
+                    <ul class="space-y-4 text-[var(--text-dark-secondary)] pl-6" style="list-style-type: '✓  ';">
+                        <li><strong class="text-[var(--text-dark-primary)]">理論與實務的橋樑：</strong> 這個知識庫基於過去學術界的研究成果與實務界的最佳實踐而建構，將嚴謹的理論轉化為主管可以理解並應用的工具。</li>
+                        <li><strong class="text-[var(--text-dark-primary)]">AI 驅動的深度研究：</strong> 我們利用生成式 AI 的 Deep Research 能力，系統化地整理出重要的學術觀點、經典模型與實用工具。</li>
+                        <li><strong class="text-[var(--text-dark-primary)]">專業知識隨手可得：</strong> 知識庫提供大量專業知識的深度解析，例如，「轉換型領導 (Transformational Leadership)」的定義是什麼？其核心要素與具體的行動建議為何？讓您知其然，也知其所以然。</li>
+                    </ul>
+                </div>
+            </section>
+
+             <!-- Key Takeaways Section -->
+            <section id="takeaways">
+                <h2 class="font-noto text-3xl md:text-4xl font-bold mb-6 text-center">單元學習重點</h2>
+                <div class="glass-effect p-8 rounded-2xl">
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-blue-400 text-xl mr-4">▶</span>
+                            <div>
+                                <h4 class="font-bold text-lg text-[var(--text-dark-primary)]">診斷先於處方：</h4>
+                                <p class="text-[var(--text-dark-secondary)]">學習在採取行動前，如何透過結構化問題釐清「能力」與「意願」的根本差異。</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-400 text-xl mr-4">▶</span>
+                            <div>
+                                <h4 class="font-bold text-lg text-[var(--text-dark-primary)]">框架的力量：</h4>
+                                <p class="text-[var(--text-dark-secondary)]">理解一個好的溝通框架（如：尊重貢獻 → 連結目標 → 小步快跑）如何為棘手對話提供清晰路徑。</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-400 text-xl mr-4">▶</span>
+                            <div>
+                                <h4 class="font-bold text-lg text-[var(--text-dark-primary)]">人機協作的智慧：</h4>
+                                <p class="text-[var(--text-dark-secondary)]">掌握 AI 作為教練夥伴的最佳實踐，知道何時依賴 AI 的結構化分析，何時注入自己的人性洞察。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Podcast Section -->
+            <section id="podcast" class="text-center">
+                <h2 class="font-noto text-3xl md:text-4xl font-bold mb-6">Podcast 深入解析</h2>
+                <p class="text-lg text-[var(--text-dark-secondary)] max-w-3xl mx-auto mb-10">
+                    想聽我更深入地聊聊這個主題嗎？在這一集的 Podcast 中，我將分享更多關於 AI 教練的實戰心得與未來趨勢。
+                </p>
+                <div id="buzzsprout-player-17748545"></div><script src="https://www.buzzsprout.com/2529480/episodes/17748545-coaching.js?container_id=buzzsprout-player-17748545&player=small" type="text/javascript" charset="utf-8"></script>
+            </section>
+            
+            <!-- Conclusion Section -->
+            <section id="conclusion" class="text-center py-20">
+                <h2 class="font-noto text-3xl md:text-4xl font-bold mb-6">結論：從「我」到「我們」的領導力躍遷</h2>
+                <p class="text-lg text-[var(--text-dark-secondary)] max-w-3xl mx-auto mb-10">
+                    客製化的 AI 教練夥伴，不僅是一個解決問題的工具，它更是一種思維模式的催化劑。它促使我們從憑直覺、單打獨鬥的管理者，轉變為有系統、懂合作的賦能者。這趟旅程，是將「我該怎麼辦」的焦慮，轉化為「我們如何共創」的契機。
+                </p>
+                <a href="#hero" class="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105">
+                    回到頂部
+                </a>
+            </section>
+
+        </main>
+        
+        <footer class="text-center py-8 text-[var(--text-dark-secondary)] border-t border-[var(--border-dark)] mt-20">
+            <p>&copy; 2024 SONIC. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function showDemo(demoId) {
+            const demoSection = document.getElementById('demo');
+            if(demoSection) {
+                demoSection.scrollIntoView({ behavior: 'smooth' });
+            }
+            console.log(`Scrolling to demo section, triggered by starter ${demoId}`);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // --- Section Intersection Observer for Nav Dots ---
+            const sections = document.querySelectorAll('section[id], header[id]');
+            const navDots = document.querySelectorAll('.nav-dot');
+            
+            sections.forEach(section => {
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: "top center",
+                    end: "bottom center",
+                    onToggle: self => {
+                        if (self.isActive) {
+                            const id = section.getAttribute('id');
+                            navDots.forEach(dot => {
+                                dot.classList.remove('active');
+                                const dotHref = dot.getAttribute('href');
+                                if(dotHref === `#${id}`) {
+                                    dot.classList.add('active');
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+
+            // --- GSAP Animations ---
+            gsap.from("#hero h1, #hero p, #hero div", {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                stagger: 0.2,
+                ease: "power3.out"
+            });
+            
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach J.：你的第一個AI陪練，專為菜鳥主管打造的生存指南</title>
+    <!-- Favicon using Emoji -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Light Theme (Default) */
+            --background-color: #f0f2f5;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --accent-glow: #4F46E5;
+            --accent-light: #6366f1;
+            --surface-color: #ffffff;
+            --border-color: rgba(0,0,0,0.1);
+            --chat-user-bg: #4F46E5;
+            --chat-user-text: #ffffff;
+            --chat-coach-bg: #e5e7eb;
+            --chat-coach-text: #111827;
+            --alert-bg: #fee2e2;
+            --alert-text: #991b1b;
+            --alert-border: #fca5a5;
+        }
+
+        html.dark {
+            /* Dark Theme */
+            --background-color: #0a0a0a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --surface-color: #1a1a1a;
+            --border-color: rgba(255,255,255,0.1);
+            --chat-coach-bg: #2d3748;
+            --chat-coach-text: #e0e0e0;
+            --alert-bg: rgba(153, 27, 27, 0.2);
+            --alert-text: #f87171;
+            --alert-border: rgba(239, 68, 68, 0.3);
+        }
+
+        html {
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            overflow-x: hidden;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+        }
+
+        .section {
+            min-height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-wrapper {
+            max-width: 1100px;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 8px var(--accent-glow), 0 0 20px rgba(79, 70, 229, 0.5);
+        }
+
+        /* --- Interactive Card Flip --- */
+        .flip-card { perspective: 1000px; }
+        .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.8s; transform-style: preserve-3d; }
+        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; display: flex; flex-direction: column; justify-content: center; padding: 1.5rem; border-radius: 1rem; }
+        .flip-card-front { background-color: var(--surface-color); border: 1px solid var(--border-color); }
+        .flip-card-back { background-color: var(--accent-glow); color: white; transform: rotateY(180deg); }
+
+        /* --- Demo Chat Styling --- */
+        .chat-container { max-height: 80vh; overflow-y: auto; padding: 1.5rem; border-radius: 1rem; background: rgba(0,0,0,0.02); backdrop-filter: blur(10px); border: 1px solid var(--border-color); scrollbar-width: none; -ms-overflow-style: none;}
+        html.dark .chat-container { background: rgba(0,0,0,0.2); }
+        .chat-container::-webkit-scrollbar { display: none; }
+        
+        .chat-message { display: flex; margin-bottom: 1.5rem; max-width: 85%; opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s; }
+        .chat-message.visible { opacity: 1; transform: translateY(0); }
+
+        .chat-message.user { align-self: flex-end; flex-direction: row-reverse; }
+        .chat-message.coach { align-self: flex-start; flex-direction: row; }
+
+        .avatar { width: 40px; height: 40px; border-radius: 50%; background-color: var(--surface-color); display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border: 1px solid var(--border-color); }
+        .user .avatar { margin-left: 0.75rem; background-color: var(--accent-light); color: white; }
+        .coach .avatar { margin-right: 0.75rem; background-color: #9ca3af; color: white; }
+        
+        .chat-bubble { padding: 0.75rem 1.25rem; border-radius: 1.25rem; }
+        .user .chat-bubble { background-color: var(--chat-user-bg); color: var(--chat-user-text); border-bottom-right-radius: 0.25rem; }
+        .coach .chat-bubble { background-color: var(--chat-coach-bg); color: var(--chat-coach-text); border-bottom-left-radius: 0.25rem; }
+
+        /* --- Flowchart/Diagram Styling --- */
+        .flow-node { background-color: var(--surface-color); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 0.75rem; transition: all 0.3s ease; }
+        .flow-node:hover { transform: scale(1.03); box-shadow: 0 0 20px rgba(79, 70, 229, 0.4); border-color: var(--accent-glow); }
+
+        /* --- Background Effects --- */
+        .grid-background {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: linear-gradient(var(--border-color) 1px, transparent 1px), linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 0;
+        }
+        
+        /* --- Navigation --- */
+        .nav-dots { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 15px; z-index: 1000; }
+        .nav-dot { width: 10px; height: 10px; background-color: var(--text-secondary); opacity: 0.5; border-radius: 50%; cursor: pointer; transition: all 0.3s ease; position: relative; }
+        .nav-dot.active { background-color: var(--accent-light); transform: scale(1.5); opacity: 1; }
+        .nav-dot .tooltip { position: absolute; top: 50%; right: 150%; transform: translateY(-50%); background-color: var(--surface-color); color: var(--text-primary); padding: 5px 10px; border-radius: 5px; font-size: 14px; white-space: nowrap; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; pointer-events: none; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .nav-dot:hover .tooltip { opacity: 1; visibility: visible; }
+
+        /* --- Theme Toggle --- */
+        #theme-toggle { position: fixed; top: 20px; right: 20px; z-index: 1001; background-color: var(--surface-color); border: 1px solid var(--border-color); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; }
+        #theme-toggle:hover { transform: scale(1.1) rotate(15deg); }
+        #theme-toggle .fa-sun { display: none; }
+        #theme-toggle .fa-moon { display: block; }
+        html.dark #theme-toggle .fa-sun { display: block; }
+        html.dark #theme-toggle .fa-moon { display: none; }
+
+        .alert-box {
+            background-color: var(--alert-bg);
+            color: var(--alert-text);
+            border-color: var(--alert-border);
+        }
+
+    </style>
+</head>
+<body class="text-lg">
+
+    <div class="grid-background"></div>
+    <div class="nav-dots" id="navDots"></div>
+    <button id="theme-toggle" aria-label="Toggle theme">
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <main id="main-container">
+        <!-- Section 1: Title -->
+        <section id="section-1" class="section" data-title="開場">
+            <div class="content-wrapper text-center">
+                <h1 class="text-5xl md:text-7xl font-black tracking-tighter" data-splitting>Coach J.</h1>
+                <h2 class="text-2xl md:text-4xl mt-4 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 font-bold" data-splitting>你的第一個AI陪練，專為菜鳥主管打造</h2>
+                <p class="text-xl mt-6 text-text-secondary max-w-2xl mx-auto">從自我懷疑到團隊賦能，我們陪你走過最關鍵的90天。</p>
+                <div class="mt-12 flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="https://chatgpt.com/g/g-68a09787d2608191928a2838c0241fe4-rui-zhi-coach-j" target="_blank" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg shadow-indigo-600/30">
+                        <i class="fas fa-rocket mr-2"></i>立即體驗 Coach J.
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Pain Points (Enhanced) -->
+        <section id="section-2" class="section" data-title="領導的痛點">
+            <div class="content-wrapper">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-8">領導的痛點：<span class="glow-text">「我，真的適合當主管嗎？」</span></h2>
+                <p class="text-center text-text-secondary mb-12 max-w-3xl mx-auto">這個問題，無論菜鳥或老鳥，都曾在夜深人靜時問過自己。晉升帶來的不只是權力，更是無盡的自我叩問與艱難的思維轉換。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="flip-card h-64">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><h3 class="text-2xl font-bold">身份的混亂 🎭</h3></div>
+                            <div class="flip-card-back"><p>昨天還是並肩作戰的「超級隊友」，今天突然要「管理隊友」，這兩種角色該如何切換？</p></div>
+                        </div>
+                    </div>
+                    <div class="flip-card h-64">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><h3 class="text-2xl font-bold">關係的迷宮 🤝</h3></div>
+                            <div class="flip-card-back"><p>如何管理昔日的同儕，建立必要的專業距離？如何建立權威，卻不讓人覺得在濫用權力？</p></div>
+                        </div>
+                    </div>
+                    <div class="flip-card h-64">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><h3 class="text-2xl font-bold">腦袋轉不過來 🧠</h3></div>
+                            <div class="flip-card-back"><p>習慣了親力親為，很多事情腦袋就是轉不過來，一不小心，部屬的問題（猴子）又跳回自己背上。</p></div>
+                        </div>
+                    </div>
+                    <div class="flip-card h-64">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><h3 class="text-2xl font-bold">無盡的自我懷疑 🤔</h3></div>
+                            <div class="flip-card-back"><p>深怕自己做錯決定、辜負期待，常常感覺自己像個冒牌貨，隨時可能被看穿。</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Why AI? (New) -->
+        <section id="section-3" class="section" data-title="AI解方">
+             <div class="content-wrapper">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">冒牌者症候群？<span class="glow-text">AI 陪你解！</span></h2>
+                <div class="grid md:grid-cols-2 gap-12 text-center">
+                    <div class="bg-surface-color p-8 rounded-2xl border border-border-color transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+                        <div class="text-5xl mb-6 text-indigo-400"><i class="fas fa-comments"></i></div>
+                        <h3 class="text-2xl font-bold mb-4">引導你，誠實地檢視自己</h3>
+                        <p class="text-text-secondary">面對主管或同事，我們習慣隱藏脆弱。但在 AI 面前，你可以卸下心防。Coach J. 透過結構化的提問，引導你進行一場安全的自我對話，看見問題的本質。</p>
+                    </div>
+                    <div class="bg-surface-color p-8 rounded-2xl border border-border-color transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+                        <div class="text-5xl mb-6 text-purple-400"><i class="fas fa-hand-holding-heart"></i></div>
+                        <h3 class="text-2xl font-bold mb-4">提供你，穩定的心理支持</h3>
+                        <p class="text-text-secondary">AI 不會評判，也不會不耐煩。它永遠在那裡，以中立、客觀的態度，肯定你的處境，提供基於知識庫的建議，成為你最可靠、最保密的心理後盾。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: AI Collaboration Process (New) -->
+        <section id="section-4" class="section" data-title="上手四步驟">
+            <div class="content-wrapper">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">主管上手的 <span class="glow-text">AI 協作四步驟</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="flip-card h-80">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><h3 class="text-2xl font-bold">Step 1<br>檢視自己</h3><p class="mt-4 text-text-secondary">與其找人抱怨或等待公司培訓，不如先和AI一起，誠實地梳理現況。</p></div>
+                            <div class="flip-card-back"><p>AI 提供一個絕對安全的對話空間，讓你無壓力地開啟自我探索的第一步。</p></div>
+                        </div>
+                    </div>
+                    <div class="flip-card h-80">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><h3 class="text-2xl font-bold">Step 2<br>看見問題</h3><p class="mt-4 text-text-secondary">透過結構化的診斷，AI 會協助你釐清混亂，看見問題的核心。</p></div>
+                            <div class="flip-card-back"><p>Coach J. 會從環境、團隊、個人三個層次，系統性地幫你定位挑戰。</p></div>
+                        </div>
+                    </div>
+                    <div class="flip-card h-80">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><h3 class="text-2xl font-bold">Step 3<br>重建信心</h3><p class="mt-4 text-text-secondary">AI 會基於知識庫，提供具體的行動建議與話術參考，讓你踏出改變的第一步。</p></div>
+                            <div class="flip-card-back"><p>獲得可行的方案，能有效降低不確定性，逐步重建你的領導信心。</p></div>
+                        </div>
+                    </div>
+                    <div class="flip-card h-80">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><h3 class="text-2xl font-bold">Step 4<br>自由提問</h3><p class="mt-4 text-text-secondary">完成結構化診斷後，你可以隨時針對特定情境，進行更深入的追問。</p></div>
+                            <div class="flip-card-back"><p>AI 能成為你的即時軍師，陪你沙盤推演各種管理難題。</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 5: Demo -->
+        <section id="section-5" class="section" data-title="實戰模擬">
+            <div class="content-wrapper">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-8">身歷其境：<span class="glow-text">看 Coach J. 如何實戰</span></h2>
+                <p class="text-center text-text-secondary mb-12 max-w-3xl mx-auto">百聞不如一見。以下是真實的對話模擬，展示 Coach J. 如何透過結構化診斷，一步步釐清問題核心，並提供具體可行的建議。</p>
+                <div class="chat-container" id="chat-demo">
+                    <div class="flex flex-col">
+                        <!-- Chat messages will be injected here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: How it works (Enhanced) -->
+        <section id="section-6" class="section" data-title="建立底層邏輯">
+            <div class="content-wrapper">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">強化你的<span class="glow-text">管理底層邏輯</span></h2>
+                 <p class="text-center text-text-secondary mb-12 max-w-3xl mx-auto">Coach J. 不只是給答案，更是透過一套嚴謹的方法，幫助你建立系統性的管理思維。這套方法包含兩大核心：</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-surface-color p-8 rounded-2xl border border-border-color">
+                        <h3 class="font-bold text-2xl mb-4 text-indigo-400">1. 由外而內的診斷框架</h3>
+                        <p class="text-text-secondary">我們的診斷流程，永遠遵循「<strong class="text-text-primary">檢查環境 → 檢視團隊 → 回到個人</strong>」的順序。這能確保你不見樹不見林，先理解外部戰場，再盤點內部資源，最後才處理個人心態。這套框架，就是你的管理羅盤。</p>
+                    </div>
+                    <div class="bg-surface-color p-8 rounded-2xl border border-border-color">
+                        <h3 class="font-bold text-2xl mb-4 text-purple-400">2. 從診斷到行動的閉環</h3>
+                        <p class="text-text-secondary">光聊天是不夠的。Coach J. 的最終目的，是產出「<strong class="text-text-primary">具體的行動建議</strong>」。它會引導你思考短期（一週內）與中期（一個月內）可以做什麼，確保每次對話都能轉化為實際的改變，避免空談。</p>
+                    </div>
+                </div>
+                <div class="mt-12 text-center">
+                    <a href="https://docs.google.com/document/d/e/2PACX-1vTxpLP8ZYtUFtM_VxG7BAOkywImd3fod-GB8xxLyN1tf_QG1SE1kMoBQTzQpCsxjN0kU6GrCOpcDr8e/pub" target="_blank" class="text-indigo-400 hover:text-indigo-300 transition">
+                        想深入了解？點此查看 Coach J. 的完整 Prompt 設計 <i class="fas fa-external-link-alt ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 7: Knowledge Base -->
+        <section id="section-7" class="section" data-title="知識庫">
+            <div class="content-wrapper text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-8">Coach J. 的智慧核心：<span class="glow-text">可編輯的知識庫</span></h2>
+                <p class="text-lg text-text-secondary max-w-3xl mx-auto mb-12">
+                    Coach J. 的建議之所以精準有效，是因為它背後有一份我們精心整理的<br>《新任主管生存手冊》作為知識庫。我們特意將它製作成公開的網頁文件，是為了：
+                </p>
+                <div class="grid md:grid-cols-2 gap-8 text-left">
+                     <div class="bg-surface-color p-8 rounded-2xl border border-border-color">
+                        <h3 class="font-bold text-2xl mb-4">便攜性</h3>
+                        <p class="text-text-secondary">任何裝置的瀏覽器都能輕鬆開啟，無需特定軟體，方便您隨時查閱。</p>
+                    </div>
+                     <div class="bg-surface-color p-8 rounded-2xl border border-border-color">
+                        <h3 class="font-bold text-2xl mb-4">易於修改與客製化</h3>
+                        <p class="text-text-secondary">您可以輕鬆複製文件內容，並根據自家公司的文化與需求，進行修改，打造專屬您團隊的生存指南。</p>
+                    </div>
+                </div>
+                <div class="mt-12">
+                    <a href="https://docs.google.com/document/d/e/2PACX-1vRhUhRVUwJcHcWL-fETCO0KuKzLKa-AH_am4NRSt2FacFmZwYXWSm6d1nOy-W0QMHLdHgB80bvflzCX/pub" target="_blank" class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg shadow-purple-600/30">
+                        <i class="fas fa-book-open mr-2"></i>前往《新任主管生存手冊》知識庫
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Podcast -->
+        <section id="section-8" class="section" data-title="延伸聆聽">
+            <div class="content-wrapper text-center">
+                 <h2 class="text-4xl md:text-5xl font-bold mb-8">延伸聆聽：<span class="glow-text">管理者的隨身聽</span> 🎧</h2>
+                 <p class="text-center text-text-secondary mb-12 max-w-3xl mx-auto">除了文字與互動，聲音是另一種深刻的學習媒介。這裡為您準備了一段相關的 Podcast，您可以在通勤或休息時聆聽，深化您的管理智慧。</p>
+                 <div class="w-full max-w-2xl mx-auto bg-surface-color rounded-2xl border border-border-color flex items-center justify-center p-4 shadow-lg">
+                    <!-- Podcast Iframe Placeholder -->
+                    <div id="buzzsprout-player-17746800"></div><script src="https://www.buzzsprout.com/2529480/episodes/17746800-m4a.js?container_id=buzzsprout-player-17746800&player=small" type="text/javascript" charset="utf-8"></script>
+                 </div>
+            </div>
+        </section>
+
+        <!-- Section 9: Call to Action -->
+        <section id="section-9" class="section text-center" data-title="立即行動">
+            <div class="content-wrapper">
+                <h2 class="text-4xl md:text-5xl font-bold mb-8">立即行動：打造你公司的<span class="glow-text">主管生存手冊</span> 🚀</h2>
+                <p class="text-xl mb-12 text-text-secondary max-w-3xl mx-auto">Coach J. 的成功，源自一個為特定族群量身打造的強大知識庫。與其等待完美的外部工具，不如從今天開始，為您公司的新手主管，打造他們專屬的知識庫。</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+                    <div class="bg-surface-color p-6 rounded-xl border border-border-color" data-reveal>
+                        <h3 class="font-bold text-xl mb-2">1. 💬 深度訪談</h3>
+                        <p class="text-text-secondary">訪談你的菜鳥主管，收集他們最真實的第一手痛點。</p>
+                    </div>
+                    <div class="bg-surface-color p-6 rounded-xl border border-border-color" data-reveal>
+                        <h3 class="font-bold text-xl mb-2">2. 📚 盤點實踐</h3>
+                        <p class="text-text-secondary">將公司資深管理者的成功經驗、踩過的坑，整理成可傳承的建議。</p>
+                    </div>
+                    <div class="bg-surface-color p-6 rounded-xl border border-border-color" data-reveal>
+                        <h3 class="font-bold text-xl mb-2">3. 🧠 建立知識庫</h3>
+                        <p class="text-text-secondary">將內部訪談內容與理論框架結合，整理成符合自家文化的指南。</p>
+                    </div>
+                    <div class="bg-surface-color p-6 rounded-xl border border-border-color" data-reveal>
+                        <h3 class="font-bold text-xl mb-2">4. 🤖 打造內部教練</h3>
+                        <p class="text-text-secondary">有了這份知識庫，你就能建構一個內部專用的GPT，提供第一線支持。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Theme Toggler ---
+            const themeToggle = document.getElementById('theme-toggle');
+            const htmlEl = document.documentElement;
+
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                htmlEl.classList.add('dark');
+            } else {
+                htmlEl.classList.remove('dark');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                htmlEl.classList.toggle('dark');
+                if (htmlEl.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+            // --- Section Navigation ---
+            const sections = document.querySelectorAll('.section');
+            const navDotsContainer = document.getElementById('navDots');
+
+            sections.forEach((section, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('nav-dot');
+                
+                const tooltip = document.createElement('span');
+                tooltip.classList.add('tooltip');
+                tooltip.textContent = section.dataset.title || `Section ${index + 1}`;
+                dot.appendChild(tooltip);
+
+                dot.addEventListener('click', () => {
+                     section.scrollIntoView({ behavior: 'smooth' });
+                });
+                navDotsContainer.appendChild(dot);
+
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: "top center",
+                    end: "bottom center",
+                    onToggle: self => {
+                        if (self.isActive) {
+                            document.querySelectorAll('.nav-dot').forEach(d => d.classList.remove('active'));
+                            dot.classList.add('active');
+                        }
+                    }
+                });
+            });
+
+
+            // --- Section 5: Demo Chat Animation ---
+            const demoChatRaw = `
+            ### 你說：
+            我感覺我以前的朋友，當我成了他們的上司，一切都變了，我壓力很大
+            ### 睿智（Coach J.） 說：
+            這是非常常見的新任主管困境之一，尤其是「從朋友變上司」的身份轉變，會帶來心理壓力與關係摩擦。你的壓力感受是合理的。
+
+            📍 **診斷起點：我們先來釐清環境**
+
+            第 1 題：你所處的單位，屬於以下哪一種？
+
+            1️⃣ 明確目標導向（如：銷售成績、專案交付）
+            2️⃣ 支援服務導向（如：行政、HR、IT 支援）
+            3️⃣ 創意協作導向（如：研發、行銷企劃）
+            4️⃣ 我不確定 / 其他
+
+            請選擇 1/2/3/4。
+            ### 你說：
+            2
+            ### 睿智（Coach J.） 說：
+            👍 收到，你目前是在 **支援服務導向** 單位，這類型的部門常見挑戰包含：
+
+            - 對內支援需求繁雜、緊急（如臨時行政任務、突發人事處理）
+            - 對外貢獻常被低估，不易被看見
+            - 團隊間合作仰賴默契與信任，變動容易引發不安
+
+            📍 **第 2 題：再來看你部門目前的「績效壓力」來源主要是哪一種？**
+
+            1️⃣ 來自上層的「效率提升」、「品質要求」
+            2️⃣ 來自平行單位的「抱怨多、要求雜」
+            3️⃣ 來自下屬的不滿，例如制度不合理、分工不均
+            4️⃣ 目前沒有特別大的績效壓力，但關係壓力很大
+
+            請選擇 1/2/3/4。
+            ### 你說：
+            2
+            ### 睿智（Coach J.） 說：
+            📌 好的，根據你的選擇：
+
+            🎯 **診斷結果（外部壓力面）：**
+            你正處於一個支援服務部門，且「平行單位的高要求與抱怨」成為主要壓力來源。這種情況下，主管不僅要維持團隊士氣，還要處理跨部門期望落差，壓力自然加倍。
+
+            📌 接下來我們聚焦在團隊內部。
+
+            **第 3 題：你目前的團隊人數大約是？**
+
+            1️⃣ 少於 5 人（小型團隊）
+            2️⃣ 5–10 人（中型團隊）
+            3️⃣ 超過 10 人（大型團隊）
+            4️⃣ 我還在摸清楚團隊狀況
+
+            請選擇 1/2/3/4。
+            ### 你說：
+            2
+            ### 睿智（Coach J.） 說：
+            👌 了解，你目前帶領的是一個 **5–10 人的中型團隊**。
+
+            📍 **這類團隊的典型特徵是：**
+
+            - 分工需要逐步明確，但仍有高度互賴
+            - 氛圍與信任感對於運作效率影響極大
+            - 「人際動態」常是影響績效與士氣的關鍵因素
+
+            📌 **第 4 題：你的團隊目前分工狀況如何？**
+
+            1️⃣ 分工明確，誰負責什麼大家都知道
+            2️⃣ 大致知道，但很多事情都還是「大家幫大家」
+            3️⃣ 分工模糊，常常重工或互推
+            4️⃣ 我還在摸索分工狀況
+
+            請選擇 1/2/3/4。
+            ### 你說：
+            2
+            ### 睿智（Coach J.） 說：
+            🎯 **診斷總結：**
+            你已意識到主管角色的不同，也開始嘗試調整做法，但在「身份表達」與「權威建立」之間仍感到不自在。這種「語言卡住」的情況，其實是很多新任主管的共同難題。
+
+            ✅ **行動建議：角色界線建立的兩階段法**
+
+            📌 **短期行動（1 週內）**
+            試著向團隊或特定成員表達類似這段話（建議私下對話）：
+            <blockquote>「我知道我們之前是朋友／同事關係，但現在我在這個角色上，會有一些不一樣的期待與做法。我很珍惜之前的信任，也希望我們能在現在的關係下，繼續互相信任。」</blockquote>
+            
+            📌 **中期行動（1 個月內）**
+            建立一份簡單的「角色與分工期望」，可以是團隊共識討論或你主動提出。
+            `;
+            
+            function parseChat(rawText) {
+                const cleanedText = rawText.replace(/!\[.*?\]\(.*?\)\s*/g, '').replace(/分享\s*/g, '').trim();
+                return cleanedText.split('###').slice(1).map(part => {
+                    const lines = part.trim().split('\n');
+                    const senderLine = lines.shift().trim();
+                    const content = lines.join('\n').trim();
+                    let sender = 'coach';
+                    if (senderLine.includes('你說')) {
+                        sender = 'user';
+                    }
+                    return { sender, content };
+                });
+            }
+
+            const chatMessages = parseChat(demoChatRaw);
+            const chatContainer = document.querySelector('#chat-demo .flex');
+
+            chatMessages.forEach(msg => {
+                const messageWrapper = document.createElement('div');
+                messageWrapper.classList.add('chat-message', msg.sender);
+
+                const avatar = document.createElement('div');
+                avatar.classList.add('avatar');
+                const icon = document.createElement('i');
+                icon.classList.add('fas', msg.sender === 'user' ? 'fa-user' : 'fa-brain');
+                avatar.appendChild(icon);
+
+                const bubble = document.createElement('div');
+                bubble.classList.add('chat-bubble');
+                bubble.innerHTML = msg.content
+                    .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+                    .replace(/\n/g, '<br>');
+                
+                messageWrapper.appendChild(avatar);
+                messageWrapper.appendChild(bubble);
+                chatContainer.appendChild(messageWrapper);
+            });
+            
+            gsap.utils.toArray('.chat-message').forEach((el, index) => {
+                gsap.to(el, {
+                    scrollTrigger: {
+                        trigger: el,
+                        scroller: ".chat-container",
+                        start: "top 90%",
+                        end: "bottom top",
+                        onEnter: () => el.classList.add('visible'),
+                        onEnterBack: () => el.classList.add('visible'),
+                        onLeave: () => el.classList.remove('visible'),
+                        onLeaveBack: () => el.classList.remove('visible'),
+                    }
+                });
+            });
+
+            // --- General Reveal Animations ---
+            const revealElements = gsap.utils.toArray('[data-reveal]');
+            revealElements.forEach(el => {
+                gsap.fromTo(el, 
+                    { opacity: 0, y: 40 },
+                    { 
+                        opacity: 1, 
+                        y: 0,
+                        duration: 1,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 85%',
+                            toggleActions: 'play none none none'
+                        }
+                    }
+                );
+            });
+
+             // --- Title Animation ---
+            const titles = gsap.utils.toArray('[data-splitting]');
+            titles.forEach(title => {
+                const splitted = new SplitType(title, { types: 'chars, words' });
+                gsap.from(splitted.chars, {
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.8,
+                    stagger: 0.03,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: title,
+                        start: 'top 90%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>

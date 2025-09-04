@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 策略績效夥伴 AI</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+
+        :root {
+            --bg-color: #111827;
+            --text-color: #E5E7EB;
+            --text-muted-color: #9CA3AF;
+            --card-bg-color: #1F2937;
+            --card-bg-hover-color: #374151;
+            --border-color: #374151;
+            --accent-color: #FBBF24;
+            --accent-color-light: #FDE68A;
+            --accent-text-color: #111827;
+            --step-bg-color: rgba(31, 41, 55, 0.7);
+        }
+
+        html.light {
+            --bg-color: #F9FAFB;
+            --text-color: #1F2937;
+            --text-muted-color: #4B5563;
+            --card-bg-color: #FFFFFF;
+            --card-bg-hover-color: #F3F4F6;
+            --border-color: #E5E7EB;
+            --accent-color: #F59E0B;
+            --accent-color-light: #FCD34D;
+            --accent-text-color: #111827;
+            --step-bg-color: rgba(255, 255, 255, 0.8);
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .content-section {
+            min-height: 100vh;
+            padding: 8vh 5vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+        
+        .nav-dots {
+            position: fixed; right: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 15px; z-index: 50;
+        }
+        .nav-dot {
+            width: 12px; height: 12px; background-color: var(--text-muted-color); border-radius: 50%; cursor: pointer; transition: all 0.3s ease; position: relative;
+        }
+        .nav-dot.active, .nav-dot:hover {
+            background-color: var(--accent-color); transform: scale(1.2);
+        }
+        .nav-dot .tooltip {
+            position: absolute; right: 25px; top: 50%; transform: translateY(-50%); background-color: var(--accent-color); color: var(--accent-text-color); padding: 5px 10px; border-radius: 5px; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.3s ease; font-weight: 500; pointer-events: none;
+        }
+        html.light .nav-dot .tooltip { color: #1F2937; }
+        .nav-dot:hover .tooltip { opacity: 1; visibility: visible; }
+        
+        .fade-in {
+            opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .in-view .fade-in {
+            opacity: 1; transform: translateY(0);
+        }
+        
+        .chat-container { max-height: 60vh; overflow-y: auto; padding-right: 1rem; }
+        .chat-message { display: flex; margin-bottom: 1.5rem; max-width: 90%; }
+        .chat-message.user { align-self: flex-end; flex-direction: row-reverse; margin-left: auto;}
+        .chat-message.ai { align-self: flex-start; flex-direction: row; }
+        .avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid var(--border-color); }
+        .user .avatar { margin-left: 0.75rem; background-color: var(--accent-color); color: var(--accent-text-color); }
+        html.light .user .avatar {color: #111827;}
+        .ai .avatar { margin-right: 0.75rem; background-color: var(--text-muted-color); color: var(--bg-color); }
+        .chat-bubble { padding: 0.75rem 1.25rem; border-radius: 1.25rem; }
+        .user .chat-bubble { background-color: var(--accent-color); color: var(--accent-text-color); border-bottom-right-radius: 0.25rem; }
+        html.light .user .chat-bubble {color: #111827;}
+        .ai .chat-bubble { background-color: var(--card-bg-hover-color); border-bottom-left-radius: 0.25rem; }
+
+        .step-indicator {
+            position: absolute;
+            top: 2rem;
+            left: 5vw;
+            background-color: var(--step-bg-color);
+            backdrop-filter: blur(5px);
+            padding: 0.5rem 1rem;
+            border-radius: 99px;
+            font-weight: bold;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            z-index: 10;
+        }
+        
+        /* Flip Card for Workflow */
+        .flip-card { perspective: 1000px; }
+        .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s; transform-style: preserve-3d; }
+        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1.5rem; border-radius: 0.75rem; border: 1px solid var(--border-color); }
+        .flip-card-front { background-color: var(--card-bg-color); }
+        .flip-card-back { background-color: var(--card-bg-hover-color); transform: rotateY(180deg); }
+
+    </style>
+</head>
+<body class="antialiased">
+    
+    <button id="theme-toggle" class="fixed top-4 right-4 z-50 p-2 rounded-full bg-[--card-bg-color] text-[--text-color] border border-[--border-color]">
+        <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+        <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm-.707 7.072l.707-.707a1 1 0 10-1.414-1.414l-.707.707a1 1 0 101.414 1.414zM3 11a1 1 0 100-2H2a1 1 0 100 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+    </button>
+
+    <div id="nav-container" class="nav-dots"></div>
+
+    <main>
+        <!-- Section 1: Intro -->
+        <section id="intro" class="content-section text-center">
+            <h1 class="text-4xl md:text-6xl font-black text-[--accent-color] fade-in">策略績效夥伴 AI</h1>
+            <p class="text-xl md:text-2xl mt-4 fade-in" style="transition-delay: 0.2s;">從模糊的策略，到精準的行動</p>
+            <p class="mt-8 max-w-3xl mx-auto text-[--text-muted-color] fade-in" style="transition-delay: 0.4s;">
+                這不只是一個工具介紹，而是一場思維革命。我們將從<b>主管的視角</b>出發，探討如何利用專屬 AI，將策略診斷與績效指標真正對齊，解決管理中最棘手的難題。
+            </p>
+            <div class="mt-12 flex flex-wrap justify-center gap-4 fade-in" style="transition-delay: 0.6s;">
+                <a href="https://chatgpt.com/g/g-68a3524e95f88191b79a4f55befd9e77-ce-lue-ji-xiao-huo-ban-ai" target="_blank" class="bg-[--accent-color] text-[--accent-text-color] font-bold py-3 px-6 rounded-lg hover:opacity-90 transition-all duration-300 transform hover:scale-105">🤖 體驗 AI 夥伴</a>
+                <a href="https://chatgpt.com/share/68b006d1-e8d8-8006-82db-a02973b3e0c6" target="_blank" class="bg-[--card-bg-hover-color] font-bold py-3 px-6 rounded-lg hover:bg-opacity-80 transition-all duration-300 transform hover:scale-105">💬 查看實際對話</a>
+            </div>
+        </section>
+
+        <!-- Section 2: Core Pain Point -->
+        <section id="pain-point" class="content-section">
+             <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-[--accent-color] mb-4 text-center fade-in">直面核心痛點：為何績效指標總是做不對？</h2>
+                <p class="text-lg text-[--text-muted-color] text-center mb-10 fade-in" style="transition-delay: 0.2s;">問題不在工具，而在思維盲點。許多主管規劃目標時，往往是「憑感覺做事」。</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-[--card-bg-color] p-8 rounded-lg border border-[--border-color] fade-in" style="transition-delay: 0.4s;">
+                        <h3 class="text-xl font-bold mb-3">缺乏策略邏輯</h3>
+                        <p class="text-[--text-muted-color]">「感覺」無法成為說服上層、對齊跨部門的基礎。當被問到「為何是這個指標？」時，難以提出清晰的因果鏈路，導致計畫缺乏說服力。</p>
+                    </div>
+                    <div class="bg-[--card-bg-color] p-8 rounded-lg border border-[--border-color] fade-in" style="transition-delay: 0.6s;">
+                        <h3 class="text-xl font-bold mb-3">混淆「行動」與「方向」</h3>
+                        <p class="text-[--text-muted-color] mb-4">這是最常見的錯誤。主管容易將「要做什麼事」（行動）當成「要達成什麼成果」（方向）。</p>
+                        <p class="text-red-400 text-sm"><b>❌ 行動：</b>「舉辦三場行銷活動」</p>
+                        <p class="text-green-400 text-sm mt-1"><b>✅ 方向：</b>「新客戶獲取成本降低15%」</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Before & After -->
+        <section id="before-after" class="content-section">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-[--accent-color] mb-4 fade-in">工作流程 Before & After</h2>
+                <p class="max-w-3xl mx-auto text-lg text-[--text-muted-color] fade-in" style="transition-delay: 0.2s;">從拍腦袋到有策略的績效管理</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                <div class="bg-[--card-bg-color] p-8 rounded-lg border border-[--border-color] fade-in" style="transition-delay: 0.4s;">
+                    <h3 class="text-2xl font-bold mb-4 text-red-400">Before: 混亂的循環</h3>
+                    <ul class="space-y-4 list-disc list-inside text-[--text-muted-color]">
+                        <li>看到別人用 OGSM 就跟著用，缺乏內部討論。</li>
+                        <li>目標設定憑感覺，與公司策略脫鉤。</li>
+                        <li>計畫淪為任務清單，無法說服老闆。</li>
+                        <li>來回修改耗費心力，團隊士氣低落。</li>
+                        <li>年終檢討發現指標無效，績效評估困難。</li>
+                    </ul>
+                </div>
+                <div class="bg-[--card-bg-color] p-8 rounded-lg border border-[--border-color] fade-in" style="transition-delay: 0.6s;">
+                    <h3 class="text-2xl font-bold mb-4 text-green-400">After: AI 輔助的清晰路徑</h3>
+                    <ul class="space-y-4 list-disc list-inside text-[--text-color]">
+                        <li><b>策略診斷：</b>AI 引導釐清現況，確認問題根源。</li>
+                        <li><b>框架適配：</b>AI 建議最適合當下情境的管理工具。</li>
+                        <li><b>目標對齊：</b>確保部門目標能支撐公司整體策略。</li>
+                        <li><b>指標優化：</b>將模糊想法轉化為 SMART 指標。</li>
+                        <li><b>高效溝通：</b>拿著結構清晰的計畫，與老闆建立共識。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: AI Collaboration Reason -->
+        <section id="reason" class="content-section">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-[--accent-color] mb-4 text-center fade-in">OKR + KPI + OGSM 一起解！</h2>
+                <p class="text-lg text-[--text-muted-color] text-center mb-12 fade-in" style="transition-delay: 0.2s;">問題不在選擇哪個框架，而在於「正確地」使用。這正是 AI 協作的絕對理由。</p>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="fade-in" style="transition-delay: 0.4s;">
+                        <div class="text-4xl mb-4">🧠</div>
+                        <h3 class="text-xl font-bold mb-2">轉化抽象為具體</h3>
+                        <p class="text-[--text-muted-color]">AI 透過結構化提問，將「提升品牌影響力」等模糊概念，拆解成可衡量的領先與落後指標。</p>
+                    </div>
+                    <div class="fade-in" style="transition-delay: 0.6s;">
+                        <div class="text-4xl mb-4">🛡️</div>
+                        <h3 class="text-xl font-bold mb-2">客觀的策略練功房</h3>
+                        <p class="text-[--text-muted-color]">AI 提供一個無情緒、24/7 的安全思考環境，讓你能在正式溝通前，將計畫打磨得更完善。</p>
+                    </div>
+                    <div class="fade-in" style="transition-delay: 0.8s;">
+                        <div class="text-4xl mb-4">🧩</div>
+                        <h3 class="text-xl font-bold mb-2">破除單一框架偏誤</h3>
+                        <p class="text-[--text-muted-color]">AI 涵蓋多種管理理論，能基於你的情境推薦最適合的框架組合，破除個人或組織的經驗盲點。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 5: AI Workflow -->
+        <section id="workflow" class="content-section">
+            <div class="max-w-7xl mx-auto w-full">
+                <h2 class="text-3xl md:text-4xl font-bold text-[--accent-color] mb-4 text-center fade-in">AI 協作流程</h2>
+                <p class="text-lg text-center text-[--text-muted-color] mb-12 fade-in" style="transition-delay: 0.2s;">一個兼具結構性與彈性的引導流程，確保產出品質，同時也允許使用者自由探索。</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                    <!-- Card 1 -->
+                    <div class="flip-card h-80 fade-in" style="transition-delay: 0.4s;">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><span class="text-4xl mb-4">🗺️</span><h3 class="text-xl font-bold">1. 策略情境盤點</h3><p class="text-sm mt-2 text-[--text-muted-color]">(翻轉查看)</p></div>
+                            <div class="flip-card-back text-sm"><p><b>協作模式：</b>人機協作。<br><b>流程：</b>由使用者輸入業務背景、挑戰與限制。AI 則扮演顧問，透過診斷性問題，協助釐清思考，盤點全局。</p></div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="flip-card h-80 fade-in" style="transition-delay: 0.5s;">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><span class="text-4xl mb-4">🎯</span><h3 class="text-xl font-bold">2. 高階策略對齊</h3><p class="text-sm mt-2 text-[--text-muted-color]">(翻轉查看)</p></div>
+                            <div class="flip-card-back text-sm"><p><b>協作模式：</b>人機協作。<br><b>流程：</b>使用者提供公司級年度目標。AI 協助分析，並引導思考部門如何承接與貢獻，確保上下策略連貫。</p></div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="flip-card h-80 fade-in" style="transition-delay: 0.6s;">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><span class="text-4xl mb-4">🛠️</span><h3 class="text-xl font-bold">3. 管理框架選擇</h3><p class="text-sm mt-2 text-[--text-muted-color]">(翻轉查看)</p></div>
+                            <div class="flip-card-back text-sm"><p><b>協作模式：</b>AI 建議為主。<br><b>流程：</b>綜合前兩步資訊，AI 評估情境，推薦最適合的管理框架（如 OKR 或 OGSM）。</p></div>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="flip-card h-80 fade-in" style="transition-delay: 0.7s;">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><span class="text-4xl mb-4">✍️</span><h3 class="text-xl font-bold">4. 績效指標草擬</h3><p class="text-sm mt-2 text-[--text-muted-color]">(翻轉查看)</p></div>
+                            <div class="flip-card-back text-sm"><p><b>協作模式：</b>AI 建議為主。<br><b>流程：</b>將策略轉化為數字的關鍵一步。AI 引導定義 SMART 指標，並強調區分成果與行動。</p></div>
+                        </div>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="flip-card h-80 fade-in" style="transition-delay: 0.8s;">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><span class="text-4xl mb-4">🔄</span><h3 class="text-xl font-bold">5. 迭代與驗證</h3><p class="text-sm mt-2 text-[--text-muted-color]">(翻轉查看)</p></div>
+                            <div class="flip-card-back text-sm"><p><b>協作模式：</b>人機協作。<br><b>流程：</b>AI 產出初版指標後，使用者可提問挑戰。AI 根據新輸入不斷優化，確保成果實用。</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Section 6: Case Study Intro -->
+        <section id="case-study-intro" class="content-section">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-[--accent-color] mb-4 fade-in">實績展示：從被總經理退件到策略對焦</h2>
+                <p class="text-lg text-[--text-muted-color] fade-in" style="transition-delay: 0.2s;">
+                    一位行銷長，如何透過上述五步驟框架，與 AI 協作將一份不被認可的 OGSM，一步步打磨成一份結構清晰、邏輯完整的策略藍圖。
+                </p>
+            </div>
+        </section>
+        
+        <!-- Case Study Steps -->
+        <section id="case-step1" class="content-section">
+            <div class="step-indicator">Step 1</div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold mb-4">啟動與情境設定 🎯</h3>
+                    <p class="text-[--text-muted-color]">AI 沒有直接給答案，而是扮演顧問角色，透過診斷性選擇題，快速定位問題核心。</p>
+                </div>
+                <div class="bg-[--card-bg-color] p-4 sm:p-6 rounded-lg border border-[--border-color] fade-in" style="transition-delay: 0.2s;">
+                    <div class="chat-container">
+                        <div class="flex flex-col">
+                            <div class="chat-message user"><div class="avatar"><i class="fas fa-user"></i></div><div class="chat-bubble">我是oo照明公司的行銷長。我寫的OGSM，一直沒有得到總經理的認可。</div></div>
+                            <div class="chat-message ai"><div class="avatar"><i class="fas fa-robot"></i></div><div class="chat-bubble">您好，請先幫我釐清：總經理對OGSM的回饋通常是屬於哪一類？<br>A. 目標太模糊<br>B. 策略不夠聚焦<br>C. 行動層次太細</div></div>
+                            <div class="chat-message user"><div class="avatar"><i class="fas fa-user"></i></div><div class="chat-bubble">C</div></div>
+                            <div class="chat-message ai"><div class="avatar"><i class="fas fa-robot"></i></div><div class="chat-bubble">了解。<b>診斷焦點：行動層次太細，像是行銷工作計畫。</b>這顯示您目前的OGSM可能過度落入操作層次，而缺乏策略性高度。</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="case-step2" class="content-section">
+            <div class="step-indicator">Step 2 & 3</div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                 <div class="bg-[--card-bg-color] p-4 sm:p-6 rounded-lg border border-[--border-color] fade-in" style="transition-delay: 0.2s;">
+                    <div class="chat-container">
+                        <div class="flex flex-col">
+                            <div class="chat-message user"><div class="avatar"><i class="fas fa-user"></i></div><div class="chat-bubble">這是我寫的OGSM檔案...</div></div>
+                            <div class="chat-message ai"><div class="avatar"><i class="fas fa-robot"></i></div><div class="chat-bubble">感謝提供。初步診斷發現，您的目標設定存在「策略 vs. 行動混淆」且缺乏「SMART條件」。我建議從重構目標開始。</div></div>
+                            <div class="chat-message ai"><div class="avatar"><i class="fas fa-robot"></i></div><div class="chat-bubble"><b>【優化後目標 G1】</b><br>在2025年底前，讓60%以上的2C消費者將「尚亮」與 ESG 品牌價值產生聯想...</div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fade-in md:order-first">
+                    <h3 class="text-2xl font-bold mb-4">策略對齊與框架選擇 🛠️</h3>
+                    <p class="text-[--text-muted-color]">使用者選擇繼續使用 OGSM 框架。AI 接著協助分析使用者提供的草稿，對齊高階策略，並指出目標設定的具體問題。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="case-step3" class="content-section">
+             <div class="step-indicator">Step 4</div>
+             <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold mb-4">績效指標草擬 ✍️</h3>
+                    <p class="text-[--text-muted-color]">這是從策略轉化為數字的關鍵一步。AI 根據優化後的目標，草擬出具體的衡量指標 (Measure) 與行動計畫 (Plan)，並強調其間的邏輯關聯。</p>
+                </div>
+                 <div class="bg-[--card-bg-color] p-4 sm:p-6 rounded-lg border border-[--border-color] fade-in" style="transition-delay: 0.2s;">
+                    <div class="chat-container">
+                        <div class="flex flex-col">
+                           <div class="chat-message ai"><div class="avatar"><i class="fas fa-robot"></i></div><div class="chat-bubble">根據優化後的目標，以下是建議的衡量指標：<br><b>M1-1:</b> ESG主題內容觸及人次達 100 萬次<br><b>M1-2:</b> 消費者品牌認知調查中 ESG 關聯度達 60%</div></div>
+                           <div class="chat-message ai"><div class="avatar"><i class="fas fa-robot"></i></div><div class="chat-bubble">對應的行動計畫：<br><b>Q1:</b> 彙整 ESG 內容主軸<br><b>Q2:</b> 製作 ESG 品牌故事影片...</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="case-step4" class="content-section">
+             <div class="step-indicator">Step 5</div>
+             <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="bg-[--card-bg-color] p-4 sm:p-6 rounded-lg border border-[--border-color] fade-in" style="transition-delay: 0.2s;">
+                    <div class="chat-container">
+                        <div class="flex flex-col">
+                            <div class="chat-message user"><div class="avatar"><i class="fas fa-user"></i></div><div class="chat-bubble">OGSM 適合我們公司嗎？</div></div>
+                            <div class="chat-message ai"><div class="avatar"><i class="fas fa-robot"></i></div><div class="chat-bubble">這是非常關鍵的反思。根據您的回答，我診斷您的組織為「結構導入期」... 具備潛力，但建議採取「先局部實踐、逐步推廣」的策略...</div></div>
+                             <div class="chat-message user"><div class="avatar"><i class="fas fa-user"></i></div><div class="chat-bubble">好，我以後會省很多心力了….以往在審核和整合各部門的 OGSM 真的蠻痛苦的過程。</div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fade-in md:order-first">
+                    <h3 class="text-2xl font-bold mb-4">迭代驗證與洞察 🚀</h3>
+                    <p class="text-[--text-muted-color]">AI 不僅產出計畫，更引導使用者進行批判性反思。這個開放式的迴圈，確保了最終成果的實用性，並產生了超越工具層次的策略洞察。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Mindset -->
+        <section id="mindset" class="content-section">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-[--accent-color] mb-4 fade-in">管理心法：從策略思考到指標設計</h2>
+                <p class="max-w-3xl mx-auto text-lg text-[--text-muted-color] fade-in" style="transition-delay: 0.2s;">有效的績效管理，始於思維的轉變。工具是其次，心法才是根本。</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-[--card-bg-color] p-8 rounded-lg fade-in" style="transition-delay: 0.4s;">
+                    <h3 class="text-2xl font-bold mb-4">關鍵轉變：從「任務導向」到「成果導向」</h3>
+                    <p class="text-[--text-muted-color] mb-4">許多績效指標之所以失效，是因為我們在衡量「做了多少事」，而非「創造了多少價值」。</p>
+                    <div class="mt-4">
+                        <p class="font-semibold text-red-400">❌ 任務導向 (Task-driven):</p>
+                        <p class="italic text-sm pl-4 border-l-2 border-red-400 ml-2 py-1">「完成 3 篇部落格文章」</p>
+                    </div>
+                    <div class="mt-4">
+                        <p class="font-semibold text-green-400">✅ 成果導向 (Outcome-driven):</p>
+                        <p class="italic text-sm pl-4 border-l-2 border-green-400 ml-2 py-1">「透過內容行銷，將潛在客戶轉換率提升 5%」</p>
+                    </div>
+                </div>
+                <div class="bg-[--card-bg-color] p-8 rounded-lg fade-in" style="transition-delay: 0.6s;">
+                     <h3 class="text-2xl font-bold mb-4">指標的選擇：領先指標 vs. 落後指標</h3>
+                    <p class="text-[--text-muted-color] mb-4">只看結果，無法預測未來。聰明的管理者會同時關注兩類指標。</p>
+                     <div class="mt-4">
+                        <p class="font-semibold">📉 落後指標 (Lagging Indicators):</p>
+                        <p class="text-sm text-[--text-muted-color]">衡量「已經發生」的結果。例如：季度營收、客戶滿意度分數。</p>
+                    </div>
+                    <div class="mt-4">
+                        <p class="font-semibold">📈 領先指標 (Leading Indicators):</p>
+                        <p class="text-sm text-[--text-muted-color]">衡量「預測未來成功」的活動。例如：本週有效銷售線索數量、產品試用註冊率。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Section 8: Logic -->
+        <section id="logic" class="content-section">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-[--accent-color] mb-12 text-center fade-in">如何建立策略指標的底層邏輯？</h2>
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div class="fade-in" style="transition-delay: 0.2s;">
+                        <h3 class="text-2xl font-bold mb-4">AI 夥伴的建構三支柱</h3>
+                        <div class="space-y-6">
+                            <div><h4 class="font-semibold text-lg">高品質的知識庫</h4><p class="text-[--text-muted-color]">AI 的「大腦」。包含經典管理理論、產業報告、最佳實務案例。品質決定了建議的深度。</p></div>
+                            <div><h4 class="font-semibold text-lg">結構化的指令</h4><p class="text-[--text-muted-color]">AI 的「行為模式」。定義其角色、工作流程與互動原則，確保對話的專業與高效。</p></div>
+                            <div><h4 class="font-semibold text-lg">豐富的實踐範例</h4><p class="text-[--text-muted-color]">提供「好/壞指標」範例，讓 AI 快速掌握你的標準與偏好。</p></div>
+                        </div>
+                    </div>
+                    <div class="fade-in" style="transition-delay: 0.4s;">
+                        <h3 class="text-2xl font-bold mb-4">互動時謹記三大心法</h3>
+                        <div class="space-y-6">
+                            <div><h4 class="font-semibold text-lg">原則一：情境為王</h4><p class="text-[--text-muted-color]">你的任務是提供清晰的「問題」，而非預設「答案」。讓 AI 基於專業知識推薦最適合的工具。</p></div>
+                            <div><h4 class="font-semibold text-lg">原則二：成果導向</h4><p class="text-[--text-muted-color]">反覆詰問：「這是一個行動，還是一個成果？」牢記「完成多少任務」不等於「創造多少價值」。</p></div>
+                            <div><h4 class="font-semibold text-lg">原則三：動態修正</h4><p class="text-[--text-muted-color]">利用 AI 分析趨勢，聚焦於能「預測」未來成功的「領先指標」。你的目標是管理未來，而不僅是總結過去。</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9: Prompt & Knowledge Base -->
+        <section id="prompt-knowledge" class="content-section">
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                <div class="bg-[--card-bg-color] p-8 rounded-lg border border-[--border-color] fade-in" style="transition-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold mb-4">AI 的行為模式 (Prompt)</h3>
+                    <p class="text-[--text-muted-color] mb-4">好的 Prompt 是設計一套工作流程與互動原則，讓 AI 成為能引導你的專業顧問。它定義了 AI 的核心身份、專業領域與主要工作流程。</p>
+                    <a href="https://docs.google.com/document/d/e/2PACX-1vQ1olAWDUT74JxdmhXqlJuCsXQY22VfhhoO2KpZSrWEfUzpnvnJPhhuMbXaAgh0SltrrqTS8qjNEerT/pub" target="_blank" class="text-[--accent-color] font-semibold hover:underline">查看完整 Prompt &rarr;</a>
+                </div>
+                <div class="bg-[--card-bg-color] p-8 rounded-lg border border-[--border-color] fade-in" style="transition-delay: 0.4s;">
+                    <h3 class="text-2xl font-bold mb-4">AI 的大腦 (知識庫)</h3>
+                    <p class="text-[--text-muted-color] mb-4">這個 GPT 的大腦，是透過各家生成式 AI 整理、粹取多本策略與績效管理專書而成，為 AI 的建議提供了堅實的理論基礎。</p>
+                    <a href="https://docs.google.com/document/d/e/2PACX-1vQxqGWS4acFnNSxCYl5pqZLrhwrX7Hu6cE0n6m5v5W4WMi0QDkUGpuDNvFlqEIl4N3W-yoq-l38aYWu/pub" target="_blank" class="text-[--accent-color] font-semibold hover:underline">查看知識庫內容 &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 10: Feedback -->
+        <section id="feedback" class="content-section">
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-[--accent-color] mb-4 fade-in">實務迴響：不只是理論</h2>
+                <p class="max-w-3xl mx-auto text-lg text-[--text-muted-color] mb-10 fade-in" style="transition-delay: 0.2s;">這個工具已在真實的管理場景中發揮價值，特別是在 OGSM 的導入與優化上。</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-[--card-bg-color] p-8 rounded-lg fade-in" style="transition-delay: 0.4s;">
+                    <blockquote class="border-l-4 border-[--accent-color] pl-4 italic">
+                        "我以後會省很多心力了….以往在審核和整合各部門的 OGSM 真的蠻痛苦的過程。"
+                    </blockquote>
+                    <p class="mt-4 text-[--text-muted-color]"><b>洞察：</b>AI 夥伴的核心價值在於解決了跨部門溝通與目標對齊的痛點，將主管從繁瑣的協調工作中解放出來，專注於更高層次的策略思考。</p>
+                </div>
+                <div class="bg-[--card-bg-color] p-8 rounded-lg fade-in" style="transition-delay: 0.6s;">
+                    <blockquote class="border-l-4 border-[--accent-color] pl-4 italic">
+                        "然後我也意識到不能全公司都用 OGSM...如這個建議。"
+                    </blockquote>
+                    <p class="mt-4 text-[--text-muted-color]"><b>洞察：</b>好的 AI 工具不只會執行命令，更會提供批判性思考，提醒使用者工具的適用邊界，避免陷入「方法論的陷阱」，這正是其顧問價值的體現。</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 11: Podcast -->
+        <section id="podcast" class="content-section">
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-[--accent-color] mb-4 fade-in">延伸聆聽：策略思維的碰撞</h2>
+                <p class="max-w-3xl mx-auto text-lg text-[--text-muted-color] mb-10 fade-in" style="transition-delay: 0.2s;">
+                    除了視覺化的簡報，您也可以透過 Podcast 深入了解更多關於策略管理與 AI 應用的思維。
+                </p>
+                <div class="w-full max-w-xl mx-auto h-40 bg-[--card-bg-color] rounded-lg flex items-center justify-center border border-[--border-color] fade-in" style="transition-delay: 0.4s; overflow: hidden;">
+                    <div id="buzzsprout-player-17747669"></div><script src="https://www.buzzsprout.com/2529480/episodes/17747669-kpi-okr-bsc-ogsm.js?container_id=buzzsprout-player-17747669&player=small" type="text/javascript" charset="utf-8"></script>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 12: Action -->
+        <section id="action" class="content-section text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-[--accent-color] mb-4 fade-in">課後行動建議</h2>
+            <p class="max-w-3xl mx-auto text-lg text-[--text-muted-color] mb-10 fade-in" style="transition-delay: 0.2s;">打造專屬的 AI 夥伴並非遙不可及。回歸管理的本質：<b>建立知識、解決困擾、沉澱實務</b>。</p>
+            <div class="grid md:grid-cols-3 gap-8 text-left">
+                <div class="bg-[--card-bg-color] p-8 rounded-lg fade-in" style="transition-delay: 0.4s;">
+                    <h3 class="text-2xl font-bold mb-4">1. 建立知識庫 🧠</h3>
+                    <p class="text-[--text-muted-color]">整理對你最重要的文件、報告、摘要。將它們結構化，這是你 AI 夥伴的智慧核心。</p>
+                </div>
+                <div class="bg-[--card-bg-color] p-8 rounded-lg fade-in" style="transition-delay: 0.6s;">
+                    <h3 class="text-2xl font-bold mb-4">2. 直面管理困擾 🤔</h3>
+                    <p class="text-[--text-muted-color]">盤點你最頭痛的問題，將「痛點」轉化為「問題」，這將是你設計 Prompt 的起點。</p>
+                </div>
+                <div class="bg-[--card-bg-color] p-8 rounded-lg fade-in" style="transition-delay: 0.8s;">
+                    <h3 class="text-2xl font-bold mb-4">3. 沉澱最佳實務 🏆</h3>
+                    <p class="text-[--text-muted-color]">將你行之有效的管理方法「流程化」、「腳本化」，它們將成為你客製化 AI 行為的藍圖。</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 13: Summary -->
+        <section id="summary" class="content-section text-center">
+             <h2 class="text-3xl md:text-4xl font-bold text-[--accent-color] mb-8 fade-in">單元學習重點</h2>
+             <div class="max-w-2xl mx-auto bg-[--card-bg-color] border border-[--border-color] p-8 rounded-lg shadow-lg fade-in" style="transition-delay: 0.2s;">
+                <ul class="space-y-4 text-left text-lg">
+                    <li class="flex items-start"><span class="text-[--accent-color] mr-3 mt-1">✓</span><span>專屬 AI 夥伴的核心價值在於<b>解決真實的管理痛點</b>，而不僅是導入新工具。</span></li>
+                    <li class="flex items-start"><span class="text-[--accent-color] mr-3 mt-1">✓</span><span>高品質的<b>知識庫</b>與結構化的 <b>Prompt</b>，是打造有效能 AI 顧問的兩大基石。</span></li>
+                    <li class="flex items-start"><span class="text-[--accent-color] mr-3 mt-1">✓</span><span>AI 能扮演<b>策略教練</b>的角色，透過引導式對話，協助主管將模糊策略轉化為清晰、可執行的計畫。</span></li>
+                </ul>
+             </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- Theme Switcher ---
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const darkIcon = document.getElementById('theme-toggle-dark-icon');
+            const lightIcon = document.getElementById('theme-toggle-light-icon');
+            const htmlEl = document.documentElement;
+
+            const applyTheme = (theme) => {
+                if (theme === 'light') {
+                    htmlEl.classList.add('light');
+                    lightIcon.classList.remove('hidden');
+                    darkIcon.classList.add('hidden');
+                } else {
+                    htmlEl.classList.remove('light');
+                    darkIcon.classList.remove('hidden');
+                    lightIcon.classList.add('hidden');
+                }
+            };
+
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            applyTheme(savedTheme);
+
+            themeToggleBtn.addEventListener('click', function() {
+                const currentTheme = htmlEl.classList.contains('light') ? 'light' : 'dark';
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                localStorage.setItem('theme', newTheme);
+                applyTheme(newTheme);
+            });
+
+            // --- Navigation & Scroll Animation ---
+            const sections = document.querySelectorAll('.content-section');
+            const navContainer = document.getElementById('nav-container');
+
+            sections.forEach(section => {
+                const dot = document.createElement('div');
+                dot.classList.add('nav-dot');
+                dot.dataset.section = section.id;
+                
+                const tooltip = document.createElement('div');
+                tooltip.classList.add('tooltip');
+                let sectionTitle = '未知';
+                const h2 = section.querySelector('h2');
+                if (h2) {
+                    sectionTitle = h2.textContent.split('：')[0].trim();
+                     if (section.id === 'case-study-intro') sectionTitle = '實績展示';
+                } else if (section.id.includes('case-step')) {
+                    const stepNum = section.id.replace('case-step', '');
+                    const stepH3 = section.querySelector('h3');
+                    sectionTitle = stepH3 ? `案例 Step ${stepNum}` : `案例步驟 ${stepNum}`;
+                } else if (section.id === 'intro') {
+                    sectionTitle = '開場';
+                }
+                tooltip.textContent = sectionTitle;
+                dot.appendChild(tooltip);
+
+                navContainer.appendChild(dot);
+
+                dot.addEventListener('click', () => {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+            
+            const navDots = navContainer.querySelectorAll('.nav-dot');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navDots.forEach(dot => {
+                            dot.classList.toggle('active', dot.dataset.section === id);
+                        });
+                        entry.target.classList.add('in-view');
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            sections.forEach(section => observer.observe(section));
+        });
+    </script>
+</body>
+</html>
+
