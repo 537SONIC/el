@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>崧騰企業 & 捷騰光電 | 整合性解決方案</title>
+    
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 引入 Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* 自定義樣式 */
+        :root {
+            --primary-color: #00f2ff;
+            --secondary-color: #8a2be2;
+            --background-dark: #0a0a1a;
+            --background-light: #1a1a2f;
+            --text-light: #e0e0ff;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            scroll-behavior: smooth;
+        }
+
+        /* 漸變色文字效果 */
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        
+        /* 導覽列固定效果 */
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(10, 10, 26, 0.8);
+            backdrop-filter: blur(10px);
+            --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+        }
+
+        /* 區塊標題樣式 */
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+        
+        /* 浮動動畫效果 */
+        @keyframes float-up {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* 滾動觸發動畫 */
+        .scroll-animate {
+            opacity: 0;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translateY(50px);
+        }
+        .scroll-animate.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 產品卡片樣式 */
+        .product-card {
+            background-color: var(--background-light);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.2);
+        }
+
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Header & Navigation -->
+    <header class="sticky-nav">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <img src="https://www.solteam.com.tw/images/logo.png" alt="Solteam Logo" class="h-10">
+                <img src="https://www.solteamopto.com.tw/images/logo-en.png" alt="Solteam Opto Logo" class="h-8">
+            </div>
+            <div class="hidden md:flex space-x-8 text-lg">
+                <a href="#hero" class="hover:text-cyan-300 transition">首頁</a>
+                <a href="#about" class="hover:text-cyan-300 transition">關於我們</a>
+                <a href="#applications" class="hover:text-cyan-300 transition">產品應用</a>
+                <a href="#products" class="hover:text-cyan-300 transition">產品介紹</a>
+                <a href="#contact" class="hover:text-cyan-300 transition">聯絡我們</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#hero" class="block py-2 text-center hover:bg-gray-700 rounded">首頁</a>
+            <a href="#about" class="block py-2 text-center hover:bg-gray-700 rounded">關於我們</a>
+            <a href="#applications" class="block py-2 text-center hover:bg-gray-700 rounded">產品應用</a>
+            <a href="#products" class="block py-2 text-center hover:bg-gray-700 rounded">產品介紹</a>
+            <a href="#contact" class="block py-2 text-center hover:bg-gray-700 rounded">聯絡我們</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center bg-cover bg-center" style="background-image: url('https://www.solteamopto.com.tw/images/slider/1.jpg');">
+            <div class="absolute inset-0 bg-black opacity-60"></div>
+            <div class="container mx-auto px-6 text-center relative">
+                <h1 class="text-4xl md:text-7xl font-black text-white leading-tight mb-4 scroll-animate">
+                    <span class="gradient-text">創新光電技術</span><br>引領智慧未來
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto scroll-animate" style="animation-delay: 0.2s;">
+                    提供創新的光電產品，從光通訊到光智慧，創造生活的便利與無限驚奇。
+                </p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title scroll-animate"><span class="gradient-text">我們的核心價值</span></h2>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="scroll-animate">
+                        <img src="https://placehold.co/600x400/1a1a2f/00f2ff?text=Our+Vision" alt="公司願景" class="rounded-lg shadow-2xl">
+                    </div>
+                    <div class="space-y-8">
+                        <div class="scroll-animate" style="animation-delay: 0.2s;">
+                            <h3 class="text-2xl font-bold mb-2 gradient-text">團隊合作與創新求進</h3>
+                            <p class="text-lg text-gray-400">我們相信團隊合作的力量，透過共同挑戰與學習，激發員工潛力，創新產品價值，以取得市場的差異化優勢。</p>
+                        </div>
+                        <div class="scroll-animate" style="animation-delay: 0.4s;">
+                            <h3 class="text-2xl font-bold mb-2 gradient-text">國際視野與客戶滿意</h3>
+                            <p class="text-lg text-gray-400">以國際化的視野，定位特殊市場及產業領導地位。我們重視客戶的每一個需求，致力於達成並超越客戶的期望，實現完全的客戶滿意。</p>
+                        </div>
+                         <div class="scroll-animate" style="animation-delay: 0.6s;">
+                            <h3 class="text-2xl font-bold mb-2 gradient-text">品質政策與環保理念</h3>
+                            <p class="text-lg text-gray-400">創新的產品技術，滿意的品質服務是我們對客戶的承諾。我們遵守環保法規，落實環境保護，推動卓越的綠能設計。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Applications Section -->
+        <section id="applications" class="py-20 md:py-32 bg-cover bg-fixed" style="background-color: var(--background-light);">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title scroll-animate"><span class="gradient-text">多元產品應用</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 text-center">
+                    <!-- 應用項目 -->
+                    <div class="p-6 bg-black bg-opacity-20 rounded-lg backdrop-blur-sm border border-gray-700 scroll-animate">
+                        <img src="https://www.solteam.com.tw/image/cache/data/pic01-340x160.jpg" class="w-full h-32 object-cover rounded-md mb-4" alt="工具機應用">
+                        <h3 class="text-xl font-bold mb-2">工具機應用</h3>
+                        <p class="text-gray-400">為電動手工具機提供整合性電氣零配件，並可量身訂作專屬測試設備。</p>
+                    </div>
+                    <div class="p-6 bg-black bg-opacity-20 rounded-lg backdrop-blur-sm border border-gray-700 scroll-animate" style="animation-delay: 0.1s;">
+                        <img src="https://www.solteam.com.tw/image/cache/data/pic02-340x160.jpg" class="w-full h-32 object-cover rounded-md mb-4" alt="白色家電應用">
+                        <h3 class="text-xl font-bold mb-2">白色家電應用</h3>
+                        <p class="text-gray-400">提供符合綠能及智能化的各式家電零組配件，打造現代化生活。</p>
+                    </div>
+                    <div class="p-6 bg-black bg-opacity-20 rounded-lg backdrop-blur-sm border border-gray-700 scroll-animate" style="animation-delay: 0.2s;">
+                        <img src="https://www.solteam.com.tw/image/cache/data/官網用-340x160.png" class="w-full h-32 object-cover rounded-md mb-4" alt="車用應用">
+                        <h3 class="text-xl font-bold mb-2">車用應用</h3>
+                        <p class="text-gray-400">與客戶共同開發，創造穩固的電動汽機車電池電源聯接器及車用週邊模組。</p>
+                    </div>
+                    <div class="p-6 bg-black bg-opacity-20 rounded-lg backdrop-blur-sm border border-gray-700 scroll-animate" style="animation-delay: 0.3s;">
+                        <img src="https://www.solteam.com.tw/image/cache/data/pic04-340x160.jpg" class="w-full h-32 object-cover rounded-md mb-4" alt="資通訊應用">
+                        <h3 class="text-xl font-bold mb-2">資通訊應用</h3>
+                        <p class="text-gray-400">提供各國安規認證齊全的電源開關及接頭，給予客戶高信賴性的零組件。</p>
+                    </div>
+                    <div class="p-6 bg-black bg-opacity-20 rounded-lg backdrop-blur-sm border border-gray-700 scroll-animate" style="animation-delay: 0.4s;">
+                        <img src="https://www.solteam.com.tw/image/cache/data/醫材應用→代表圖(1)-340x160.jpg" class="w-full h-32 object-cover rounded-md mb-4" alt="醫材應用">
+                        <h3 class="text-xl font-bold mb-2">醫材應用</h3>
+                        <p class="text-gray-400">參與客戶初期產品設計，提供必要的技術解決方案以確保設計的可量產性。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title scroll-animate"><span class="gradient-text">我們的產品</span></h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                    <!-- 產品卡片將由JS動態生成於此 -->
+                    
+                    <!-- 開關 -->
+                    <div class="product-card scroll-animate"><img src="https://www.solteam.com.tw/image/cache/data/CR-S-300x225.JPG" alt="琴鍵開關 CR系列" class="w-full h-48 object-cover"><div class="p-4"><h3 class="font-bold text-lg">琴鍵開關 CR系列</h3></div></div>
+                    <div class="product-card scroll-animate"><img src="https://www.solteam.com.tw/image/cache/data/CS-S-300x225.JPG" alt="離心開關 CS系列" class="w-full h-48 object-cover"><div class="p-4"><h3 class="font-bold text-lg">離心開關 CS系列</h3></div></div>
+                    <div class="product-card scroll-animate"><img src="https://www.solteam.com.tw/image/cache/data/FS-S-300x225.JPG" alt="浮水開關 FS系列" class="w-full h-48 object-cover"><div class="p-4"><h3 class="font-bold text-lg">浮水開關 FS系列</h3></div></div>
+                    <div class="product-card scroll-animate"><img src="https://www.solteam.com.tw/image/cache/data/TG-S-300x225.JPG" alt="板機開關 TG系列" class="w-full h-48 object-cover"><div class="p-4"><h3 class="font-bold text-lg">板機開關 TG系列</h3></div></div>
+                    
+                    <!-- IEC 公母座 -->
+                    <div class="product-card scroll-animate"><img src="https://www.solteam.com.tw/image/cache/data/SC-S-300x225.JPG" alt="插座模組 SC系列" class="w-full h-48 object-cover"><div class="p-4"><h3 class="font-bold text-lg">插座模組 SC系列</h3></div></div>
+                    <div class="product-card scroll-animate"><img src="https://www.solteam.com.tw/image/cache/data/C-S-300x225.JPG" alt="C 系列" class="w-full h-48 object-cover"><div class="p-4"><h3 class="font-bold text-lg">C 系列</h3></div></div>
+                    <div class="product-card scroll-animate"><img src="https://www.solteam.com.tw/image/cache/data/UT-S-300x225.JPG" alt="插座 UT 系列" class="w-full h-48 object-cover"><div class="p-4"><h3 class="font-bold text-lg">插座 UT 系列</h3></div></div>
+
+                    <!-- 電池座 -->
+                    <div class="product-card scroll-animate"><img src="https://www.solteam.com.tw/image/cache/data/BH01 BH02 BH03-S-600x451.JPG" alt="水銀鈕扣電池夾 CR2032系列" class="w-full h-48 object-cover"><div class="p-4"><h3 class="font-bold text-lg">水銀鈕扣電池夾 CR2032系列</h3></div></div>
+                    <div class="product-card scroll-animate"><img src="https://www.solteam.com.tw/image/cache/data/BC01-S-600x451.JPG" alt="電池夾模組 BC01 系列" class="w-full h-48 object-cover"><div class="p-4"><h3 class="font-bold text-lg">電池夾模組 BC01 系列</h3></div></div>
+                    
+                    <!-- 控制器模組 -->
+                    <div class="product-card scroll-animate"><img src="https://www.solteam.com.tw/image/cache/data/MCM-S-300x225.JPG" alt="馬達控制電子迴路" class="w-full h-48 object-cover"><div class="p-4"><h3 class="font-bold text-lg">馬達控制電子迴路</h3></div></div>
+
+                    <!-- 電動車零配件 -->
+                    <div class="product-card scroll-animate"><img src="https://www.solteam.com.tw/image/cache/data/A合照-300x225.jpg" alt="D C高壓連接器 CH 系列" class="w-full h-48 object-cover"><div class="p-4"><h3 class="font-bold text-lg">D C高壓連接器 CH 系列</h3></div></div>
+                    <div class="product-card scroll-animate"><img src="https://www.solteam.com.tw/image/cache/data/ES-S(1)-300x225.JPG" alt="充電槍 ES系列" class="w-full h-48 object-cover"><div class="p-4"><h3 class="font-bold text-lg">充電槍 ES系列</h3></div></div>
+                    <div class="product-card scroll-animate"><img src="https://www.solteam.com.tw/image/cache/data/PA-S-300x225.JPG" alt="充電連接器 PA 系列" class="w-full h-48 object-cover"><div class="p-4"><h3 class="font-bold text-lg">充電連接器 PA 系列</h3></div></div>
+
+                    <!-- 光電產品 -->
+                    <div class="product-card scroll-animate"><img src="https://www.solteamopto.com.tw/images/news/1.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1a1a2f/e0e0ff?text=光通訊';" alt="光通訊" class="w-full h-48 object-cover"><div class="p-4"><h3 class="font-bold text-lg">光通訊</h3></div></div>
+                    <div class="product-card scroll-animate"><img src="https://www.solteamopto.com.tw/images/news/2.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1a1a2f/e0e0ff?text=光感測';" alt="光感測" class="w-full h-48 object-cover"><div class="p-4"><h3 class="font-bold text-lg">光感測</h3></div></div>
+                    <div class="product-card scroll-animate"><img src="https://www.solteamopto.com.tw/images/news/3.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1a1a2f/e0e0ff?text=光智慧';" alt="光智慧" class="w-full h-48 object-cover"><div class="p-4"><h3 class="font-bold text-lg">光智慧</h3></div></div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-32 bg-gray-900 bg-opacity-50">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title scroll-animate"><span class="gradient-text">聯絡我們</span></h2>
+                <div class="max-w-3xl mx-auto">
+                     <p class="text-center text-lg text-gray-400 mb-12 scroll-animate">
+                        非常感謝您瀏覽我們的網頁。如果您有關於報價、產品訊息或需要提供服務，請填寫下表與我們聯繫。
+                    </p>
+                    <form action="#" class="space-y-6 scroll-animate">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <input type="text" placeholder="公司 / 姓名" class="w-full p-4 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition">
+                            <input type="email" placeholder="電子郵件" class="w-full p-4 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition">
+                        </div>
+                        <textarea placeholder="您的訊息" rows="5" class="w-full p-4 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition"></textarea>
+                        <button type="submit" class="w-full py-4 px-8 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold text-lg hover:from-cyan-600 hover:to-blue-600 transition-transform transform hover:scale-105">
+                            送出訊息
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-black py-12">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <div class="mb-4">
+                <p>崧騰企業股份有限公司 / 捷騰光電股份有限公司</p>
+                <p>地址：桃園市桃園區經國路888號7樓-2</p>
+                <p>電話：+886-3-316-2168 | 電子郵件：solteam@solteam.com.tw</p>
+            </div>
+            <p>Copyright © 2024 Solteam Inc. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        // 滾動動畫效果
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        const elementsToAnimate = document.querySelectorAll('.scroll-animate');
+        elementsToAnimate.forEach(el => {
+            observer.observe(el);
+        });
+
+        // 手機版導覽列開關
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 點擊手機版選單連結後自動關閉
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
