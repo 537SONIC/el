@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bauhaus Importer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="brand">
+        <div class="brand-badge">BG</div>
+        <h1>Bauhaus<span>Gen</span></h1>
+      </div>
+      <div class="button-row">
+        <button class="secondary" id="save-deck" type="button">Save Draft</button>
+        <button class="secondary" id="open-editor" type="button">Open Editor</button>
+      </div>
+    </header>
+    <main>
+      <section class="panel">
+        <div>
+          <h2>Magic Prompt Engine</h2>
+          <div class="prompt">
+            <span>AI</span>
+            <input id="prompt-input" type="text" value="Split by key points and create a summary slide" />
+          </div>
+        </div>
+        <div>
+          <h2>Source Content</h2>
+          <textarea id="source-text" placeholder="Paste your raw text, meeting transcript, or notes here...">Welcome to the Future of Presentations
+The Bauhaus movement transformed modern design by emphasizing the union of art and technology. This generator applies those same principles to your slides.
+Key Design Principles:
+- Form follows function: Every element on the slide serves a purpose.
+- Minimalism: Clean lines and bold typography reduce cognitive load.
+- Primary Colors: Using red, yellow, and blue creates strong visual hierarchy.
+The technology behind this tool uses advanced natural language processing to understand your content structure. It automatically detects headings, lists, and key concepts to distribute them across slides.
+We believe that presentation tools should empower creativity, not hinder it with complex menus.</textarea>
+          <div class="text-meta">
+            <span id="char-count">0 characters</span>
+            <span id="cursor-position">Ln 1, Col 1</span>
+          </div>
+        </div>
+        <div class="button-row">
+          <button class="secondary" id="clear-text" type="button">Clear</button>
+          <button class="primary" id="generate-deck" type="button">Generate Deck</button>
+        </div>
+        <p id="status-message" style="color: var(--muted); font-size: 12px;">Import your content to generate slides.</p>
+      </section>
+      <section class="preview">
+        <div class="preview-header">
+          <div>
+            <h3>Live Preview</h3>
+            <p id="preview-count" style="margin: 6px 0 0; font-size: 12px; color: var(--muted);">Processing 0 slides based on content</p>
+          </div>
+          <div class="status-chip">
+            <span class="status-dot"></span>
+            Ready
+          </div>
+        </div>
+        <div class="preview-grid" id="preview-grid"></div>
+      </section>
+    </main>
+    <footer class="footer">Bauhaus Importer • Draft ready for editor</footer>
+  </div>
+  <script type="module" src="assets/importer.js"></script>
+</body>
+</html>
