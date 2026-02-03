@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bauhaus Slide Generator Editor</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Serif+TC:wght@700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec1313",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221010",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif-slide": ["'Noto Serif TC'", "serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .bauhaus-grid-bg {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display h-screen flex flex-col overflow-hidden text-white selection:bg-primary selection:text-white">
+<!-- Header -->
+<header class="h-16 flex-none flex items-center justify-between border-b-2 border-[#482323] px-6 bg-background-dark z-20">
+<div class="flex items-center gap-4">
+<div class="size-8 bg-primary rounded-full flex items-center justify-center text-white shadow-[2px_2px_0px_white]">
+<span class="material-symbols-outlined text-[20px]">category</span>
+</div>
+<h2 class="text-white text-xl font-extrabold uppercase tracking-wider">Bauhaus<span class="text-primary font-normal">Gen</span></h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center text-sm font-bold text-[#c99292] bg-[#331919] px-3 py-1.5 rounded-full border border-[#482323]">
+<span class="w-2 h-2 rounded-full bg-green-500 mr-2"></span>
+                Auto-saved
+            </div>
+<div class="h-8 w-px bg-[#482323] mx-2"></div>
+<div class="flex gap-2">
+<button class="flex size-10 items-center justify-center rounded hover:bg-[#482323] text-[#c99292] hover:text-white transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded hover:bg-[#482323] text-[#c99292] hover:text-white transition-colors">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded bg-primary text-white hover:bg-red-600 transition-colors shadow-lg">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<div class="flex flex-1 overflow-hidden relative">
+<!-- Left Panel: Live Preview -->
+<main class="flex-1 relative flex flex-col bg-[#1a0c0c] bauhaus-grid-bg p-8 overflow-hidden">
+<!-- Background Geometric Accents -->
+<div class="absolute top-20 left-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute bottom-10 right-1/3 w-96 h-96 bg-blue-900/10 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Geometric Decorations -->
+<div class="absolute top-10 left-10 size-12 border-4 border-[#331919] rounded-full opacity-50"></div>
+<div class="absolute bottom-20 left-20 size-24 bg-[#331919] rotate-45 opacity-30"></div>
+<div class="absolute top-1/2 right-20 size-8 bg-primary opacity-20 rounded-full"></div>
+<!-- Canvas Container -->
+<div class="flex-1 flex items-center justify-center relative z-10 w-full h-full p-4 md:p-10">
+<div class="relative w-full max-w-5xl aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-[8px] border-black flex overflow-hidden group">
+<!-- Slide Content -->
+<div class="relative w-full h-full p-12 flex flex-col justify-between">
+<!-- Abstract Bauhaus Pattern inside slide -->
+<div class="absolute top-0 right-0 w-1/3 h-full bg-[#f0f0f0]" data-alt="Abstract grey rectangular block on the right side of the slide"></div>
+<div class="absolute top-12 right-12 size-32 bg-primary rounded-full mix-blend-multiply" data-alt="Red circle accent on the slide"></div>
+<div class="absolute bottom-12 right-24 size-48 border-[12px] border-black opacity-10 rounded-none rotate-12" data-alt="Black square outline decoration"></div>
+<div class="relative z-10 max-w-2xl">
+<div class="inline-block px-4 py-1 bg-black text-white text-xs font-bold tracking-[0.2em] mb-6">SLIDE 01</div>
+<h1 class="text-black text-6xl md:text-7xl font-serif-slide font-black leading-[0.9] tracking-tight mb-8">
+                                Welcome to the <br/>
+<span class="text-primary">Future</span> of Presentations
+                            </h1>
+<p class="text-gray-600 text-lg font-medium max-w-md border-l-4 border-primary pl-6 py-2">
+                                Exploring the intersection of form, function, and modern web technologies.
+                            </p>
+</div>
+<div class="relative z-10 flex justify-between items-end border-t-2 border-black pt-6">
+<div class="text-black font-bold text-sm">BAUHAUS.GEN</div>
+<div class="text-black font-bold text-sm">2023</div>
+</div>
+</div>
+<!-- Slide Hover Overlay Actions -->
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4 backdrop-blur-sm">
+<button class="bg-white text-black hover:bg-primary hover:text-white px-6 py-3 rounded font-bold flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined">edit</span> Edit Slide
+                        </button>
+</div>
+</div>
+</div>
+<!-- Bottom Canvas Controls -->
+<div class="h-12 flex items-center justify-center gap-6 text-[#c99292]">
+<button class="hover:text-white transition-colors"><span class="material-symbols-outlined">undo</span></button>
+<div class="flex items-center gap-2 bg-[#331919] rounded-full px-4 py-1 text-xs font-bold border border-[#482323]">
+<span>100%</span>
+<span class="material-symbols-outlined text-[16px]">arrow_drop_down</span>
+</div>
+<button class="hover:text-white transition-colors"><span class="material-symbols-outlined">redo</span></button>
+</div>
+</main>
+<!-- Right Panel: Configuration -->
+<aside class="w-96 flex-none bg-[#221111] border-l-2 border-[#482323] flex flex-col z-20 shadow-2xl">
+<!-- Config Header -->
+<div class="p-6 border-b border-[#482323]">
+<h2 class="text-white text-xl font-bold tracking-tight flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">tune</span>
+                    Configuration
+                </h2>
+<p class="text-[#c99292] text-xs mt-1">Customize your slide layout and style</p>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-8">
+<!-- Theme Section -->
+<div class="space-y-3">
+<label class="text-xs font-bold text-[#c99292] uppercase tracking-wider">Visual Theme</label>
+<div class="flex bg-[#331919] p-1 rounded border border-[#482323]">
+<label class="flex-1 cursor-pointer">
+<input checked="" class="peer sr-only" name="theme" type="radio"/>
+<div class="flex items-center justify-center py-2 text-sm font-bold text-[#c99292] rounded peer-checked:bg-primary peer-checked:text-white transition-all">
+                                Bauhaus
+                            </div>
+</label>
+<label class="flex-1 cursor-pointer">
+<input class="peer sr-only" name="theme" type="radio"/>
+<div class="flex items-center justify-center py-2 text-sm font-bold text-[#c99292] rounded peer-checked:bg-primary peer-checked:text-white transition-all">
+                                Swiss
+                            </div>
+</label>
+<label class="flex-1 cursor-pointer">
+<input class="peer sr-only" name="theme" type="radio"/>
+<div class="flex items-center justify-center py-2 text-sm font-bold text-[#c99292] rounded peer-checked:bg-primary peer-checked:text-white transition-all">
+                                Brutal
+                            </div>
+</label>
+</div>
+</div>
+<!-- Layout Grid -->
+<div class="space-y-3">
+<label class="text-xs font-bold text-[#c99292] uppercase tracking-wider">Slide Layout</label>
+<div class="grid grid-cols-2 gap-3">
+<button class="group flex flex-col items-center gap-2 p-3 rounded border-2 border-primary bg-[#2a1414] hover:bg-[#331919] transition-colors relative overflow-hidden">
+<div class="absolute top-0 right-0 p-1 bg-primary text-white"><span class="material-symbols-outlined text-[14px]">check</span></div>
+<span class="material-symbols-outlined text-3xl text-white group-hover:scale-110 transition-transform">title</span>
+<span class="text-xs font-medium text-white">Title Slide</span>
+</button>
+<button class="group flex flex-col items-center gap-2 p-3 rounded border border-[#482323] hover:border-[#c99292] bg-[#2a1414] hover:bg-[#331919] transition-colors">
+<span class="material-symbols-outlined text-3xl text-[#c99292] group-hover:text-white transition-colors">splitscreen</span>
+<span class="text-xs font-medium text-[#c99292] group-hover:text-white">Split</span>
+</button>
+<button class="group flex flex-col items-center gap-2 p-3 rounded border border-[#482323] hover:border-[#c99292] bg-[#2a1414] hover:bg-[#331919] transition-colors">
+<span class="material-symbols-outlined text-3xl text-[#c99292] group-hover:text-white transition-colors">image</span>
+<span class="text-xs font-medium text-[#c99292] group-hover:text-white">Full Image</span>
+</button>
+<button class="group flex flex-col items-center gap-2 p-3 rounded border border-[#482323] hover:border-[#c99292] bg-[#2a1414] hover:bg-[#331919] transition-colors">
+<span class="material-symbols-outlined text-3xl text-[#c99292] group-hover:text-white transition-colors">format_list_bulleted</span>
+<span class="text-xs font-medium text-[#c99292] group-hover:text-white">List</span>
+</button>
+</div>
+</div>
+<!-- Content Form -->
+<div class="space-y-4 pt-4 border-t border-[#482323]">
+<div class="space-y-1">
+<label class="text-xs font-bold text-[#c99292] uppercase tracking-wider flex justify-between">
+                            Headline
+                            <span class="text-[10px] bg-[#331919] px-1 rounded">H1</span>
+</label>
+<input class="w-full bg-[#331919] border border-[#482323] text-white rounded p-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-bold" type="text" value="Welcome to the Future"/>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-bold text-[#c99292] uppercase tracking-wider flex justify-between">
+                            Sub-headline
+                            <span class="text-[10px] bg-[#331919] px-1 rounded">H2</span>
+</label>
+<input class="w-full bg-[#331919] border border-[#482323] text-white rounded p-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" type="text" value="of Presentations"/>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-bold text-[#c99292] uppercase tracking-wider">Body Content</label>
+<textarea class="w-full bg-[#331919] border border-[#482323] text-white rounded p-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all leading-relaxed resize-none" rows="4">Exploring the intersection of form, function, and modern web technologies.</textarea>
+</div>
+</div>
+<!-- Color Palette -->
+<div class="space-y-3 pt-4 border-t border-[#482323]">
+<label class="text-xs font-bold text-[#c99292] uppercase tracking-wider">Accent Color</label>
+<div class="flex gap-3">
+<button class="size-8 rounded-full bg-primary ring-2 ring-white ring-offset-2 ring-offset-[#221111]"></button>
+<button class="size-8 rounded-full bg-blue-600 hover:ring-2 hover:ring-white hover:ring-offset-2 hover:ring-offset-[#221111] transition-all"></button>
+<button class="size-8 rounded-full bg-yellow-400 hover:ring-2 hover:ring-white hover:ring-offset-2 hover:ring-offset-[#221111] transition-all"></button>
+<button class="size-8 rounded-full bg-white hover:ring-2 hover:ring-white hover:ring-offset-2 hover:ring-offset-[#221111] transition-all"></button>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Bottom Footer / Control Bar -->
+<footer class="h-16 bg-[#221111] border-t-2 border-[#482323] flex items-center justify-between px-6 z-30">
+<!-- Pagination -->
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1">
+<div class="size-2 rounded-full bg-primary"></div>
+<div class="size-2 rounded-full bg-[#482323]"></div>
+<div class="size-2 rounded-full bg-[#482323]"></div>
+<div class="size-2 rounded-full bg-[#482323]"></div>
+</div>
+<span class="text-white font-mono text-sm tracking-widest"><span class="text-primary font-bold">01</span> / 12</span>
+</div>
+<!-- Navigation -->
+<div class="flex items-center gap-4 absolute left-1/2 transform -translate-x-1/2">
+<button class="size-10 flex items-center justify-center rounded-full border border-[#482323] text-white hover:bg-primary hover:border-primary transition-all hover:scale-105 active:scale-95">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<button class="size-12 flex items-center justify-center rounded-full bg-primary text-white shadow-[0_0_15px_rgba(236,19,19,0.4)] hover:bg-white hover:text-primary transition-all hover:scale-105 active:scale-95">
+<span class="material-symbols-outlined text-[28px]">play_arrow</span>
+</button>
+<button class="size-10 flex items-center justify-center rounded-full border border-[#482323] text-white hover:bg-primary hover:border-primary transition-all hover:scale-105 active:scale-95">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-3">
+<button class="hidden md:flex items-center gap-2 px-4 py-2 rounded text-sm font-bold text-[#c99292] hover:text-white hover:bg-[#331919] transition-colors">
+<span class="material-symbols-outlined text-[18px]">grid_view</span>
+                Overview
+            </button>
+<button class="flex items-center gap-2 px-5 py-2 rounded bg-white text-[#221010] text-sm font-bold hover:bg-gray-200 transition-colors shadow-lg">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                Export PDF
+            </button>
+</div>
+</footer>
+</body></html>
