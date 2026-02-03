@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Batch Content Importer &amp; AI Splitter</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Serif+TC:wght@700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec1313",
+                        "bauhaus-yellow": "#f0c419",
+                        "bauhaus-blue": "#1e3a8a",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221010",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif-slide": ["'Noto Serif TC'", "serif"],
+                        "mono": ["monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .bauhaus-grid-bg {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-custom::-webkit-scrollbar {
+            width: 8px;
+        }
+        .scrollbar-custom::-webkit-scrollbar-track {
+            background: #221111;
+        }
+        .scrollbar-custom::-webkit-scrollbar-thumb {
+            background: #482323; 
+            border-radius: 4px;
+        }
+        .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+            background: #ec1313; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display h-screen flex flex-col overflow-hidden text-white selection:bg-primary selection:text-white">
+<header class="h-16 flex-none flex items-center justify-between border-b-2 border-[#482323] px-6 bg-background-dark z-20">
+<div class="flex items-center gap-4">
+<div class="size-8 bg-primary rounded-full flex items-center justify-center text-white shadow-[2px_2px_0px_white]">
+<span class="material-symbols-outlined text-[20px]">category</span>
+</div>
+<div class="flex flex-col">
+<h2 class="text-white text-xl font-extrabold uppercase tracking-wider leading-none">Bauhaus<span class="text-primary font-normal">Gen</span></h2>
+<span class="text-[10px] text-gray-400 font-bold tracking-[0.2em] uppercase">Batch Importer</span>
+</div>
+</div>
+<div class="flex items-center gap-4 opacity-50 pointer-events-none grayscale">
+<div class="hidden md:flex items-center text-sm font-bold text-[#c99292] bg-[#331919] px-3 py-1.5 rounded-full border border-[#482323]">
+<span class="w-2 h-2 rounded-full bg-green-500 mr-2"></span>
+            System Ready
+        </div>
+<div class="h-8 w-px bg-[#482323] mx-2"></div>
+<div class="flex gap-2">
+<button class="flex size-10 items-center justify-center rounded hover:bg-[#482323] text-[#c99292]">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded bg-primary text-white">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden relative">
+<section class="w-full md:w-5/12 flex flex-col border-r-2 border-[#482323] bg-[#1a0c0c] bauhaus-grid-bg relative z-10">
+<div class="absolute top-[-50px] left-[-50px] size-64 bg-primary opacity-5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="p-6 border-b-2 border-[#482323] bg-[#221010]">
+<label class="block text-xs font-bold text-[#c99292] uppercase tracking-wider mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-bauhaus-yellow">auto_fix_high</span>
+                Magic Prompt Engine
+            </label>
+<div class="relative group">
+<div class="absolute -inset-1 bg-bauhaus-yellow rounded opacity-20 group-focus-within:opacity-100 transition duration-500 blur"></div>
+<div class="relative flex items-stretch">
+<div class="bg-bauhaus-yellow text-black font-bold px-3 flex items-center justify-center border-y-2 border-l-2 border-black">
+<span class="material-symbols-outlined">terminal</span>
+</div>
+<input class="w-full bg-bauhaus-yellow text-black placeholder-black/60 font-bold text-lg p-4 border-2 border-black focus:ring-0 focus:outline-none focus:border-black" placeholder="e.g. Create a slide for each paragraph..." type="text" value="Split by key points and create a summary slide"/>
+</div>
+</div>
+<p class="text-[10px] text-gray-500 mt-2 font-mono">AI Model v1.9 • Bauhaus Logic Enabled</p>
+</div>
+<div class="flex-1 flex flex-col p-6 overflow-hidden">
+<div class="flex justify-between items-end mb-2">
+<label class="text-xs font-bold text-[#c99292] uppercase tracking-wider">Source Content</label>
+<button class="text-[10px] font-bold bg-[#331919] hover:bg-[#482323] text-white px-2 py-1 rounded border border-[#482323] transition-colors">
+                    CLEAR TEXT
+                </button>
+</div>
+<textarea class="flex-1 w-full bg-[#120808] border-2 border-[#331919] text-gray-300 rounded-sm p-4 text-sm font-mono leading-relaxed resize-none focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary scrollbar-custom" placeholder="Paste your raw text, meeting transcript, or notes here...">Welcome to the Future of Presentations
+The Bauhaus movement transformed modern design by emphasizing the union of art and technology. This generator applies those same principles to your slides.
+Key Design Principles:
+- Form follows function: Every element on the slide serves a purpose.
+- Minimalism: Clean lines and bold typography reduce cognitive load.
+- Primary Colors: Using red, yellow, and blue creates strong visual hierarchy.
+The technology behind this tool uses advanced natural language processing to understand your content structure. It automatically detects headings, lists, and key concepts to distribute them across slides.
+We believe that presentation tools should empower creativity, not hinder it with complex menus.
+            </textarea>
+<div class="mt-3 flex justify-between items-center text-xs text-gray-500">
+<span>983 characters</span>
+<span>Ln 14, Col 82</span>
+</div>
+</div>
+</section>
+<section class="flex-1 bg-[#f0f0f0] dark:bg-[#0c0505] relative flex flex-col">
+<div class="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none">
+<div class="absolute top-20 right-20 size-96 border-[40px] border-[#150a0a] rounded-full opacity-50"></div>
+<div class="absolute bottom-40 right-10 size-32 bg-bauhaus-blue opacity-10 rounded-full mix-blend-screen"></div>
+</div>
+<div class="flex-none p-6 border-b-2 border-[#331919] flex justify-between items-center bg-[#150a0a] z-20">
+<div>
+<h3 class="text-white text-lg font-bold tracking-tight flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">view_carousel</span>
+                    Live Preview
+                </h3>
+<p class="text-[#c99292] text-xs">Processing 4 slides based on content</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-[#331919] rounded text-gray-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-xl">grid_view</span>
+</button>
+<button class="p-2 bg-[#331919] rounded text-white border border-[#482323]">
+<span class="material-symbols-outlined text-xl">view_day</span>
+</button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-6 md:p-10 space-y-8 scrollbar-custom relative z-10">
+<div class="group relative bg-white border-4 border-black p-1 shadow-[8px_8px_0px_rgba(236,19,19,0.2)] hover:shadow-[12px_12px_0px_#ec1313] transition-all duration-300 transform hover:-translate-y-1">
+<div class="absolute -left-3 -top-3 size-8 bg-black text-white flex items-center justify-center font-bold text-sm z-20 rounded-full border-2 border-white">01</div>
+<div class="aspect-video relative overflow-hidden bg-white p-6 flex flex-col justify-center">
+<div class="absolute top-0 right-0 w-1/4 h-full bg-gray-100"></div>
+<div class="absolute top-4 right-4 size-16 bg-primary rounded-full mix-blend-multiply opacity-80"></div>
+<span class="text-[10px] font-bold tracking-widest text-black mb-4 block">INTRODUCTION</span>
+<h1 class="text-black text-3xl font-serif-slide font-black leading-tight mb-2">Welcome to the<br/>Future of Presentations</h1>
+<p class="text-gray-500 text-xs max-w-[60%]">The Bauhaus movement transformed modern design by emphasizing the union of art and technology.</p>
+</div>
+<div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+<button class="text-white hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+<button class="text-white hover:text-primary"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</div>
+<div class="group relative bg-white border-4 border-black p-1 shadow-[8px_8px_0px_rgba(30,58,138,0.2)] hover:shadow-[12px_12px_0px_#1e3a8a] transition-all duration-300 transform hover:-translate-y-1">
+<div class="absolute -left-3 -top-3 size-8 bg-black text-white flex items-center justify-center font-bold text-sm z-20 rounded-full border-2 border-white">02</div>
+<div class="aspect-video relative overflow-hidden bg-[#f8f8f8] p-6">
+<div class="absolute bottom-0 left-0 w-full h-2 bg-black"></div>
+<div class="absolute top-6 right-6 size-12 bg-bauhaus-blue rounded-none rotate-45 opacity-20"></div>
+<h2 class="text-black text-xl font-bold mb-4 border-b-2 border-primary inline-block pb-1">Key Design Principles</h2>
+<ul class="space-y-2">
+<li class="flex items-start gap-2">
+<span class="size-2 mt-1 bg-primary rounded-full flex-shrink-0"></span>
+<span class="text-black text-xs font-bold">Form follows function</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="size-2 mt-1 bg-black rounded-full flex-shrink-0"></span>
+<span class="text-black text-xs font-bold">Minimalism reduces load</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="size-2 mt-1 bg-bauhaus-yellow rounded-full flex-shrink-0"></span>
+<span class="text-black text-xs font-bold">Primary colors hierarchy</span>
+</li>
+</ul>
+</div>
+<div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+<button class="text-white hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+<button class="text-white hover:text-primary"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</div>
+<div class="group relative bg-[#1a1a1a] border-4 border-black p-1 shadow-[8px_8px_0px_rgba(240,196,25,0.2)] hover:shadow-[12px_12px_0px_#f0c419] transition-all duration-300 transform hover:-translate-y-1">
+<div class="absolute -left-3 -top-3 size-8 bg-black text-white flex items-center justify-center font-bold text-sm z-20 rounded-full border-2 border-white">03</div>
+<div class="aspect-video relative overflow-hidden bg-[#1a1a1a] p-6 flex items-center">
+<div class="absolute left-0 top-0 w-12 h-full bg-bauhaus-yellow opacity-10"></div>
+<div class="absolute right-[-20px] bottom-[-20px] size-32 border-4 border-white opacity-10 rounded-full"></div>
+<div class="relative z-10 pl-6 border-l-4 border-bauhaus-yellow">
+<h2 class="text-white text-2xl font-serif-slide font-black mb-2">Technology &amp; Logic</h2>
+<p class="text-gray-400 text-xs leading-relaxed">Advanced NLP detects structure automatically. We believe tools should empower creativity.</p>
+</div>
+</div>
+<div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+<button class="text-white hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+<button class="text-white hover:text-primary"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</div>
+<div class="h-24"></div>
+</div>
+<div class="absolute bottom-6 right-6 md:bottom-10 md:right-10 z-30">
+<button class="group flex items-center gap-3 bg-primary text-white pl-6 pr-2 py-2 text-lg font-extrabold uppercase tracking-wide hover:bg-white hover:text-primary border-4 border-transparent hover:border-primary transition-all shadow-[0_20px_40px_rgba(0,0,0,0.5)] active:scale-95">
+                Generate Deck
+                <span class="bg-black text-white p-3 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</span>
+</button>
+</div>
+</section>
+</div>
+<footer class="h-14 bg-[#221111] border-t-2 border-[#482323] flex items-center justify-between px-6 z-30 opacity-60 grayscale pointer-events-none select-none">
+<div class="flex items-center gap-4">
+<span class="text-white font-mono text-sm tracking-widest">SLIDE EDITOR MODE</span>
+</div>
+<div class="flex items-center gap-4 absolute left-1/2 transform -translate-x-1/2">
+<button class="size-8 flex items-center justify-center rounded-full border border-[#482323] text-white">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+</button>
+<span class="text-xs font-mono text-gray-500">Navigation Disabled</span>
+<button class="size-8 flex items-center justify-center rounded-full border border-[#482323] text-white">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs text-gray-500">Auto-Save Paused</span>
+</div>
+</footer>
+
+</body></html>
