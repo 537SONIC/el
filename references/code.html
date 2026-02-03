@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html class="dark" lang="en"><head>
+<html class="dark" lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Batch Content Importer &amp; AI Splitter</title>
@@ -33,7 +34,7 @@
 <style>
         .bauhaus-grid-bg {
             background-size: 40px 40px;
-            background-image: 
+            background-image:
                 linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
         }
@@ -47,11 +48,11 @@
             background: #221111;
         }
         .scrollbar-custom::-webkit-scrollbar-thumb {
-            background: #482323; 
+            background: #482323;
             border-radius: 4px;
         }
         .scrollbar-custom::-webkit-scrollbar-thumb:hover {
-            background: #ec1313; 
+            background: #ec1313;
         }
     </style>
 </head>
@@ -66,17 +67,17 @@
 <span class="text-[10px] text-gray-400 font-bold tracking-[0.2em] uppercase">Batch Importer</span>
 </div>
 </div>
-<div class="flex items-center gap-4 opacity-50 pointer-events-none grayscale">
+<div class="flex items-center gap-4">
 <div class="hidden md:flex items-center text-sm font-bold text-[#c99292] bg-[#331919] px-3 py-1.5 rounded-full border border-[#482323]">
 <span class="w-2 h-2 rounded-full bg-green-500 mr-2"></span>
-            System Ready
+            Ready to parse
         </div>
 <div class="h-8 w-px bg-[#482323] mx-2"></div>
 <div class="flex gap-2">
-<button class="flex size-10 items-center justify-center rounded hover:bg-[#482323] text-[#c99292]">
-<span class="material-symbols-outlined">settings</span>
+<button class="flex size-10 items-center justify-center rounded hover:bg-[#482323] text-[#c99292]" id="open-editor" type="button">
+<span class="material-symbols-outlined">dashboard</span>
 </button>
-<button class="flex size-10 items-center justify-center rounded bg-primary text-white">
+<button class="flex size-10 items-center justify-center rounded bg-primary text-white" type="button">
 <span class="material-symbols-outlined">person</span>
 </button>
 </div>
@@ -96,7 +97,7 @@
 <div class="bg-bauhaus-yellow text-black font-bold px-3 flex items-center justify-center border-y-2 border-l-2 border-black">
 <span class="material-symbols-outlined">terminal</span>
 </div>
-<input class="w-full bg-bauhaus-yellow text-black placeholder-black/60 font-bold text-lg p-4 border-2 border-black focus:ring-0 focus:outline-none focus:border-black" placeholder="e.g. Create a slide for each paragraph..." type="text" value="Split by key points and create a summary slide"/>
+<input class="w-full bg-bauhaus-yellow text-black placeholder-black/60 font-bold text-lg p-4 border-2 border-black focus:ring-0 focus:outline-none focus:border-black" id="prompt-input" placeholder="e.g. Create a slide for each paragraph..." type="text" value="Split by key points and create a summary slide"/>
 </div>
 </div>
 <p class="text-[10px] text-gray-500 mt-2 font-mono">AI Model v1.9 • Bauhaus Logic Enabled</p>
@@ -104,11 +105,11 @@
 <div class="flex-1 flex flex-col p-6 overflow-hidden">
 <div class="flex justify-between items-end mb-2">
 <label class="text-xs font-bold text-[#c99292] uppercase tracking-wider">Source Content</label>
-<button class="text-[10px] font-bold bg-[#331919] hover:bg-[#482323] text-white px-2 py-1 rounded border border-[#482323] transition-colors">
+<button class="text-[10px] font-bold bg-[#331919] hover:bg-[#482323] text-white px-2 py-1 rounded border border-[#482323] transition-colors" id="clear-text" type="button">
                     CLEAR TEXT
                 </button>
 </div>
-<textarea class="flex-1 w-full bg-[#120808] border-2 border-[#331919] text-gray-300 rounded-sm p-4 text-sm font-mono leading-relaxed resize-none focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary scrollbar-custom" placeholder="Paste your raw text, meeting transcript, or notes here...">Welcome to the Future of Presentations
+<textarea class="flex-1 w-full bg-[#120808] border-2 border-[#331919] text-gray-300 rounded-sm p-4 text-sm font-mono leading-relaxed resize-none focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary scrollbar-custom" id="source-text" placeholder="Paste your raw text, meeting transcript, or notes here...">Welcome to the Future of Presentations
 The Bauhaus movement transformed modern design by emphasizing the union of art and technology. This generator applies those same principles to your slides.
 Key Design Principles:
 - Form follows function: Every element on the slide serves a purpose.
@@ -118,9 +119,10 @@ The technology behind this tool uses advanced natural language processing to und
 We believe that presentation tools should empower creativity, not hinder it with complex menus.
             </textarea>
 <div class="mt-3 flex justify-between items-center text-xs text-gray-500">
-<span>983 characters</span>
-<span>Ln 14, Col 82</span>
+<span id="char-count">0 characters</span>
+<span id="cursor-position">Ln 1, Col 1</span>
 </div>
+<div class="mt-4 text-xs text-[#c99292]" id="status-message">Import your content to generate slides.</div>
 </div>
 </section>
 <section class="flex-1 bg-[#f0f0f0] dark:bg-[#0c0505] relative flex flex-col">
@@ -134,7 +136,7 @@ We believe that presentation tools should empower creativity, not hinder it with
 <span class="material-symbols-outlined text-primary">view_carousel</span>
                     Live Preview
                 </h3>
-<p class="text-[#c99292] text-xs">Processing 4 slides based on content</p>
+<p class="text-[#c99292] text-xs" id="preview-count">Processing 0 slides based on content</p>
 </div>
 <div class="flex gap-2">
 <button class="p-2 hover:bg-[#331919] rounded text-gray-400 hover:text-white transition-colors">
@@ -145,66 +147,11 @@ We believe that presentation tools should empower creativity, not hinder it with
 </button>
 </div>
 </div>
-<div class="flex-1 overflow-y-auto p-6 md:p-10 space-y-8 scrollbar-custom relative z-10">
-<div class="group relative bg-white border-4 border-black p-1 shadow-[8px_8px_0px_rgba(236,19,19,0.2)] hover:shadow-[12px_12px_0px_#ec1313] transition-all duration-300 transform hover:-translate-y-1">
-<div class="absolute -left-3 -top-3 size-8 bg-black text-white flex items-center justify-center font-bold text-sm z-20 rounded-full border-2 border-white">01</div>
-<div class="aspect-video relative overflow-hidden bg-white p-6 flex flex-col justify-center">
-<div class="absolute top-0 right-0 w-1/4 h-full bg-gray-100"></div>
-<div class="absolute top-4 right-4 size-16 bg-primary rounded-full mix-blend-multiply opacity-80"></div>
-<span class="text-[10px] font-bold tracking-widest text-black mb-4 block">INTRODUCTION</span>
-<h1 class="text-black text-3xl font-serif-slide font-black leading-tight mb-2">Welcome to the<br/>Future of Presentations</h1>
-<p class="text-gray-500 text-xs max-w-[60%]">The Bauhaus movement transformed modern design by emphasizing the union of art and technology.</p>
-</div>
-<div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-<button class="text-white hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
-<button class="text-white hover:text-primary"><span class="material-symbols-outlined">delete</span></button>
-</div>
-</div>
-<div class="group relative bg-white border-4 border-black p-1 shadow-[8px_8px_0px_rgba(30,58,138,0.2)] hover:shadow-[12px_12px_0px_#1e3a8a] transition-all duration-300 transform hover:-translate-y-1">
-<div class="absolute -left-3 -top-3 size-8 bg-black text-white flex items-center justify-center font-bold text-sm z-20 rounded-full border-2 border-white">02</div>
-<div class="aspect-video relative overflow-hidden bg-[#f8f8f8] p-6">
-<div class="absolute bottom-0 left-0 w-full h-2 bg-black"></div>
-<div class="absolute top-6 right-6 size-12 bg-bauhaus-blue rounded-none rotate-45 opacity-20"></div>
-<h2 class="text-black text-xl font-bold mb-4 border-b-2 border-primary inline-block pb-1">Key Design Principles</h2>
-<ul class="space-y-2">
-<li class="flex items-start gap-2">
-<span class="size-2 mt-1 bg-primary rounded-full flex-shrink-0"></span>
-<span class="text-black text-xs font-bold">Form follows function</span>
-</li>
-<li class="flex items-start gap-2">
-<span class="size-2 mt-1 bg-black rounded-full flex-shrink-0"></span>
-<span class="text-black text-xs font-bold">Minimalism reduces load</span>
-</li>
-<li class="flex items-start gap-2">
-<span class="size-2 mt-1 bg-bauhaus-yellow rounded-full flex-shrink-0"></span>
-<span class="text-black text-xs font-bold">Primary colors hierarchy</span>
-</li>
-</ul>
-</div>
-<div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-<button class="text-white hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
-<button class="text-white hover:text-primary"><span class="material-symbols-outlined">delete</span></button>
-</div>
-</div>
-<div class="group relative bg-[#1a1a1a] border-4 border-black p-1 shadow-[8px_8px_0px_rgba(240,196,25,0.2)] hover:shadow-[12px_12px_0px_#f0c419] transition-all duration-300 transform hover:-translate-y-1">
-<div class="absolute -left-3 -top-3 size-8 bg-black text-white flex items-center justify-center font-bold text-sm z-20 rounded-full border-2 border-white">03</div>
-<div class="aspect-video relative overflow-hidden bg-[#1a1a1a] p-6 flex items-center">
-<div class="absolute left-0 top-0 w-12 h-full bg-bauhaus-yellow opacity-10"></div>
-<div class="absolute right-[-20px] bottom-[-20px] size-32 border-4 border-white opacity-10 rounded-full"></div>
-<div class="relative z-10 pl-6 border-l-4 border-bauhaus-yellow">
-<h2 class="text-white text-2xl font-serif-slide font-black mb-2">Technology &amp; Logic</h2>
-<p class="text-gray-400 text-xs leading-relaxed">Advanced NLP detects structure automatically. We believe tools should empower creativity.</p>
-</div>
-</div>
-<div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-<button class="text-white hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
-<button class="text-white hover:text-primary"><span class="material-symbols-outlined">delete</span></button>
-</div>
-</div>
+<div class="flex-1 overflow-y-auto p-6 md:p-10 space-y-8 scrollbar-custom relative z-10" id="preview-slides">
 <div class="h-24"></div>
 </div>
 <div class="absolute bottom-6 right-6 md:bottom-10 md:right-10 z-30">
-<button class="group flex items-center gap-3 bg-primary text-white pl-6 pr-2 py-2 text-lg font-extrabold uppercase tracking-wide hover:bg-white hover:text-primary border-4 border-transparent hover:border-primary transition-all shadow-[0_20px_40px_rgba(0,0,0,0.5)] active:scale-95">
+<button class="group flex items-center gap-3 bg-primary text-white pl-6 pr-2 py-2 text-lg font-extrabold uppercase tracking-wide hover:bg-white hover:text-primary border-4 border-transparent hover:border-primary transition-all shadow-[0_20px_40px_rgba(0,0,0,0.5)] active:scale-95" id="generate-deck" type="button">
                 Generate Deck
                 <span class="bg-black text-white p-3 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
 <span class="material-symbols-outlined">arrow_forward</span>
@@ -213,22 +160,205 @@ We believe that presentation tools should empower creativity, not hinder it with
 </div>
 </section>
 </div>
-<footer class="h-14 bg-[#221111] border-t-2 border-[#482323] flex items-center justify-between px-6 z-30 opacity-60 grayscale pointer-events-none select-none">
+<footer class="h-14 bg-[#221111] border-t-2 border-[#482323] flex items-center justify-between px-6 z-30">
 <div class="flex items-center gap-4">
 <span class="text-white font-mono text-sm tracking-widest">SLIDE EDITOR MODE</span>
 </div>
 <div class="flex items-center gap-4 absolute left-1/2 transform -translate-x-1/2">
-<button class="size-8 flex items-center justify-center rounded-full border border-[#482323] text-white">
+<button class="size-8 flex items-center justify-center rounded-full border border-[#482323] text-white" type="button">
 <span class="material-symbols-outlined text-sm">arrow_back</span>
 </button>
 <span class="text-xs font-mono text-gray-500">Navigation Disabled</span>
-<button class="size-8 flex items-center justify-center rounded-full border border-[#482323] text-white">
+<button class="size-8 flex items-center justify-center rounded-full border border-[#482323] text-white" type="button">
 <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </button>
 </div>
 <div class="flex items-center gap-3">
-<span class="text-xs text-gray-500">Auto-Save Paused</span>
+<span class="text-xs text-gray-500" id="save-state">Waiting for input</span>
 </div>
 </footer>
+<script>
+        const STORAGE_KEY = "bauhaus-deck-v1";
+        const sourceText = document.getElementById("source-text");
+        const charCount = document.getElementById("char-count");
+        const cursorPosition = document.getElementById("cursor-position");
+        const previewCount = document.getElementById("preview-count");
+        const previewSlides = document.getElementById("preview-slides");
+        const statusMessage = document.getElementById("status-message");
+        const saveState = document.getElementById("save-state");
 
-</body></html>
+        const sanitizeText = (value) => value.replace(/\s+/g, " ").trim();
+
+        const stripListPrefix = (line) => line.replace(/^[-*•]\s+/, "").trim();
+
+        const parseBlocks = (text) => {
+            return text
+                .split(/\n\s*\n/)
+                .map((block) => block.trim())
+                .filter(Boolean);
+        };
+
+        const parseTextToSlides = (text) => {
+            const blocks = parseBlocks(text);
+            if (!blocks.length) {
+                return [{
+                    type: "title",
+                    title: "開始建立你的簡報",
+                    subtitle: "請先在左側貼上內容",
+                    body: "",
+                    bullets: [],
+                }];
+            }
+
+            const slides = [];
+            blocks.forEach((block, index) => {
+                const lines = block.split(/\n/).map((line) => line.trim()).filter(Boolean);
+                const listLines = lines.filter((line) => /^[-*•]\s+/.test(line));
+                const nonListLines = lines.filter((line) => !/^[-*•]\s+/.test(line));
+
+                if (listLines.length >= 2 || (listLines.length === lines.length && listLines.length > 0)) {
+                    const titleSource = nonListLines[0] || (index === 0 ? "核心重點" : `重點整理 ${index + 1}`);
+                    slides.push({
+                        type: "list",
+                        title: titleSource.replace(/[:：]$/, ""),
+                        subtitle: "",
+                        body: "",
+                        bullets: listLines.map(stripListPrefix),
+                    });
+                    return;
+                }
+
+                const title = lines[0] || `重點 ${index + 1}`;
+                const body = sanitizeText(lines.slice(1).join(" "));
+
+                if (index === 0) {
+                    slides.push({
+                        type: "title",
+                        title,
+                        subtitle: body || "",
+                        body: body || "",
+                        bullets: [],
+                    });
+                } else {
+                    slides.push({
+                        type: "text",
+                        title,
+                        subtitle: "",
+                        body: body || title,
+                        bullets: [],
+                    });
+                }
+            });
+
+            return slides;
+        };
+
+        const renderPreview = (slides) => {
+            previewSlides.innerHTML = "";
+            slides.forEach((slide, index) => {
+                const card = document.createElement("div");
+                card.className = "group relative bg-white border-4 border-black p-1 shadow-[8px_8px_0px_rgba(236,19,19,0.2)] hover:shadow-[12px_12px_0px_#ec1313] transition-all duration-300 transform hover:-translate-y-1";
+
+                const body = document.createElement("div");
+                body.className = "aspect-video relative overflow-hidden bg-white p-6 flex flex-col justify-center";
+
+                const indexBadge = document.createElement("div");
+                indexBadge.className = "absolute -left-3 -top-3 size-8 bg-black text-white flex items-center justify-center font-bold text-sm z-20 rounded-full border-2 border-white";
+                indexBadge.textContent = String(index + 1).padStart(2, "0");
+
+                const eyebrow = document.createElement("span");
+                eyebrow.className = "text-[10px] font-bold tracking-widest text-black mb-4 block";
+                eyebrow.textContent = slide.type === "list" ? "KEY POINTS" : slide.type === "title" ? "INTRODUCTION" : "CONTENT";
+
+                const title = document.createElement("h2");
+                title.className = "text-black text-2xl font-serif-slide font-black leading-tight mb-2";
+                title.textContent = slide.title;
+
+                body.appendChild(eyebrow);
+                body.appendChild(title);
+
+                if (slide.type === "list") {
+                    const list = document.createElement("ul");
+                    list.className = "space-y-2";
+                    slide.bullets.slice(0, 3).forEach((bullet) => {
+                        const item = document.createElement("li");
+                        item.className = "flex items-start gap-2";
+                        item.innerHTML = `<span class="size-2 mt-1 bg-primary rounded-full flex-shrink-0"></span><span class="text-black text-xs font-bold">${bullet}</span>`;
+                        list.appendChild(item);
+                    });
+                    body.appendChild(list);
+                } else {
+                    const paragraph = document.createElement("p");
+                    paragraph.className = "text-gray-500 text-xs max-w-[70%]";
+                    paragraph.textContent = slide.type === "title" ? slide.subtitle || slide.body : slide.body;
+                    body.appendChild(paragraph);
+                }
+
+                card.appendChild(indexBadge);
+                card.appendChild(body);
+                previewSlides.appendChild(card);
+            });
+
+            if (!slides.length) {
+                previewSlides.innerHTML = '<div class="text-gray-400">No slides yet.</div>';
+            }
+        };
+
+        const updateCounts = () => {
+            const value = sourceText.value;
+            charCount.textContent = `${value.length} characters`;
+            const cursor = sourceText.selectionStart || 0;
+            const textBefore = value.slice(0, cursor);
+            const lines = textBefore.split("\n");
+            const lineNumber = lines.length;
+            const columnNumber = lines[lines.length - 1].length + 1;
+            cursorPosition.textContent = `Ln ${lineNumber}, Col ${columnNumber}`;
+        };
+
+        const refreshPreview = () => {
+            const slides = parseTextToSlides(sourceText.value);
+            previewCount.textContent = `Processing ${slides.length} slides based on content`;
+            renderPreview(slides);
+        };
+
+        const saveDeck = () => {
+            const slides = parseTextToSlides(sourceText.value);
+            const deck = {
+                slides,
+                sourceText: sourceText.value,
+                updatedAt: new Date().toISOString(),
+                prompt: document.getElementById("prompt-input").value,
+            };
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(deck));
+            saveState.textContent = "Deck saved to editor";
+            statusMessage.textContent = `已產生 ${slides.length} 張投影片，可以進入編輯器。`;
+        };
+
+        document.getElementById("generate-deck").addEventListener("click", () => {
+            saveDeck();
+            window.location.href = "bauhaus.html";
+        });
+
+        document.getElementById("clear-text").addEventListener("click", () => {
+            sourceText.value = "";
+            updateCounts();
+            refreshPreview();
+            statusMessage.textContent = "內容已清空，請重新貼上文本。";
+        });
+
+        document.getElementById("open-editor").addEventListener("click", () => {
+            window.location.href = "bauhaus.html";
+        });
+
+        ["input", "click", "keyup"].forEach((eventName) => {
+            sourceText.addEventListener(eventName, () => {
+                updateCounts();
+                refreshPreview();
+            });
+        });
+
+        updateCounts();
+        refreshPreview();
+    </script>
+</body>
+</html>

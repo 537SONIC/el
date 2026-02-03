@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bauhaus Editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    .hidden {
+      display: none;
+    }
+
+    .accent {
+      color: var(--primary);
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="brand">
+        <div class="brand-badge">BG</div>
+        <h1>Bauhaus<span>Gen</span></h1>
+      </div>
+      <div class="button-row">
+        <a class="secondary" href="import.html">Import Content</a>
+        <button class="primary" id="save-deck" type="button">Save Deck</button>
+      </div>
+    </header>
+    <main class="editor">
+      <section class="editor-preview">
+        <div class="editor-frame">
+          <div>
+            <span id="preview-slide-label" style="font-size: 12px; font-weight: 700; letter-spacing: 0.2em;">SLIDE 01</span>
+            <h2 id="preview-title">Welcome to the Future</h2>
+            <p id="preview-body">Exploring the intersection of form, function, and modern web technologies.</p>
+            <ul id="preview-list" class="hidden" style="list-style: disc; padding-left: 20px; margin-top: 16px;"></ul>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-weight: 700;">
+            <span>BAUHAUS.GEN</span>
+            <span id="preview-year">2024</span>
+          </div>
+        </div>
+      </section>
+      <aside class="editor-panel">
+        <div>
+          <h2 style="margin: 0 0 6px;">Configuration</h2>
+          <p id="deck-status" style="margin: 0; font-size: 12px; color: var(--muted);">Select a slide to edit</p>
+        </div>
+        <div>
+          <label>Slides</label>
+          <div class="slide-list" id="slides-list"></div>
+        </div>
+        <div>
+          <label>Slide Type</label>
+          <select id="slide-type">
+            <option value="title">Cover / Title</option>
+            <option value="text">Text</option>
+            <option value="list">Bullet List</option>
+          </select>
+        </div>
+        <div>
+          <label>Headline</label>
+          <input id="headline-input" type="text" />
+        </div>
+        <div id="subheadline-group">
+          <label>Sub-headline</label>
+          <input id="subheadline-input" type="text" />
+        </div>
+        <div id="body-group">
+          <label>Body Content</label>
+          <textarea id="body-input" rows="4"></textarea>
+        </div>
+        <div id="bullets-group" class="hidden">
+          <label>Bullet Points</label>
+          <textarea id="bullets-input" rows="5"></textarea>
+        </div>
+        <div class="button-row">
+          <button class="secondary" id="nav-prev" type="button">Prev</button>
+          <button class="secondary" id="nav-next" type="button">Next</button>
+        </div>
+        <p id="pagination-text" style="margin: 0; font-size: 12px; color: var(--muted);"></p>
+      </aside>
+    </main>
+    <footer class="footer">Bauhaus Editor • Local draft enabled</footer>
+  </div>
+  <script type="module" src="assets/editor.js"></script>
+</body>
+</html>
