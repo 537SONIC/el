@@ -1,0 +1,2422 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base target="_top">
+  <title>老協珍 AI 課前問卷</title>
+  <style>
+    :root {
+      --bg: #eef3fb;
+      --bg-deep: #e7eef9;
+      --surface: rgba(255, 255, 255, 0.74);
+      --surface-strong: rgba(255, 255, 255, 0.92);
+      --surface-soft: rgba(255, 255, 255, 0.58);
+      --stroke: rgba(92, 115, 151, 0.18);
+      --stroke-strong: rgba(26, 115, 232, 0.34);
+      --text: #1f2937;
+      --muted: #5b6472;
+      --primary: #1a73e8;
+      --primary-soft: rgba(26, 115, 232, 0.10);
+      --primary-strong: rgba(26, 115, 232, 0.18);
+      --success: #188038;
+      --danger: #d93025;
+      --warning: #f9ab00;
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --shadow-lg: 0 24px 60px rgba(55, 75, 104, 0.14);
+      --shadow-md: 0 10px 24px rgba(64, 81, 105, 0.10);
+      --shadow-sm: 0 4px 12px rgba(58, 76, 99, 0.06);
+      --maxw: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 12%, rgba(66, 133, 244, 0.14), transparent 24%),
+        radial-gradient(circle at 85% 18%, rgba(52, 168, 83, 0.10), transparent 22%),
+        radial-gradient(circle at 78% 82%, rgba(251, 188, 5, 0.08), transparent 20%),
+        linear-gradient(180deg, var(--bg), var(--bg-deep));
+      min-height: 100vh;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .bg-orb {
+      position: fixed;
+      inset: auto;
+      width: 26rem;
+      height: 26rem;
+      border-radius: 999px;
+      filter: blur(70px);
+      pointer-events: none;
+      opacity: 0.6;
+      z-index: 0;
+    }
+    .bg-orb--a { top: -6rem; left: -6rem; background: rgba(66, 133, 244, 0.18); }
+    .bg-orb--b { top: 18rem; right: -8rem; background: rgba(52, 168, 83, 0.15); }
+    .bg-orb--c { bottom: -9rem; left: 20%; background: rgba(251, 188, 5, 0.12); }
+
+    .app {
+      position: relative;
+      z-index: 1;
+      width: min(calc(100% - 24px), var(--maxw));
+      margin: 20px auto 36px;
+      padding-bottom: 120px;
+    }
+
+    .glass {
+      background: var(--surface);
+      backdrop-filter: blur(18px) saturate(1.08);
+      -webkit-backdrop-filter: blur(18px) saturate(1.08);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero {
+      border-radius: 34px;
+      padding: 18px 22px 16px;
+      overflow: hidden;
+      position: sticky;
+      top: 12px;
+      z-index: 20;
+      margin-bottom: 18px;
+      transition: padding 180ms ease, box-shadow 180ms ease;
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .hero-main {
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .hero-compact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .hero-toggle {
+      appearance: none;
+      border: 1px solid var(--stroke);
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 11px 14px;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .hero-toggle:hover {
+      transform: translateY(-1px);
+      border-color: rgba(26, 115, 232, 0.24);
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .hero-toggle-icon {
+      color: var(--primary);
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .hero-body {
+      overflow: hidden;
+      max-height: 880px;
+      opacity: 1;
+      transition: max-height 220ms ease, opacity 180ms ease, margin-top 180ms ease;
+      margin-top: 14px;
+    }
+
+    .hero.is-collapsed {
+      padding-bottom: 14px;
+    }
+
+    .hero.is-collapsed .hero-body {
+      max-height: 0;
+      opacity: 0;
+      margin-top: 0;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 5px;
+      background: linear-gradient(90deg, #4285f4, #34a853, #fbbc05, #ea4335);
+      opacity: 0.88;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--primary);
+      background: rgba(26, 115, 232, 0.10);
+      padding: 8px 12px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 860px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0 14px;
+    }
+
+    .meta-chip {
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.68);
+      border: 1px solid var(--stroke);
+      color: var(--muted);
+      font-size: 0.9rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .progress-wrap {
+      margin-top: 14px;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+      font-size: 0.84rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .progress-meta strong {
+      color: var(--text);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(133, 151, 181, 0.16);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 20%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #4285f4, #34a853);
+      transition: width 220ms ease;
+    }
+
+    .stepper {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .stepper button {
+      width: 100%;
+      border: 1px solid var(--stroke);
+      background: rgba(255, 255, 255, 0.74);
+      color: var(--muted);
+      border-radius: 16px;
+      padding: 12px 10px;
+      text-align: left;
+      cursor: pointer;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .stepper button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(26, 115, 232, 0.24);
+    }
+
+    .stepper .step-no {
+      display: inline-flex;
+      width: 26px;
+      height: 26px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: rgba(26, 115, 232, 0.08);
+      margin-bottom: 8px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .stepper .step-title {
+      display: block;
+      font-weight: 700;
+      color: var(--text);
+      font-size: 0.95rem;
+      line-height: 1.35;
+    }
+
+    .stepper .step-desc {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .stepper .is-active button {
+      border-color: var(--stroke-strong);
+      background: rgba(26, 115, 232, 0.12);
+      box-shadow: inset 0 0 0 1px rgba(26, 115, 232, 0.12);
+    }
+
+    .stepper .is-complete button {
+      border-color: rgba(24, 128, 56, 0.24);
+      background: rgba(24, 128, 56, 0.08);
+    }
+
+    .step {
+      display: none;
+      gap: 16px;
+    }
+    .step.is-active {
+      display: grid;
+    }
+
+    .section-card {
+      border-radius: var(--radius-xl);
+      padding: 22px;
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: end;
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.18rem, 2.3vw, 1.5rem);
+      line-height: 1.28;
+    }
+
+    .section-head p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .hint-badge {
+      white-space: nowrap;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--stroke);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .question-card {
+      background: var(--surface-strong);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .question-card + .question-card {
+      margin-top: 14px;
+    }
+
+    .question-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .question-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 28px;
+      padding: 0 8px;
+      border-radius: 999px;
+      background: rgba(26, 115, 232, 0.10);
+      color: var(--primary);
+      font-size: 0.83rem;
+      font-weight: 800;
+    }
+
+    .question-type {
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: rgba(123, 140, 165, 0.12);
+      border-radius: 999px;
+      padding: 6px 10px;
+    }
+
+    .question-title {
+      margin: 0 0 8px;
+      font-size: 1.04rem;
+      font-weight: 800;
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+    }
+
+    .question-help {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .required-dot {
+      color: var(--danger);
+      font-weight: 800;
+      margin-left: 6px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .input,
+    .select,
+    textarea.input {
+      width: 100%;
+      border: 1px solid rgba(104, 124, 156, 0.26);
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--text);
+      border-radius: 16px;
+      padding: 14px 15px;
+      font: inherit;
+      outline: none;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.55);
+      transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+    }
+
+    .input:focus,
+    .select:focus,
+    textarea.input:focus {
+      border-color: rgba(26, 115, 232, 0.56);
+      box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.12);
+    }
+
+    textarea.input {
+      min-height: 118px;
+      resize: vertical;
+    }
+
+    .subtle {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .choice-grid--compact {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+    .choice-card {
+      position: relative;
+      display: block;
+      min-height: 100%;
+    }
+
+    .choice-card input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .choice-card > span {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      min-height: 58px;
+      padding: 14px 15px;
+      border-radius: 18px;
+      border: 1px solid var(--stroke);
+      background: rgba(255, 255, 255, 0.84);
+      transition: border-color 160ms ease, background 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+    }
+
+    .choice-card > span::before {
+      content: "";
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      flex: 0 0 18px;
+      margin-top: 2px;
+      border: 2px solid rgba(121, 139, 167, 0.52);
+      background: white;
+      box-shadow: inset 0 0 0 3px white;
+    }
+
+    .choice-card[data-type="checkbox"] > span::before {
+      border-radius: 6px;
+    }
+
+    .choice-card input:checked + span {
+      border-color: rgba(26, 115, 232, 0.48);
+      background: var(--primary-soft);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(26, 115, 232, 0.10);
+    }
+
+    .choice-card input:checked + span::before {
+      border-color: var(--primary);
+      background: var(--primary);
+      box-shadow: inset 0 0 0 4px white;
+    }
+
+    .choice-label {
+      display: block;
+      font-weight: 700;
+      line-height: 1.42;
+      font-size: 0.96rem;
+    }
+
+    .choice-hint {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.83rem;
+      line-height: 1.35;
+    }
+
+    .other-field {
+      margin-top: 10px;
+      display: none;
+    }
+
+    .other-field.is-visible {
+      display: block;
+    }
+
+    .accordion-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .accordion {
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid var(--stroke);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .accordion > summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 18px;
+      font-weight: 800;
+    }
+
+    .accordion > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .accordion > summary::after {
+      content: "＋";
+      color: var(--primary);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .accordion[open] > summary::after {
+      content: "－";
+    }
+
+    .accordion-body {
+      padding: 0 18px 18px;
+    }
+
+    .limit-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .limit-note {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .counter {
+      font-size: 0.84rem;
+      color: var(--primary);
+      background: rgba(26, 115, 232, 0.08);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-weight: 800;
+    }
+
+    .matrix-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .matrix-card {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid var(--stroke);
+      background: rgba(255, 255, 255, 0.82);
+    }
+
+    .matrix-title {
+      margin: 0 0 12px;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .matrix-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+      gap: 10px;
+    }
+
+    .matrix-option {
+      position: relative;
+      display: block;
+    }
+
+    .matrix-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .matrix-option span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(255, 255, 255, 0.86);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.35;
+      transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+      cursor: pointer;
+    }
+
+    .matrix-option input:checked + span {
+      border-color: rgba(26, 115, 232, 0.48);
+      background: rgba(26, 115, 232, 0.12);
+      transform: translateY(-1px);
+    }
+
+    .info-callout {
+      display: grid;
+      gap: 8px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(26, 115, 232, 0.08), rgba(26, 115, 232, 0.04));
+      border: 1px solid rgba(26, 115, 232, 0.16);
+      color: #23426f;
+      margin-bottom: 14px;
+    }
+
+    .info-callout strong {
+      font-size: 0.95rem;
+    }
+
+    .inline-toggle {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      font-weight: 700;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .inline-toggle input {
+      accent-color: var(--primary);
+    }
+
+    .nav-bar {
+      position: fixed;
+      inset: auto 0 14px 0;
+      z-index: 30;
+      width: min(calc(100% - 24px), calc(var(--maxw) - 14px));
+      margin: 0 auto;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px;
+      border-radius: 24px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-state {
+      min-width: 0;
+    }
+
+    .nav-state strong {
+      display: block;
+      font-size: 0.95rem;
+    }
+
+    .nav-state span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.84rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 42vw;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      appearance: none;
+      border: none;
+      border-radius: 16px;
+      padding: 13px 18px;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn--secondary {
+      background: rgba(255, 255, 255, 0.86);
+      color: var(--text);
+      border: 1px solid var(--stroke);
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--muted);
+      border: 1px dashed var(--stroke);
+      box-shadow: none;
+    }
+
+    .btn--primary {
+      background: linear-gradient(90deg, #1a73e8, #1463c2);
+      color: white;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .error-text {
+      margin-top: 10px;
+      color: var(--danger);
+      font-size: 0.88rem;
+      font-weight: 700;
+      display: none;
+    }
+
+    .question-card.is-invalid,
+    .matrix-card.is-invalid {
+      border-color: rgba(217, 48, 37, 0.32);
+      box-shadow: 0 0 0 4px rgba(217, 48, 37, 0.08);
+    }
+
+    .question-card.is-invalid .error-text {
+      display: block;
+    }
+
+    .matrix-container.is-invalid > .error-text {
+      display: block;
+    }
+
+    .status-banner {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      display: none;
+      font-weight: 700;
+    }
+
+    .status-banner.is-success {
+      display: block;
+      background: rgba(24, 128, 56, 0.10);
+      color: var(--success);
+      border: 1px solid rgba(24, 128, 56, 0.18);
+    }
+
+    .status-banner.is-error {
+      display: block;
+      background: rgba(217, 48, 37, 0.08);
+      color: var(--danger);
+      border: 1px solid rgba(217, 48, 37, 0.16);
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 118px;
+      transform: translateX(-50%) translateY(14px);
+      background: rgba(31, 41, 55, 0.92);
+      color: white;
+      padding: 12px 16px;
+      border-radius: 14px;
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 180ms ease, transform 180ms ease;
+      z-index: 50;
+      max-width: min(90vw, 560px);
+      text-align: center;
+      font-size: 0.94rem;
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .review-box {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--stroke);
+      background: rgba(255, 255, 255, 0.84);
+      display: grid;
+      gap: 10px;
+    }
+
+    .review-row {
+      display: grid;
+      grid-template-columns: 190px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+    }
+
+    .review-key {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .review-value {
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 980px) {
+      .stepper {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .nav-state span {
+        max-width: 34vw;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .app {
+        width: min(calc(100% - 16px), var(--maxw));
+        margin-top: 10px;
+      }
+      .hero {
+        top: 8px;
+        padding: 14px 14px 12px;
+        border-radius: 24px;
+      }
+      .hero-top {
+        gap: 10px;
+      }
+      .hero-toggle {
+        padding: 10px 12px;
+        border-radius: 12px;
+        font-size: 0.9rem;
+      }
+      .hero-compact {
+        gap: 8px;
+        margin-top: 6px;
+        font-size: 0.82rem;
+      }
+      .stepper {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 2px;
+      }
+      .stepper li {
+        min-width: 180px;
+      }
+      .section-card {
+        padding: 16px;
+        border-radius: 22px;
+      }
+      .question-card {
+        padding: 16px;
+      }
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .choice-grid,
+      .choice-grid--compact {
+        grid-template-columns: 1fr;
+      }
+      .matrix-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .review-row {
+        grid-template-columns: 1fr;
+      }
+      .nav-bar {
+        width: min(calc(100% - 16px), calc(var(--maxw) - 10px));
+        padding: 10px;
+        border-radius: 20px;
+        gap: 10px;
+      }
+      .nav-actions {
+        width: 100%;
+        justify-content: flex-end;
+      }
+      .nav-state {
+        display: none;
+      }
+      .btn {
+        padding: 12px 15px;
+        border-radius: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-orb bg-orb--a"></div>
+  <div class="bg-orb bg-orb--b"></div>
+  <div class="bg-orb bg-orb--c"></div>
+
+  <div class="app">
+    <header id="surveyHero" class="hero glass is-collapsed">
+      <div class="hero-top">
+        <div class="hero-main">
+          <span class="eyebrow">老協珍 AI 實務應用實戰班</span>
+          <h1>課前需求、工具使用成熟度與組織文化調查</h1>
+          <div class="hero-compact">
+            <span id="heroStepStatus">第 1 / 5 步｜填答者與工作背景</span>
+            
+          </div>
+        </div>
+        <button type="button" id="heroToggle" class="hero-toggle" aria-expanded="false" aria-controls="heroBody">
+          <span class="hero-toggle-icon">＋</span>
+          <span class="hero-toggle-label">展開導覽</span>
+        </button>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-meta">
+          <span id="heroProgressText"><strong>目前進度</strong> 20%</span>
+          <span id="heroProgressHint">共 5 個步驟</span>
+        </div>
+        <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+      </div>
+
+      <div id="heroBody" class="hero-body">
+        <p>這份問卷整體分成 5 個步驟，約 12–15 分鐘。姓名／代號／暱稱欄位為<strong>非必填</strong>。</p>
+
+        <div class="hero-meta">
+          <span class="meta-chip">本機自動暫存草稿</span>
+        </div>
+
+        <ol id="stepper" class="stepper"></ol>
+      </div>
+    </header>
+
+    <main>
+      <form id="surveyForm" novalidate>
+        <section class="step is-active" data-step="1">
+          <div class="section-card glass">
+            <div class="section-head">
+              <div>
+                <h2>步驟 1｜填答者與工作背景</h2>
+              </div>
+              <span class="hint-badge">4 題必答 + 1 題非必填</span>
+            </div>
+
+            <div class="info-callout">
+              <strong>填答提醒</strong>
+              <span>若你不確定公司目前是否正式允許某工具，請照你「實際使用情況」與「目前認知」作答，不必為了求完整而猜測。</span>
+            </div>
+
+            <div class="question-card" id="q0Card">
+              <div class="question-meta">
+                <span class="question-index">0</span>
+                <span class="question-type">非必填</span>
+              </div>
+              <h3 class="question-title">姓名／代號／暱稱設定</h3>
+              <p class="question-help">由同仁自行決定是否填寫。若想匿名填答，可直接略過。</p>
+              <div class="grid-2">
+                <div>
+                  <label class="field-label" for="identityType">我要填寫的識別方式</label>
+                  <select id="identityType" name="identityType" class="select">
+                    <option value="">不填寫</option>
+                    <option value="姓名">姓名</option>
+                    <option value="代號">代號</option>
+                    <option value="暱稱">暱稱</option>
+                  </select>
+                </div>
+                <div id="identityValueWrap" class="hidden">
+                  <label class="field-label" for="identityValue">內容（非必填）</label>
+                  <input id="identityValue" name="identityValue" class="input" type="text" maxlength="40" placeholder="例如：王小明、MKT-03、阿海">
+                </div>
+              </div>
+            </div>
+
+            <div class="question-card" id="q1Card">
+              <div class="question-meta">
+                <span class="question-index">1</span>
+                <span class="question-type">單選</span>
+              </div>
+              <h3 class="question-title">你目前的主要所屬部門是？<span class="required-dot">＊</span></h3>
+              <div class="grid-2">
+                <div>
+                  <label class="field-label" for="department">請選擇部門</label>
+                  <select id="department" name="department" class="select">
+                    <option value="">請選擇</option>
+                  </select>
+                </div>
+                <div id="departmentOtherWrap" class="hidden">
+                  <label class="field-label" for="departmentOther">其他部門說明</label>
+                  <input id="departmentOther" name="departmentOther" class="input" type="text" maxlength="80" placeholder="請補充部門名稱">
+                </div>
+              </div>
+              <div class="error-text">請選擇主要所屬部門。</div>
+            </div>
+
+            <div class="question-card" id="q2Card">
+              <div class="question-meta">
+                <span class="question-index">2</span>
+                <span class="question-type">單選</span>
+              </div>
+              <h3 class="question-title">你目前的職務角色最接近哪一類？<span class="required-dot">＊</span></h3>
+              <div class="grid-2">
+                <div>
+                  <label class="field-label" for="role">請選擇角色</label>
+                  <select id="role" name="role" class="select">
+                    <option value="">請選擇</option>
+                  </select>
+                </div>
+                <div id="roleOtherWrap" class="hidden">
+                  <label class="field-label" for="roleOther">其他角色說明</label>
+                  <input id="roleOther" name="roleOther" class="input" type="text" maxlength="80" placeholder="請補充職務角色">
+                </div>
+              </div>
+              <div class="subtle">若你是主管、窗口或專案負責人，後面會自動展開補充題。</div>
+              <div class="error-text">請選擇職務角色。</div>
+            </div>
+
+            <div class="question-card" id="q3Card">
+              <div class="question-meta">
+                <span class="question-index">3</span>
+                <span class="question-type">簡答</span>
+              </div>
+              <h3 class="question-title">請用 1–2 句簡述你目前最主要的工作內容。<span class="required-dot">＊</span></h3>
+              <textarea id="jobDescription" name="jobDescription" class="input" placeholder="例如：我主要負責通路銷售分析、促案檔期規劃，以及每週管理報表整理。"></textarea>
+              <div class="error-text">請簡述你的主要工作內容。</div>
+            </div>
+
+            <div class="question-card" id="q4Card">
+              <div class="question-meta">
+                <span class="question-index">4</span>
+                <span class="question-type">複選</span>
+              </div>
+              <h3 class="question-title">你平常最常處理哪些資料型態？<span class="required-dot">＊</span></h3>
+              <p class="question-help">可複選。這題會影響課堂案例是否偏向文件、報表、SOP 還是跨部門資料整理。</p>
+              <div id="dataTypeChoices" class="choice-grid"></div>
+              <div class="error-text">請至少選擇 1 項資料型態。</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="step" data-step="2">
+          <div class="section-card glass">
+            <div class="section-head">
+              <div>
+                <h2>步驟 2｜工具環境與能力成熟度</h2>
+              </div>
+              <span class="hint-badge">工具盤點 + 6 項成熟度</span>
+            </div>
+
+            <div class="question-card" id="q5Card">
+              <div class="question-meta">
+                <span class="question-index">5</span>
+                <span class="question-type">複選</span>
+              </div>
+              <h3 class="question-title">你目前手邊「實際可用」的 AI 工具有哪些？<span class="required-dot">＊</span></h3>
+              <p class="question-help">請依你目前真的能登入、能操作或部門已經在用的工具作答。為避免頁面過長，工具選項採用點擊展開。</p>
+              <div id="toolAvailableGroups" class="accordion-list"></div>
+              <div class="error-text">請至少勾選 1 項，或選擇「目前幾乎沒有穩定使用任何 AI 工具」。</div>
+            </div>
+
+            <div class="question-card" id="q6Card">
+              <div class="question-meta">
+                <span class="question-index">6</span>
+                <span class="question-type">複選</span>
+              </div>
+              <h3 class="question-title">最近 30 天內，你在工作上「實際用過」哪些工具？<span class="required-dot">＊</span></h3>
+              <p class="question-help">這題主要用來區分「帳號有了」和「真的有用進工作」。</p>
+              <div id="toolUsedGroups" class="accordion-list"></div>
+              <div class="error-text">請至少勾選 1 項，或選擇「目前幾乎沒有穩定使用任何 AI 工具」。</div>
+            </div>
+
+            <div class="question-card" id="q7Card">
+              <div class="question-meta">
+                <span class="question-index">7</span>
+                <span class="question-type">單選矩陣</span>
+              </div>
+              <h3 class="question-title">請就下列能力，勾選最接近你目前狀態的一格。<span class="required-dot">＊</span></h3>
+              <div id="skillMatrix" class="matrix-list"></div>
+              <div class="error-text">每一項能力都請至少選擇一個程度。</div>
+            </div>
+
+            <div class="question-card" id="q8Card">
+              <div class="question-meta">
+                <span class="question-index">8</span>
+                <span class="question-type">單選</span>
+              </div>
+              <h3 class="question-title">如果用一句話描述你目前的 AI 成熟度，你覺得最接近哪一項？<span class="required-dot">＊</span></h3>
+              <div id="maturityChoices" class="choice-grid"></div>
+              <div class="error-text">請選擇最接近的一項描述。</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="step" data-step="3">
+          <div class="section-card glass">
+            <div class="section-head">
+              <div>
+                <h2>步驟 3｜工作應用、卡點與資料安全</h2>
+              </div>
+              <span class="hint-badge">痛點題最多選 3 項</span>
+            </div>
+
+            <div class="question-card" id="q9Card">
+              <div class="question-meta">
+                <span class="question-index">9</span>
+                <span class="question-type">複選</span>
+              </div>
+              <h3 class="question-title">你目前已經把 AI 用在哪些工作環節？<span class="required-dot">＊</span></h3>
+              <div id="useCaseChoices" class="choice-grid"></div>
+              <div class="error-text">請至少選擇 1 項目前的使用環節。</div>
+            </div>
+
+            <div class="question-card" id="q10Card">
+              <div class="question-meta">
+                <span class="question-index">10</span>
+                <span class="question-type">限選 3 項</span>
+              </div>
+              <div class="limit-row">
+                <h3 class="question-title" style="margin:0;">如果要選出最常卡住你的問題，哪些最符合？<span class="required-dot">＊</span></h3>
+                <span id="painCounter" class="counter">已選 0 / 3</span>
+              </div>
+              <div id="painChoices" class="choice-grid"></div>
+              <div class="error-text">請至少選擇 1 項，且最多 3 項。</div>
+            </div>
+
+            <div class="question-card" id="q11Card">
+              <div class="question-meta">
+                <span class="question-index">11</span>
+                <span class="question-type">單選</span>
+              </div>
+              <h3 class="question-title">關於資料安全與使用規範，你目前的感受最接近哪一項？<span class="required-dot">＊</span></h3>
+              <div id="securityChoices" class="choice-grid"></div>
+              <div class="error-text">請選擇最接近你感受的一項。</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="step" data-step="4">
+          <div class="section-card glass">
+            <div class="section-head">
+              <div>
+                <h2>步驟 4｜組織文化與課程設計重點</h2>
+              </div>
+              <span class="hint-badge">課程主題最多選 3 項</span>
+            </div>
+
+            <div class="question-card" id="q12Card">
+              <div class="question-meta">
+                <span class="question-index">12</span>
+                <span class="question-type">單選矩陣</span>
+              </div>
+              <h3 class="question-title">請就下列敘述，勾選最接近你感受的一格。<span class="required-dot">＊</span></h3>
+              <div id="cultureMatrix" class="matrix-list"></div>
+              <div class="error-text">每一項文化敘述都請至少選擇一格。</div>
+            </div>
+
+            <div class="question-card" id="q13Card">
+              <div class="question-meta">
+                <span class="question-index">13</span>
+                <span class="question-type">單選</span>
+              </div>
+              <h3 class="question-title">你目前對 AI 在工作中的角色，最接近哪一種看法？<span class="required-dot">＊</span></h3>
+              <div id="aiRoleChoices" class="choice-grid"></div>
+              <div class="error-text">請選擇最接近你看法的一項。</div>
+            </div>
+
+            <div class="question-card" id="q14Card">
+              <div class="question-meta">
+                <span class="question-index">14</span>
+                <span class="question-type">限選 3 項</span>
+              </div>
+              <div class="limit-row">
+                <h3 class="question-title" style="margin:0;">你最希望這次課程優先處理哪些主題？<span class="required-dot">＊</span></h3>
+                <span id="priorityCounter" class="counter">已選 0 / 3</span>
+              </div>
+              <div id="priorityChoices" class="choice-grid"></div>
+              <div class="error-text">請至少選擇 1 項，且最多 3 項。</div>
+            </div>
+
+            <div class="question-card" id="q15Card">
+              <div class="question-meta">
+                <span class="question-index">15</span>
+                <span class="question-type">單選</span>
+              </div>
+              <h3 class="question-title">如果這堂課先教一個「大家都用得到的共通元件」，你最希望是哪一類？<span class="required-dot">＊</span></h3>
+              <div id="componentChoices" class="choice-grid choice-grid--compact"></div>
+              <div class="error-text">請選擇 1 項最希望先學的共通元件。</div>
+            </div>
+
+            <div class="question-card" id="q16Card">
+              <div class="question-meta">
+                <span class="question-index">16</span>
+                <span class="question-type">簡答</span>
+              </div>
+              <h3 class="question-title">請寫出一個你最希望課堂直接拿來示範的真實工作情境。<span class="required-dot">＊</span></h3>
+              <p class="question-help">請盡量用具體任務描述，而不是只寫「想學 AI 分析」。例如：每週把原始銷售表整理成部門週報，並附上異常波動重點。</p>
+              <textarea id="demoScenario" name="demoScenario" class="input" placeholder="請寫出具體任務、資料來源、目前做法與理想成果。"></textarea>
+              <div class="error-text">請至少提供一個具體工作情境。</div>
+            </div>
+
+            <div class="question-card hidden" id="q17Card">
+              <div class="question-meta">
+                <span class="question-index">17</span>
+                <span class="question-type">選答</span>
+              </div>
+              <h3 class="question-title">若你是主管、窗口或專案負責人，再補充一個「同仁未必會主動提出，但你認為很重要」的情境。</h3>
+              <textarea id="managerScenario" name="managerScenario" class="input" placeholder="例如：希望各部門未來可以固定產出一致格式的管理報表，降低主管逐一追問的時間。"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="step" data-step="5">
+          <div class="section-card glass">
+            <div class="section-head">
+              <div>
+                <h2>步驟 5｜課前材料、課後帶走物與送出</h2>
+              </div>
+              <span class="hint-badge">課後帶走物最多選 2 項</span>
+            </div>
+
+            <div class="question-card" id="q18Card">
+              <div class="question-meta">
+                <span class="question-index">18</span>
+                <span class="question-type">複選</span>
+              </div>
+              <h3 class="question-title">課堂實作時，你最可能帶哪一類去識別化材料到現場？<span class="required-dot">＊</span></h3>
+              <div id="materialsChoices" class="choice-grid"></div>
+              <div class="error-text">請至少選擇 1 項材料類型。</div>
+            </div>
+
+            <div class="question-card" id="q19Card">
+              <div class="question-meta">
+                <span class="question-index">19</span>
+                <span class="question-type">複選</span>
+              </div>
+              <h3 class="question-title">如果你對帶資料到現場有顧慮，主要原因是什麼？<span class="required-dot">＊</span></h3>
+              <p class="question-help">若目前沒有太大顧慮，請直接勾選「目前沒有太大顧慮」。</p>
+              <div id="concernChoices" class="choice-grid"></div>
+              <div class="error-text">請至少選擇 1 項，包含「目前沒有太大顧慮」也可以。</div>
+            </div>
+
+            <div class="question-card" id="q20Card">
+              <div class="question-meta">
+                <span class="question-index">20</span>
+                <span class="question-type">限選 2 項</span>
+              </div>
+              <div class="limit-row">
+                <h3 class="question-title" style="margin:0;">你希望課程結束後，最少可以立刻帶走什麼？<span class="required-dot">＊</span></h3>
+                <span id="takeawayCounter" class="counter">已選 0 / 2</span>
+              </div>
+              <div id="takeawayChoices" class="choice-grid"></div>
+              <div class="error-text">請至少選擇 1 項，且最多 2 項。</div>
+            </div>
+
+            <div class="question-card" id="q21Card">
+              <div class="question-meta">
+                <span class="question-index">21</span>
+                <span class="question-type">選答</span>
+              </div>
+              <h3 class="question-title">其他補充</h3>
+              <p class="question-help">例如：希望避開的內容、想優先處理的部門、現場設備限制，或其他你覺得講師應先知道的事情。</p>
+              <textarea id="otherNotes" name="otherNotes" class="input" placeholder="可補充設備、權限、軟體帳號、時程或部門需求。"></textarea>
+            </div>
+
+            <div class="question-card">
+              <div class="question-meta">
+                <span class="question-index">送出前檢查</span>
+                <span class="question-type">系統整理</span>
+              </div>
+              <h3 class="question-title">送出摘要</h3>
+              <div id="reviewBox" class="review-box"></div>
+              <div id="statusBanner" class="status-banner"></div>
+            </div>
+          </div>
+        </section>
+      </form>
+    </main>
+  </div>
+
+  <div class="nav-bar glass">
+    <div class="nav-state">
+      <strong id="navTitle">步驟 1｜填答者與工作背景</strong>
+      <span id="navDesc">先確認學員輪廓與資料型態。</span>
+    </div>
+    <div class="nav-actions">
+      <button type="button" id="resetDraftBtn" class="btn btn--ghost">清除草稿</button>
+      <button type="button" id="prevBtn" class="btn btn--secondary">上一步</button>
+      <button type="button" id="nextBtn" class="btn btn--primary">下一步</button>
+      <button type="button" id="submitBtn" class="btn btn--primary hidden">送出問卷</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    const FORM_VERSION = "lxz-ai-survey-v1.0.0";
+    const STORAGE_KEY = "lxz-ai-survey-draft-v1";
+    const HERO_COLLAPSE_KEY = `${STORAGE_KEY}::hero-collapsed`;
+    const CONFIG = {
+  "departmentOptions": [
+    "品牌／行銷",
+    "電商／CRM／會員經營",
+    "業務／通路",
+    "商品／PM／企劃",
+    "採購",
+    "生管／製造／供應鏈",
+    "品保／研發／法規",
+    "客服／客訴",
+    "財務／會計",
+    "人資／行政／總務",
+    "資訊／IT／數據",
+    "主管幕僚／經營企劃",
+    "其他"
+  ],
+  "roleOptions": [
+    "高階主管（部門主管以上）",
+    "中階主管／Team Lead",
+    "專案負責人／資深專員",
+    "一般同仁",
+    "IT、數據或系統支援角色",
+    "其他"
+  ],
+  "dataTypeOptions": [
+    "Email、會議紀錄或追蹤事項",
+    "Word／Google Docs 類文件",
+    "Excel／Google Sheets 類表格",
+    "通路或銷售數據",
+    "生產、排程、工單或庫存資料",
+    "供應商報價、採購比較表或合約資訊",
+    "商品頁、活動頁、圖片或視覺素材",
+    "SOP、教育訓練、FAQ 或規範文件",
+    "客服回饋、客訴或消費者意見整理",
+    "簡報、提案或管理報告",
+    "錄音、逐字稿或影音素材",
+    "其他"
+  ],
+  "toolGroups": [
+    {
+      "title": "Google 生態系",
+      "open": true,
+      "options": [
+        "Google Workspace with Gemini（Gmail、Docs、Sheets、Slides、Drive、Meet 內建 AI 功能）",
+        "Gemini app（以公司 Google 帳號登入）",
+        "Gems（Gemini 內的自訂專家）",
+        "NotebookLM（以公司帳號使用）",
+        "Google AI Studio",
+        "Google Cloud Vertex AI（含 Search／Agent Builder 等進階功能）"
+      ]
+    },
+    {
+      "title": "OpenAI／Anthropic／Microsoft",
+      "open": false,
+      "options": [
+        "ChatGPT（免費版或 Plus，個人帳號）",
+        "ChatGPT Business／Enterprise（公司或部門帳號）",
+        "自訂 GPTs",
+        "Claude（含 Pro／Team／Enterprise）",
+        "Claude Artifacts",
+        "Microsoft Copilot／Copilot Chat"
+      ]
+    },
+    {
+      "title": "設計、自動化與其他工具",
+      "open": false,
+      "options": [
+        "Canva AI、Adobe Firefly、Midjourney 等圖像／影音生成工具",
+        "Zapier、Make 或其他自動化平台",
+        "我目前在工作上幾乎沒有穩定使用任何 AI 工具",
+        "其他"
+      ]
+    }
+  ],
+  "skillRows": [
+    {
+      "key": "skillPromptDesign",
+      "label": "把工作需求拆清楚，寫出比較像樣的提示詞"
+    },
+    {
+      "key": "skillLongDocSummary",
+      "label": "讓 AI 讀長文件、會議紀錄或規範後整理重點"
+    },
+    {
+      "key": "skillDataAnalysis",
+      "label": "讓 AI 協助分析表格、銷售數據或報表"
+    },
+    {
+      "key": "skillReusablePrompt",
+      "label": "把常用做法固定成可重複使用的提示模板、Gem 或 GPT"
+    },
+    {
+      "key": "skillCodeHelper",
+      "label": "請 AI 協助寫公式、Google Apps Script 或小工具"
+    },
+    {
+      "key": "skillAutomationFlow",
+      "label": "把多個工具串成半自動或自動流程"
+    }
+  ],
+  "skillScale": [
+    "沒用過",
+    "試過但不穩定",
+    "偶爾能完成",
+    "已可獨立完成"
+  ],
+  "maturityOptions": [
+    "幾乎還沒真正用在工作流程裡。",
+    "已經會拿來做文書、摘要或初稿，但多半是零星使用。",
+    "已經固定用在 1–2 類工作上，開始有自己的慣用做法。",
+    "已經會把提示、資料來源或格式要求固定下來，讓結果更穩。",
+    "已經開始做小自動化、腳本或跨工具流程。"
+  ],
+  "useCaseOptions": [
+    "Email、會議紀錄、追蹤事項整理",
+    "行銷文案、檔期企劃、社群內容或廣告文案草稿",
+    "商品頁文案、FAQ、客服回覆草稿",
+    "競品、產業或市場資料蒐整",
+    "通路／銷售數據整理與週報、月報草稿",
+    "採購報價比較、供應商比價或原料價格追蹤",
+    "生產、排程、工單或產銷協調相關整理",
+    "SOP、教育訓練、新人導引或內部知識整理",
+    "簡報、管理報告或會議簡報初稿",
+    "圖片、素材、版型或視覺內容產製",
+    "公式、腳本、Apps Script 或小工具撰寫",
+    "目前還沒有真正用進工作流程",
+    "其他"
+  ],
+  "painPoints": [
+    "不知道該從哪一個工作流程切入，不容易想到 AI 可以怎麼幫忙。",
+    "提示詞下得不夠清楚，AI 的回答太空泛或偏離需求。",
+    "AI 產出的語氣、格式或內容不符合公司實務要求。",
+    "AI 容易亂編、算錯、看錯表格，讓人不敢直接採用。",
+    "不知道怎麼把內部文件、SOP、企劃案或資料庫活用起來。",
+    "不知道哪些資料可以上傳，哪些不該上傳。",
+    "知道要去識別化，但不清楚實際怎麼做。",
+    "不知道如何把 AI 跟現有系統、共享資料夾或報表流程串起來。",
+    "缺少可以直接拿去套用的模板、範例或部門案例。",
+    "團隊內沒什麼人可以請教，只能自己慢慢試。",
+    "平常太忙，知道重要，但沒有時間系統化學。",
+    "其他"
+  ],
+  "securityOptions": [
+    "很清楚：我知道哪些資料可以用公司工具處理，哪些資料不能上傳。",
+    "大致清楚，但遇到敏感資料時仍會猶豫。",
+    "不太清楚，多半只能靠自己判斷。",
+    "幾乎沒有概念，希望課程中要講清楚。",
+    "不確定公司目前是否已有正式規範或可依循的做法。"
+  ],
+  "cultureRows": [
+    {
+      "key": "cultureManagerSupport",
+      "label": "我的主管會鼓勵在合規前提下試用 AI 改善工作流程。"
+    },
+    {
+      "key": "culturePeerSharing",
+      "label": "團隊內有人願意分享好用的提示、流程或案例。"
+    },
+    {
+      "key": "cultureNoLazyLabel",
+      "label": "在我們團隊，用 AI 先做草稿不會先被貼上「偷懶」標籤。"
+    },
+    {
+      "key": "cultureHumanReview",
+      "label": "即使使用 AI，最後仍會要求人員負責判斷與品質把關。"
+    },
+    {
+      "key": "cultureSharedSop",
+      "label": "如果某個做法有效，團隊有機會把它整理成共用 SOP 或範本。"
+    },
+    {
+      "key": "cultureKnowWhoToAsk",
+      "label": "當我卡住時，我知道可以找誰協助（主管、IT、同事或文件）。"
+    }
+  ],
+  "cultureScale": [
+    "非常不同意",
+    "不同意",
+    "普通",
+    "同意",
+    "非常同意"
+  ],
+  "aiRoleOptions": [
+    "已經視為日常工作工具之一。",
+    "覺得有幫助，但還沒有形成穩定習慣。",
+    "知道很重要，只是還沒找到真正適合自己的切入點。",
+    "有些顧慮，主要擔心正確性、資料風險或導入成本。",
+    "暫時沒有明顯動機，還看不出對自己工作的具體幫助。"
+  ],
+  "coursePriorities": [
+    "工作流程型提示設計：把需求說清楚、把結果做穩。",
+    "用 AI 讀文件、整理重點、摘要會議或提煉行動項目。",
+    "試算表、銷售數據、管理報表或數字解讀。",
+    "NotebookLM、知識整理、SOP／FAQ 檢索與新人上手。",
+    "讓 AI 協助寫公式、Google Apps Script 或小工具。",
+    "例行報表、Dashboard 或定期彙整流程的自動化。",
+    "資料安全、去識別化與內部使用規範。",
+    "自訂 Gems／GPTs，把固定工作做法包成可重複用工具。",
+    "各部門案例拆解與現場演練。",
+    "Agentic AI／代理型 AI 的基本概念與應用邏輯（偏入門理解）。",
+    "其他"
+  ],
+  "commonComponentOptions": [
+    "提示設計與工作拆解",
+    "文件摘要、資訊整理與長文閱讀",
+    "試算表分析與報表草稿",
+    "NotebookLM／知識庫／SOP 檢索",
+    "公式、Apps Script 與小自動化",
+    "資料安全與去識別化"
+  ],
+  "materials": [
+    "Excel／Google Sheets 銷售或通路資料",
+    "生產、排程、工單或庫存資料",
+    "採購報價、供應商比較表或歷史價格資料",
+    "舊企劃案、簡報或文案素材",
+    "SOP、FAQ、教育訓練或規範文件",
+    "客服問答、常見問題或客訴整理",
+    "圖片、商品資料、視覺素材或規格表",
+    "目前不方便提供真實資料，希望用模擬資料練習",
+    "其他"
+  ],
+  "materialConcerns": [
+    "含個資",
+    "含商業機密、價格資訊或敏感條件",
+    "不知道怎麼去識別化",
+    "資料格式太亂，怕現場用不起來",
+    "沒時間事前整理",
+    "不確定公司內部規範",
+    "目前沒有太大顧慮",
+    "其他"
+  ],
+  "takeaways": [
+    "一組可直接上手的提示模板",
+    "一份部門案例的操作 SOP 或步驟表",
+    "一個 NotebookLM／知識整理範例",
+    "一個自訂 Gem 或 GPT 雛形",
+    "一個公式、Apps Script 或小工具原型",
+    "一個報表或 Dashboard 雛形",
+    "一份資料安全與去識別化檢查清單",
+    "一份部門後續導入行動清單",
+    "其他"
+  ]
+};
+
+    const STEP_META = [
+      { title: "步驟 1｜填答者與工作背景", short: "工作背景", desc: "先確認學員輪廓與資料型態。" },
+      { title: "步驟 2｜工具環境與能力成熟度", short: "工具環境", desc: "盤點可用工具與成熟度。" },
+      { title: "步驟 3｜工作應用、卡點與資料安全", short: "工作痛點", desc: "找出高頻卡點與資料風險。" },
+      { title: "步驟 4｜組織文化與課程設計優先題", short: "文化與課程", desc: "掌握導入阻力與課程焦點。" },
+      { title: "步驟 5｜課前材料、課後帶走物與送出", short: "材料與送出", desc: "確認材料、帶走物與最終送出。" },
+    ];
+
+    let currentStep = 1;
+    let isSubmitting = false;
+
+    function createChoiceCard(name, option, type = "checkbox", extra = {}) {
+      const wrapper = document.createElement("label");
+      wrapper.className = "choice-card";
+      wrapper.dataset.type = type;
+
+      const input = document.createElement("input");
+      input.type = type;
+      input.name = name;
+      input.value = option.value || option.label || option;
+      if (extra.required) input.dataset.requiredGroup = "true";
+      if (option.exclusive) input.dataset.exclusive = "true";
+      if (option.other) input.dataset.otherInputId = option.otherInputId || `${name}OtherText`;
+
+      const span = document.createElement("span");
+      const content = document.createElement("span");
+      content.style.display = "block";
+
+      const label = document.createElement("span");
+      label.className = "choice-label";
+      label.textContent = option.label || option;
+      content.appendChild(label);
+
+      if (option.hint) {
+        const hint = document.createElement("span");
+        hint.className = "choice-hint";
+        hint.textContent = option.hint;
+        content.appendChild(hint);
+      }
+
+      span.appendChild(content);
+      wrapper.appendChild(input);
+      wrapper.appendChild(span);
+
+      if (option.other) {
+        const otherField = document.createElement("div");
+        otherField.className = "other-field";
+        otherField.id = option.otherInputId || `${name}OtherField`;
+
+        const inputField = document.createElement("input");
+        inputField.type = "text";
+        inputField.className = "input";
+        inputField.placeholder = option.otherPlaceholder || "請補充說明";
+        inputField.maxLength = option.otherMaxLength || 120;
+        inputField.id = option.otherTextId || `${name}OtherText`;
+        inputField.name = option.otherTextName || `${name}OtherText`;
+        otherField.appendChild(inputField);
+        wrapper.appendChild(otherField);
+      }
+
+      return wrapper;
+    }
+
+    function renderSelectOptions(selectId, options) {
+      const select = document.getElementById(selectId);
+      options.forEach((label) => {
+        const opt = document.createElement("option");
+        opt.value = label;
+        opt.textContent = label;
+        select.appendChild(opt);
+      });
+    }
+
+    function renderChoiceGroup(containerId, name, options, type = "checkbox") {
+      const container = document.getElementById(containerId);
+      container.innerHTML = "";
+      options.forEach((item) => {
+        const option = typeof item === "string"
+          ? (item === "其他"
+              ? { label: "其他", other: true, otherInputId: `${name}OtherField`, otherTextId: `${name}OtherText` }
+              : item === "目前還沒有真正用進工作流程" || item === "目前沒有太大顧慮" || item === "目前不方便提供真實資料，希望用模擬資料練習"
+                ? { label: item, exclusive: true }
+                : { label: item })
+          : item;
+        container.appendChild(createChoiceCard(name, option, type));
+      });
+    }
+
+    function renderAccordionChoices(containerId, name, groups) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = "";
+      groups.forEach((group, groupIndex) => {
+        const details = document.createElement("details");
+        details.className = "accordion";
+        if (group.open || groupIndex === 0) details.open = true;
+
+        const summary = document.createElement("summary");
+        summary.textContent = group.title;
+        details.appendChild(summary);
+
+        const body = document.createElement("div");
+        body.className = "accordion-body";
+
+        const grid = document.createElement("div");
+        grid.className = "choice-grid";
+
+        group.options.forEach((opt) => {
+          const optionObj = opt === "其他"
+            ? { label: "其他", other: true, otherInputId: `${name}OtherField`, otherTextId: `${name}OtherText` }
+            : opt.includes("我目前在工作上幾乎沒有穩定使用任何 AI 工具")
+              ? { label: opt, exclusive: true }
+              : { label: opt };
+          grid.appendChild(createChoiceCard(name, optionObj, "checkbox"));
+        });
+
+        body.appendChild(grid);
+        details.appendChild(body);
+        container.appendChild(details);
+      });
+    }
+
+    function renderMatrix(containerId, rows, scale, namePrefix) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = "";
+      rows.forEach((row) => {
+        const card = document.createElement("div");
+        card.className = "matrix-card";
+        card.dataset.key = row.key;
+
+        const title = document.createElement("p");
+        title.className = "matrix-title";
+        title.textContent = row.label;
+        card.appendChild(title);
+
+        const options = document.createElement("div");
+        options.className = "matrix-options";
+
+        scale.forEach((scaleLabel, idx) => {
+          const label = document.createElement("label");
+          label.className = "matrix-option";
+
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = row.key;
+          input.value = scaleLabel;
+
+          const span = document.createElement("span");
+          span.textContent = scaleLabel;
+
+          label.appendChild(input);
+          label.appendChild(span);
+          options.appendChild(label);
+        });
+
+        card.appendChild(options);
+        container.appendChild(card);
+      });
+    }
+
+    function setHeroCollapsed(collapsed, persist = true) {
+      const hero = document.getElementById("surveyHero");
+      const toggleBtn = document.getElementById("heroToggle");
+      if (!hero || !toggleBtn) return;
+
+      hero.classList.toggle("is-collapsed", collapsed);
+      toggleBtn.setAttribute("aria-expanded", String(!collapsed));
+
+      const icon = toggleBtn.querySelector(".hero-toggle-icon");
+      const label = toggleBtn.querySelector(".hero-toggle-label");
+      if (icon) icon.textContent = collapsed ? "＋" : "－";
+      if (label) label.textContent = collapsed ? "展開導覽" : "收合導覽";
+
+      if (persist) {
+        localStorage.setItem(HERO_COLLAPSE_KEY, collapsed ? "1" : "0");
+      }
+    }
+
+    function wireHeroToggle() {
+      const toggleBtn = document.getElementById("heroToggle");
+      if (!toggleBtn) return;
+
+      const savedState = localStorage.getItem(HERO_COLLAPSE_KEY);
+      const collapsed = savedState === null ? true : savedState === "1";
+      setHeroCollapsed(collapsed, false);
+
+      toggleBtn.addEventListener("click", () => {
+        const hero = document.getElementById("surveyHero");
+        const nextState = !hero.classList.contains("is-collapsed");
+        setHeroCollapsed(nextState);
+      });
+    }
+
+    function syncHeroSummary(progress) {
+      const heroStepStatus = document.getElementById("heroStepStatus");
+      const heroProgressText = document.getElementById("heroProgressText");
+      const meta = STEP_META[currentStep - 1];
+      if (heroStepStatus && meta) {
+        heroStepStatus.textContent = `第 ${currentStep} / ${STEP_META.length} 步｜${meta.title}`;
+      }
+      if (heroProgressText) {
+        heroProgressText.innerHTML = `<strong>目前進度</strong> ${Math.round(progress)}%`;
+      }
+    }
+
+    function buildStepper() {
+      const stepper = document.getElementById("stepper");
+      stepper.innerHTML = "";
+      STEP_META.forEach((step, idx) => {
+        const li = document.createElement("li");
+        const button = document.createElement("button");
+        button.type = "button";
+        button.innerHTML = `
+          <span class="step-no">${idx + 1}</span>
+          <span class="step-title">${step.short}</span>
+          <span class="step-desc">${step.desc}</span>
+        `;
+        button.addEventListener("click", () => {
+          if (idx + 1 <= currentStep || validateStep(currentStep)) {
+            currentStep = idx + 1;
+            updateStepUI();
+          }
+        });
+        li.appendChild(button);
+        stepper.appendChild(li);
+      });
+    }
+
+    function setOtherVisibility(selectEl, wrapEl, matchText) {
+      wrapEl.classList.toggle("hidden", selectEl.value !== matchText);
+    }
+
+    function wireSelectLogic() {
+      const identityType = document.getElementById("identityType");
+      const identityWrap = document.getElementById("identityValueWrap");
+      const department = document.getElementById("department");
+      const departmentOtherWrap = document.getElementById("departmentOtherWrap");
+      const role = document.getElementById("role");
+      const roleOtherWrap = document.getElementById("roleOtherWrap");
+
+      identityType.addEventListener("change", () => {
+        identityWrap.classList.toggle("hidden", !identityType.value);
+        if (!identityType.value) document.getElementById("identityValue").value = "";
+        saveDraft();
+      });
+
+      department.addEventListener("change", () => {
+        setOtherVisibility(department, departmentOtherWrap, "其他");
+        if (department.value !== "其他") document.getElementById("departmentOther").value = "";
+        saveDraft();
+      });
+
+      role.addEventListener("change", () => {
+        setOtherVisibility(role, roleOtherWrap, "其他");
+        if (role.value !== "其他") document.getElementById("roleOther").value = "";
+        toggleManagerQuestion();
+        saveDraft();
+      });
+    }
+
+    function toggleManagerQuestion() {
+      const roleValue = document.getElementById("role").value;
+      const q17 = document.getElementById("q17Card");
+      const managerRoles = [
+        "高階主管（部門主管以上）",
+        "中階主管／Team Lead",
+        "專案負責人／資深專員",
+      ];
+      q17.classList.toggle("hidden", !managerRoles.includes(roleValue));
+    }
+
+    function wireChoiceLogic() {
+      document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+        checkbox.addEventListener("change", (event) => {
+          const name = checkbox.name;
+          const group = [...document.querySelectorAll(`input[name="${CSS.escape(name)}"]`)];
+          if (checkbox.dataset.exclusive === "true" && checkbox.checked) {
+            group.forEach((box) => {
+              if (box !== checkbox) box.checked = false;
+            });
+          } else if (checkbox.checked) {
+            group.filter((box) => box.dataset.exclusive === "true").forEach((box) => (box.checked = false));
+          }
+
+          if (checkbox.dataset.otherInputId) {
+            const field = checkbox.parentElement.querySelector(".other-field");
+            if (field) {
+              field.classList.toggle("is-visible", checkbox.checked);
+              if (!checkbox.checked) {
+                const input = field.querySelector("input");
+                if (input) input.value = "";
+              }
+            }
+          }
+
+          updateCounters();
+          updateReview();
+          saveDraft();
+        });
+      });
+
+      document.querySelectorAll('input[type="radio"], input[type="text"], textarea, select').forEach((el) => {
+        el.addEventListener("change", () => {
+          updateReview();
+          saveDraft();
+        });
+        el.addEventListener("input", () => {
+          updateReview();
+          saveDraft();
+        });
+      });
+    }
+
+    function enforceLimit(name, max, counterId) {
+      const boxes = [...document.querySelectorAll(`input[name="${CSS.escape(name)}"]`)];
+      boxes.forEach((box) => {
+        box.addEventListener("change", () => {
+          const checked = boxes.filter((item) => item.checked);
+          if (checked.length > max) {
+            box.checked = false;
+            showToast(`這一題最多只能選 ${max} 項。`);
+          }
+          updateCounter(name, max, counterId);
+        });
+      });
+      updateCounter(name, max, counterId);
+    }
+
+    function updateCounter(name, max, counterId) {
+      const count = document.querySelectorAll(`input[name="${CSS.escape(name)}"]:checked`).length;
+      const target = document.getElementById(counterId);
+      if (target) target.textContent = `已選 ${count} / ${max}`;
+    }
+
+    function updateCounters() {
+      updateCounter("topPainPoints", 3, "painCounter");
+      updateCounter("coursePriorities", 3, "priorityCounter");
+      updateCounter("takeaways", 2, "takeawayCounter");
+    }
+
+    function getCheckedValues(name) {
+      const boxes = [...document.querySelectorAll(`input[name="${CSS.escape(name)}"]:checked`)];
+      return boxes.map((box) => {
+        if (box.dataset.otherInputId) {
+          const field = box.parentElement.querySelector("input[type='text']");
+          const otherText = field ? field.value.trim() : "";
+          return otherText ? `其他：${otherText}` : "其他";
+        }
+        return box.value;
+      });
+    }
+
+    function getValue(id) {
+      const el = document.getElementById(id);
+      return el ? el.value.trim() : "";
+    }
+
+    function getSelectedRadioValue(name) {
+      const selected = document.querySelector(`input[name="${CSS.escape(name)}"]:checked`);
+      return selected ? selected.value : "";
+    }
+
+    function composeSingleWithOther(baseValue, otherValue) {
+      return baseValue === "其他" && otherValue ? `其他：${otherValue}` : baseValue;
+    }
+
+    function collectPayload() {
+      return {
+        formVersion: FORM_VERSION,
+        userAgent: navigator.userAgent || "",
+        identityType: getValue("identityType"),
+        identityValue: getValue("identityValue"),
+        department: composeSingleWithOther(getValue("department"), getValue("departmentOther")),
+        role: composeSingleWithOther(getValue("role"), getValue("roleOther")),
+        jobDescription: getValue("jobDescription"),
+        dataTypes: getCheckedValues("dataTypes"),
+        availableTools: getCheckedValues("availableTools"),
+        usedToolsLast30Days: getCheckedValues("usedToolsLast30Days"),
+        skillPromptDesign: getSelectedRadioValue("skillPromptDesign"),
+        skillLongDocSummary: getSelectedRadioValue("skillLongDocSummary"),
+        skillDataAnalysis: getSelectedRadioValue("skillDataAnalysis"),
+        skillReusablePrompt: getSelectedRadioValue("skillReusablePrompt"),
+        skillCodeHelper: getSelectedRadioValue("skillCodeHelper"),
+        skillAutomationFlow: getSelectedRadioValue("skillAutomationFlow"),
+        maturitySummary: getSelectedRadioValue("maturitySummary"),
+        currentUseCases: getCheckedValues("currentUseCases"),
+        topPainPoints: getCheckedValues("topPainPoints"),
+        dataSecurityState: getSelectedRadioValue("dataSecurityState"),
+        cultureManagerSupport: getSelectedRadioValue("cultureManagerSupport"),
+        culturePeerSharing: getSelectedRadioValue("culturePeerSharing"),
+        cultureNoLazyLabel: getSelectedRadioValue("cultureNoLazyLabel"),
+        cultureHumanReview: getSelectedRadioValue("cultureHumanReview"),
+        cultureSharedSop: getSelectedRadioValue("cultureSharedSop"),
+        cultureKnowWhoToAsk: getSelectedRadioValue("cultureKnowWhoToAsk"),
+        aiRoleView: getSelectedRadioValue("aiRoleView"),
+        coursePriorities: getCheckedValues("coursePriorities"),
+        commonComponent: getSelectedRadioValue("commonComponent"),
+        demoScenario: getValue("demoScenario"),
+        managerScenario: getValue("managerScenario"),
+        materialsToBring: getCheckedValues("materialsToBring"),
+        materialConcerns: getCheckedValues("materialConcerns"),
+        takeaways: getCheckedValues("takeaways"),
+        otherNotes: getValue("otherNotes"),
+      };
+    }
+
+    function persistDraft(payload) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+    }
+
+    function saveDraft() {
+      persistDraft(collectPayload());
+    }
+
+    function restoreDraft() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      try {
+        const data = JSON.parse(raw);
+
+        if (data.identityType) {
+          document.getElementById("identityType").value = data.identityType;
+          document.getElementById("identityValueWrap").classList.toggle("hidden", !data.identityType);
+        }
+        if (data.identityValue) document.getElementById("identityValue").value = data.identityValue;
+
+        setSelectValueWithOther("department", "departmentOther", data.department);
+        setSelectValueWithOther("role", "roleOther", data.role);
+
+        const scalarIds = ["jobDescription", "demoScenario", "managerScenario", "otherNotes"];
+        scalarIds.forEach((id) => {
+          if (data[id]) document.getElementById(id).value = data[id];
+        });
+
+        const arrays = [
+          "dataTypes", "availableTools", "usedToolsLast30Days", "currentUseCases",
+          "topPainPoints", "coursePriorities", "materialsToBring", "materialConcerns", "takeaways"
+        ];
+        arrays.forEach((name) => restoreCheckboxGroup(name, data[name] || []));
+
+        const radios = [
+          "skillPromptDesign", "skillLongDocSummary", "skillDataAnalysis", "skillReusablePrompt",
+          "skillCodeHelper", "skillAutomationFlow", "maturitySummary", "dataSecurityState",
+          "cultureManagerSupport", "culturePeerSharing", "cultureNoLazyLabel", "cultureHumanReview",
+          "cultureSharedSop", "cultureKnowWhoToAsk", "aiRoleView", "commonComponent"
+        ];
+        radios.forEach((name) => {
+          if (!data[name]) return;
+          const radio = document.querySelector(`input[name="${CSS.escape(name)}"][value="${cssEscapeValue(data[name])}"]`);
+          if (radio) radio.checked = true;
+        });
+
+        toggleManagerQuestion();
+        updateCounters();
+        updateReview();
+      } catch (error) {
+        console.error("restore draft failed", error);
+      }
+    }
+
+    function cssEscapeValue(value) {
+      return value.replace(/"/g, '\\"');
+    }
+
+    function setSelectValueWithOther(selectId, otherId, storedValue) {
+      if (!storedValue) return;
+      const select = document.getElementById(selectId);
+      const otherWrap = document.getElementById(`${selectId}OtherWrap`);
+      const options = [...select.options].map((opt) => opt.value);
+      if (options.includes(storedValue)) {
+        select.value = storedValue;
+      } else if (storedValue.startsWith("其他：")) {
+        select.value = "其他";
+        const otherValue = storedValue.replace(/^其他：/, "");
+        const otherInput = document.getElementById(otherId);
+        if (otherInput) otherInput.value = otherValue;
+        if (otherWrap) otherWrap.classList.remove("hidden");
+      }
+    }
+
+    function restoreCheckboxGroup(name, values) {
+      values.forEach((value) => {
+        if (value.startsWith("其他：")) {
+          const checkbox = [...document.querySelectorAll(`input[name="${CSS.escape(name)}"]`)].find((item) => item.dataset.otherInputId);
+          if (checkbox) {
+            checkbox.checked = true;
+            const field = checkbox.parentElement.querySelector(".other-field");
+            const input = checkbox.parentElement.querySelector("input[type='text']");
+            if (field) field.classList.add("is-visible");
+            if (input) input.value = value.replace(/^其他：/, "");
+          }
+          return;
+        }
+        const checkbox = [...document.querySelectorAll(`input[name="${CSS.escape(name)}"]`)].find((item) => item.value === value);
+        if (checkbox) checkbox.checked = true;
+      });
+    }
+
+    function clearQuestionErrors() {
+      document.querySelectorAll(".question-card, .matrix-container, .matrix-card").forEach((el) => {
+        el.classList.remove("is-invalid");
+      });
+      document.querySelectorAll(".status-banner").forEach((el) => {
+        el.className = "status-banner";
+        el.textContent = "";
+      });
+    }
+
+    function markInvalid(id, message) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.add("is-invalid");
+      const error = el.querySelector(".error-text");
+      if (error && message) error.textContent = message;
+    }
+
+    function validateCheckboxGroup(cardId, name, min = 1, max = Infinity) {
+      const values = getCheckedValues(name);
+      if (values.length < min || values.length > max) {
+        markInvalid(cardId);
+        return false;
+      }
+      return true;
+    }
+
+    function validateSelect(cardId, selectId) {
+      if (!getValue(selectId)) {
+        markInvalid(cardId);
+        return false;
+      }
+      return true;
+    }
+
+    function validateTextarea(cardId, textId, minLength = 8) {
+      const value = getValue(textId);
+      if (value.length < minLength) {
+        markInvalid(cardId);
+        return false;
+      }
+      return true;
+    }
+
+    function validateRadio(cardId, name) {
+      if (!getSelectedRadioValue(name)) {
+        markInvalid(cardId);
+        return false;
+      }
+      return true;
+    }
+
+    function validateMatrix(cardId, rows) {
+      let ok = true;
+      rows.forEach((row) => {
+        const hasValue = !!getSelectedRadioValue(row.key);
+        const card = document.querySelector(`.matrix-card[data-key="${row.key}"]`);
+        if (card) card.classList.toggle("is-invalid", !hasValue);
+        if (!hasValue) ok = false;
+      });
+      if (!ok) markInvalid(cardId);
+      return ok;
+    }
+
+    function validateStep(stepNumber) {
+      clearQuestionErrors();
+      let valid = true;
+
+      if (stepNumber === 1) {
+        valid = validateSelect("q1Card", "department") && valid;
+        valid = validateSelect("q2Card", "role") && valid;
+        valid = validateTextarea("q3Card", "jobDescription", 8) && valid;
+        valid = validateCheckboxGroup("q4Card", "dataTypes", 1) && valid;
+      }
+
+      if (stepNumber === 2) {
+        valid = validateCheckboxGroup("q5Card", "availableTools", 1) && valid;
+        valid = validateCheckboxGroup("q6Card", "usedToolsLast30Days", 1) && valid;
+        valid = validateMatrix("q7Card", CONFIG.skillRows) && valid;
+        valid = validateRadio("q8Card", "maturitySummary") && valid;
+      }
+
+      if (stepNumber === 3) {
+        valid = validateCheckboxGroup("q9Card", "currentUseCases", 1) && valid;
+        valid = validateCheckboxGroup("q10Card", "topPainPoints", 1, 3) && valid;
+        valid = validateRadio("q11Card", "dataSecurityState") && valid;
+      }
+
+      if (stepNumber === 4) {
+        valid = validateMatrix("q12Card", CONFIG.cultureRows) && valid;
+        valid = validateRadio("q13Card", "aiRoleView") && valid;
+        valid = validateCheckboxGroup("q14Card", "coursePriorities", 1, 3) && valid;
+        valid = validateRadio("q15Card", "commonComponent") && valid;
+        valid = validateTextarea("q16Card", "demoScenario", 12) && valid;
+      }
+
+      if (stepNumber === 5) {
+        valid = validateCheckboxGroup("q18Card", "materialsToBring", 1) && valid;
+        valid = validateCheckboxGroup("q19Card", "materialConcerns", 1) && valid;
+        valid = validateCheckboxGroup("q20Card", "takeaways", 1, 2) && valid;
+      }
+
+      if (!valid) {
+        showToast("有幾題尚未完成，請先補齊後再往下。");
+        const firstInvalid = document.querySelector(".question-card.is-invalid, .matrix-card.is-invalid");
+        if (firstInvalid) firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      return valid;
+    }
+
+    function updateStepUI() {
+      document.querySelectorAll(".step").forEach((step, index) => {
+        step.classList.toggle("is-active", index + 1 === currentStep);
+      });
+
+      const progress = (currentStep / STEP_META.length) * 100;
+      document.getElementById("progressBar").style.width = `${progress}%`;
+      syncHeroSummary(progress);
+
+      document.querySelectorAll("#stepper li").forEach((li, index) => {
+        li.classList.toggle("is-active", index + 1 === currentStep);
+        li.classList.toggle("is-complete", index + 1 < currentStep);
+      });
+
+      document.getElementById("navTitle").textContent = STEP_META[currentStep - 1].title;
+      document.getElementById("navDesc").textContent = STEP_META[currentStep - 1].desc;
+
+      document.getElementById("prevBtn").disabled = currentStep === 1;
+      document.getElementById("nextBtn").classList.toggle("hidden", currentStep === STEP_META.length);
+      document.getElementById("submitBtn").classList.toggle("hidden", currentStep !== STEP_META.length);
+
+      if (currentStep === STEP_META.length) updateReview();
+
+      const activeStep = document.querySelector(`.step[data-step="${currentStep}"]`);
+      if (activeStep) activeStep.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function updateReview() {
+      const payload = collectPayload();
+      const reviewBox = document.getElementById("reviewBox");
+      if (!reviewBox) return;
+
+      const summaries = [
+        ["填答識別（非必填）", payload.identityType ? `${payload.identityType}：${payload.identityValue || "已選擇未填內容"}` : "未填寫"],
+        ["部門／角色", `${payload.department || "未填"} ／ ${payload.role || "未填"}`],
+        ["可用工具數", payload.availableTools.length ? `${payload.availableTools.length} 項` : "未填"],
+        ["最近 30 天有用的工具數", payload.usedToolsLast30Days.length ? `${payload.usedToolsLast30Days.length} 項` : "未填"],
+        ["最主要痛點", payload.topPainPoints.length ? payload.topPainPoints.join("、") : "未填"],
+        ["希望優先處理的主題", payload.coursePriorities.length ? payload.coursePriorities.join("、") : "未填"],
+        ["可帶進課堂的材料", payload.materialsToBring.length ? payload.materialsToBring.join("、") : "未填"],
+        ["課後最想帶走", payload.takeaways.length ? payload.takeaways.join("、") : "未填"],
+      ];
+
+      reviewBox.innerHTML = summaries.map(([key, value]) => `
+        <div class="review-row">
+          <div class="review-key">${key}</div>
+          <div class="review-value">${value}</div>
+        </div>
+      `).join("");
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("is-visible");
+      window.clearTimeout(showToast._timer);
+      showToast._timer = window.setTimeout(() => {
+        toast.classList.remove("is-visible");
+      }, 2400);
+    }
+
+    function submitPayload(payload) {
+      if (typeof google !== "undefined" && google.script && google.script.run) {
+        return new Promise((resolve, reject) => {
+          google.script.run
+            .withSuccessHandler(resolve)
+            .withFailureHandler(reject)
+            .submitSurvey(payload);
+        });
+      }
+
+      return new Promise((resolve) => {
+        const previewKey = `${STORAGE_KEY}::preview-submission`;
+        localStorage.setItem(previewKey, JSON.stringify({
+          submittedAt: new Date().toISOString(),
+          payload
+        }));
+        resolve({
+          ok: true,
+          mode: "preview",
+          message: "目前為本機預覽模式，資料已暫存於瀏覽器，尚未送到 Google Sheets。"
+        });
+      });
+    }
+
+    async function handleSubmit() {
+      if (isSubmitting) return;
+
+      let firstInvalidStep = null;
+      for (const step of [1, 2, 3, 4, 5]) {
+        if (!validateStep(step)) {
+          firstInvalidStep = step;
+          break;
+        }
+      }
+
+      if (firstInvalidStep) {
+        currentStep = firstInvalidStep;
+        updateStepUI();
+        return;
+      }
+
+      const payload = collectPayload();
+      isSubmitting = true;
+      const submitBtn = document.getElementById("submitBtn");
+      const statusBanner = document.getElementById("statusBanner");
+      submitBtn.textContent = "送出中…";
+      submitBtn.disabled = true;
+      statusBanner.className = "status-banner";
+      statusBanner.textContent = "";
+
+      try {
+        const result = await submitPayload(payload);
+        localStorage.removeItem(STORAGE_KEY);
+        statusBanner.className = "status-banner is-success";
+        statusBanner.textContent = result.mode === "preview"
+          ? result.message
+          : `已成功送出。送出 ID：${result.submissionId}`;
+        showToast(result.mode === "preview" ? "已在預覽模式暫存資料。" : "問卷已成功送出。");
+      } catch (error) {
+        console.error(error);
+        statusBanner.className = "status-banner is-error";
+        statusBanner.textContent = "送出失敗，請檢查 Apps Script 與 Google Sheets 設定，或稍後再試。";
+        showToast("送出失敗，請稍後再試。");
+      } finally {
+        isSubmitting = false;
+        submitBtn.textContent = "送出問卷";
+        submitBtn.disabled = false;
+      }
+    }
+
+    function resetDraft() {
+      if (!confirm("確定要清除目前草稿嗎？這會移除瀏覽器中的暫存資料。")) return;
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(`${STORAGE_KEY}::preview-submission`);
+      window.location.reload();
+    }
+
+    function init() {
+      buildStepper();
+      renderSelectOptions("department", CONFIG.departmentOptions);
+      renderSelectOptions("role", CONFIG.roleOptions);
+
+      renderChoiceGroup("dataTypeChoices", "dataTypes", CONFIG.dataTypeOptions, "checkbox");
+      renderAccordionChoices("toolAvailableGroups", "availableTools", CONFIG.toolGroups);
+      renderAccordionChoices("toolUsedGroups", "usedToolsLast30Days", CONFIG.toolGroups);
+      renderMatrix("skillMatrix", CONFIG.skillRows, CONFIG.skillScale, "skill");
+      renderChoiceGroup("maturityChoices", "maturitySummary", CONFIG.maturityOptions, "radio");
+      renderChoiceGroup("useCaseChoices", "currentUseCases", CONFIG.useCaseOptions, "checkbox");
+      renderChoiceGroup("painChoices", "topPainPoints", CONFIG.painPoints, "checkbox");
+      renderChoiceGroup("securityChoices", "dataSecurityState", CONFIG.securityOptions, "radio");
+      renderMatrix("cultureMatrix", CONFIG.cultureRows, CONFIG.cultureScale, "culture");
+      renderChoiceGroup("aiRoleChoices", "aiRoleView", CONFIG.aiRoleOptions, "radio");
+      renderChoiceGroup("priorityChoices", "coursePriorities", CONFIG.coursePriorities, "checkbox");
+      renderChoiceGroup("componentChoices", "commonComponent", CONFIG.commonComponentOptions, "radio");
+      renderChoiceGroup("materialsChoices", "materialsToBring", CONFIG.materials, "checkbox");
+      renderChoiceGroup("concernChoices", "materialConcerns", CONFIG.materialConcerns, "checkbox");
+      renderChoiceGroup("takeawayChoices", "takeaways", CONFIG.takeaways, "checkbox");
+
+      wireSelectLogic();
+      wireChoiceLogic();
+      wireHeroToggle();
+      restoreDraft();
+      enforceLimit("topPainPoints", 3, "painCounter");
+      enforceLimit("coursePriorities", 3, "priorityCounter");
+      enforceLimit("takeaways", 2, "takeawayCounter");
+      updateStepUI();
+      updateReview();
+
+      document.getElementById("prevBtn").addEventListener("click", () => {
+        if (currentStep > 1) {
+          currentStep -= 1;
+          updateStepUI();
+        }
+      });
+
+      document.getElementById("nextBtn").addEventListener("click", () => {
+        if (!validateStep(currentStep)) return;
+        if (currentStep < STEP_META.length) {
+          currentStep += 1;
+          updateStepUI();
+        }
+      });
+
+      document.getElementById("submitBtn").addEventListener("click", handleSubmit);
+      document.getElementById("resetDraftBtn").addEventListener("click", resetDraft);
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
+  </script>
+</body>
+</html>
