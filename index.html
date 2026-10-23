@@ -215,6 +215,7 @@
         const commit = document.getElementById("revision-commit");
         if (latest.url) {
           commit.href = latest.url;
+          if (latest.checked_at) commit.textContent = "查看來源 ↗";
           commit.hidden = false;
         }
         const snapshot = status.current_snapshot || status.baseline;
