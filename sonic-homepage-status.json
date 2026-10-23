@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "tracking_started_at": "2026-10-23",
+  "canonical_homepage": "https://537sonic.cc/",
+  "github_pages_fallback": "https://537sonic.github.io/SONIC/",
+  "archive_url": "archive/index-original-20261023.html",
+  "latest_known_change": {
+    "date": "2026-10-20",
+    "commit": "7a01c8f04809be025d638594125bb61cdc7c159b",
+    "url": "https://github.com/537SONIC/SONIC/commit/7a01c8f04809be025d638594125bb61cdc7c159b",
+    "message": "Add 3D campus lab page with 12 characters and API panel; homepage scroll guard.",
+    "summary_zh": "提交說明：新增 3D 校園頁、12 個角色與 API 面板，並加入首頁捲動導引。"
+  },
+  "baseline": {
+    "captured_at": "2026-10-23",
+    "homepage": {
+      "path": "index.html",
+      "blob_sha": "7e3d1b4401a6d02654e7c51b02ccc351e9488f6a",
+      "bytes": 96605,
+      "lines": 2625,
+      "sections": 6,
+      "links": 85
+    },
+    "blog_index": {
+      "path": "share/blog/blog-index.json",
+      "blob_sha": "1cd9acfece54bbd60e6b1b7e4cf0ee3236455221",
+      "bytes": 431610,
+      "lines": 8723,
+      "entries": 413
+    },
+    "works_taxonomy": {
+      "path": "works/taxonomy.json",
+      "blob_sha": "e9d6c0386feeefc60cedcdbc6bbf4574a723489d",
+      "bytes": 57616,
+      "lines": 3168,
+      "top_level_categories": 11
+    },
+    "works_index": {
+      "path": "works/works-index.json",
+      "blob_sha": "39cf2400b585b5dd2cdea31143e86e4ea2b73070",
+      "bytes": null,
+      "lines": null,
+      "item_count": null,
+      "note": "目前連線可驗證版本 SHA，但無法取得此大檔正文；變更時只記錄可核實的提交與版本資訊。"
+    }
+  },
+  "tracked_files": [
+    {
+      "path": "index.html",
+      "blob_sha": "7e3d1b4401a6d02654e7c51b02ccc351e9488f6a",
+      "bytes": 96605,
+      "lines": 2625
+    },
+    {
+      "path": "components/sonic-voxel-campus-hero/home-integration.css",
+      "blob_sha": "646174b00dc6c6d2d50e25ffb566bece194dd029",
+      "bytes": 4552,
+      "lines": 213
+    },
+    {
+      "path": "components/sonic-voxel-campus-hero/home-loader.js",
+      "blob_sha": "37de51af791a84e85629345e3bcfe236e71d5bee",
+      "bytes": 5395,
+      "lines": 128
+    },
+    {
+      "path": "components/sonic-voxel-campus-hero/cjk-linebreak.js",
+      "blob_sha": "382f04d6c6149b86e3e550c86435572b4ad6edf2",
+      "bytes": 4467,
+      "lines": 101
+    },
+    {
+      "path": "components/sonic-voxel-campus-hero/index.html",
+      "blob_sha": "3db5cd5f5c8063400a44615da5d5c67800b99bb7",
+      "bytes": 3411,
+      "lines": 50
+    },
+    {
+      "path": "share/blog/blog-index.json",
+      "blob_sha": "1cd9acfece54bbd60e6b1b7e4cf0ee3236455221",
+      "bytes": 431610,
+      "lines": 8723,
+      "entries": 413
+    },
+    {
+      "path": "works/works-index.json",
+      "blob_sha": "39cf2400b585b5dd2cdea31143e86e4ea2b73070",
+      "bytes": null,
+      "lines": null
+    },
+    {
+      "path": "works/taxonomy.json",
+      "blob_sha": "e9d6c0386feeefc60cedcdbc6bbf4574a723489d",
+      "bytes": 57616,
+      "lines": 3168,
+      "top_level_categories": 11
+    }
+  ],
+  "history": []
+}
