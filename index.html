@@ -120,19 +120,19 @@
       <article class="panel revision">
         <div class="revision-top">
           <div>
-            <time id="revision-date">讀取中</time>
-            <h3 id="revision-summary">載入首頁更新摘要…</h3>
-            <p id="revision-message"></p>
+            <time id="revision-date">2026-10-20</time>
+            <h3 id="revision-summary">新增 3D 校園頁並加入首頁捲動導引</h3>
+            <p id="revision-message">提交說明包含 12 個角色與 API 面板；每日追蹤會從 2026-10-23 的來源快照開始。</p>
           </div>
           <a class="commit-link" id="revision-commit" href="#" hidden>查看來源提交 ↗</a>
         </div>
         <div class="metrics" aria-label="新版首頁基準統計">
-          <div class="metric"><strong id="metric-sections">—</strong><span>首頁主要區塊</span></div>
-          <div class="metric"><strong id="metric-links">—</strong><span>首頁連結</span></div>
-          <div class="metric"><strong id="metric-blog">—</strong><span>文章索引筆數</span></div>
-          <div class="metric"><strong id="metric-taxonomy">—</strong><span>作品分類群組</span></div>
+          <div class="metric"><strong id="metric-sections">6</strong><span>首頁主要區塊</span></div>
+          <div class="metric"><strong id="metric-links">85</strong><span>首頁連結</span></div>
+          <div class="metric"><strong id="metric-blog">413</strong><span>文章索引筆數</span></div>
+          <div class="metric"><strong id="metric-taxonomy">11</strong><span>作品分類群組</span></div>
         </div>
-        <div class="data-line" id="homepage-size"></div>
+        <div class="data-line" id="homepage-size"><span>首頁 HTML <strong>96,605 bytes</strong></span><span><strong>2,625 行</strong></span><span>追蹤自 <strong>2026-10-23</strong></span></div>
         <div class="monitor-note"><b>每日追蹤</b><span id="monitor-note">只在首頁程式或首頁顯示資料有實際變動時追加紀錄；無變更時不產生空白日誌。</span></div>
       </article>
     </section>
@@ -142,7 +142,7 @@
         <h2 id="history-title">更新紀錄</h2>
         <span class="section-kicker">以來源版本與可核實的內容差異為準</span>
       </div>
-      <div class="panel timeline" id="timeline" aria-live="polite"><p class="empty">讀取紀錄中…</p></div>
+      <div class="panel timeline" id="timeline" aria-live="polite"><p class="empty">每日檢查已啟動。追蹤開始後若有來源更新，紀錄會出現在這裡。</p></div>
     </section>
 
     <details>
@@ -224,6 +224,7 @@
         put("metric-blog", formatNumber(snapshot.blog_index.entries));
         put("metric-taxonomy", formatNumber(snapshot.works_taxonomy.top_level_categories));
         const sizeLine = document.getElementById("homepage-size");
+        sizeLine.replaceChildren();
         [
           ["首頁 HTML ", formatNumber(snapshot.homepage.bytes) + " bytes"],
           ["", formatNumber(snapshot.homepage.lines) + " 行"],
