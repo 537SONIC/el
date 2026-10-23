@@ -217,14 +217,23 @@
           commit.href = latest.url;
           commit.hidden = false;
         }
-        put("metric-sections", formatNumber(status.baseline.homepage.sections));
-        put("metric-links", formatNumber(status.baseline.homepage.links));
-        put("metric-blog", formatNumber(status.baseline.blog_index.entries));
-        put("metric-taxonomy", formatNumber(status.baseline.works_taxonomy.top_level_categories));
-        document.getElementById("homepage-size").innerHTML =
-          "<span>首頁 HTML <strong>" + formatNumber(status.baseline.homepage.bytes) + " bytes</strong></span>" +
-          "<span><strong>" + formatNumber(status.baseline.homepage.lines) + " 行</strong></span>" +
-          "<span>追蹤自 " + status.tracking_started_at + "</span>";
+        const snapshot = status.current_snapshot || status.baseline;
+        put("metric-sections", formatNumber(snapshot.homepage.sections));
+        put("metric-links", formatNumber(snapshot.homepage.links));
+        put("metric-blog", formatNumber(snapshot.blog_index.entries));
+        put("metric-taxonomy", formatNumber(snapshot.works_taxonomy.top_level_categories));
+        const sizeLine = document.getElementById("homepage-size");
+        [
+          ["首頁 HTML ", formatNumber(snapshot.homepage.bytes) + " bytes"],
+          ["", formatNumber(snapshot.homepage.lines) + " 行"],
+          ["追蹤自 ", status.tracking_started_at]
+        ].forEach(([label, value]) => {
+          const item = make("span");
+          item.append(document.createTextNode(label));
+          const strong = make("strong", "", value);
+          item.append(strong);
+          sizeLine.append(item);
+        });
         put("baseline-date", status.tracking_started_at);
         renderHistory(status.history || []);
         const list = document.getElementById("source-list");
