@@ -301,17 +301,24 @@
       return node;
     };
 
+    function appendBaselineEntry(root, baseline) {
+      const known = baseline.latest_known_change || {};
+      const article = make("article", "journal-entry");
+      article.append(make("time", "journal-date", (known.date || baseline.captured_at || "追蹤起點") + " · 追蹤開始前的已知改版"));
+      article.append(make("h3", "", "追蹤開始前的線索"));
+      article.append(make("p", "", known.summary_zh || ("每日檢查從 " + baseline.captured_at + " 的快照開始；有新變動才會接著往下寫。")));
+      if (known.url) {
+        const link = make("a", "", "翻原始提交 ↗");
+        link.href = known.url;
+        link.rel = "noopener";
+        article.append(link);
+      }
+      root.append(article);
+    }
+
     function renderHistory(entries, baseline) {
       const root = document.getElementById("timeline");
       root.replaceChildren();
-      if (!entries.length) {
-        const article = make("article", "journal-entry");
-        article.append(make("time", "journal-date", baseline.latest_known_change.date + " · 最近一次已知改版"));
-        article.append(make("h3", "", "校園 3D 頁多了角色，也接上首頁入口"));
-        article.append(make("p", "", "這一筆發生在追蹤開始前。每日檢查從 " + baseline.captured_at + " 的快照開始；有新變動才會接著往下寫。"));
-        root.append(article);
-        return;
-      }
       entries.slice().reverse().forEach((entry) => {
         const article = make("article", "journal-entry");
         article.append(make("time", "journal-date", entry.checked_at || entry.date || "日期未提供"));
@@ -336,6 +343,7 @@
         }
         root.append(article);
       });
+      appendBaselineEntry(root, baseline);
     }
 
     fetch("./sonic-homepage-status.json", { cache: "no-store" })
@@ -351,6 +359,9 @@
         if (hasNewEntries) {
           put("latest-title", latest.title || "首頁又有新動靜");
           put("revision-message", latest.summary || "這次有來源變更，細節已記在下面。");
+          const commitLink = document.getElementById("revision-commit");
+          const commitUrl = latest.url || latest.commit_url || (latest.commit ? "https://github.com/537SONIC/SONIC/commit/" + latest.commit : "");
+          if (commitUrl) commitLink.href = commitUrl;
           const timeline = document.getElementById("timeline");
           timeline.replaceChildren();
           renderHistory(status.history, status.baseline);
