@@ -96,5 +96,38 @@
       "top_level_categories": 11
     }
   ],
-  "history": []
+  "history": [],
+  "current_snapshot": {
+    "captured_at": "2026-10-23",
+    "homepage": {
+      "path": "index.html",
+      "blob_sha": "7e3d1b4401a6d02654e7c51b02ccc351e9488f6a",
+      "bytes": 96605,
+      "lines": 2625,
+      "sections": 6,
+      "links": 85
+    },
+    "blog_index": {
+      "path": "share/blog/blog-index.json",
+      "blob_sha": "1cd9acfece54bbd60e6b1b7e4cf0ee3236455221",
+      "bytes": 431610,
+      "lines": 8723,
+      "entries": 413
+    },
+    "works_taxonomy": {
+      "path": "works/taxonomy.json",
+      "blob_sha": "e9d6c0386feeefc60cedcdbc6bbf4574a723489d",
+      "bytes": 57616,
+      "lines": 3168,
+      "top_level_categories": 11
+    },
+    "works_index": {
+      "path": "works/works-index.json",
+      "blob_sha": "39cf2400b585b5dd2cdea31143e86e4ea2b73070",
+      "bytes": null,
+      "lines": null,
+      "item_count": null,
+      "note": "目前連線可驗證版本 SHA，但無法取得此大檔正文；變更時只記錄可核實的提交與版本資訊。"
+    }
+  }
 }
