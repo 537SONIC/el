@@ -71,34 +71,71 @@
     },
     {
       "path": "components/sonic-voxel-campus-hero/index.html",
-      "blob_sha": "3db5cd5f5c8063400a44615da5d5c67800b99bb7",
+      "blob_sha": "976fc8737716566c4656b40861ffb712187e95ca",
       "bytes": 3411,
       "lines": 50
     },
     {
       "path": "share/blog/blog-index.json",
-      "blob_sha": "1cd9acfece54bbd60e6b1b7e4cf0ee3236455221",
-      "bytes": 431610,
-      "lines": 8723,
-      "entries": 413
+      "blob_sha": "5e74192de6e10beb4b6a6838d40bf4f6cfffc130",
+      "bytes": 433117,
+      "lines": 8770,
+      "entries": 414
     },
     {
       "path": "works/works-index.json",
-      "blob_sha": "39cf2400b585b5dd2cdea31143e86e4ea2b73070",
+      "blob_sha": "2acd3484153280b6cb505f27d336cca930e49c83",
       "bytes": null,
       "lines": null
     },
     {
       "path": "works/taxonomy.json",
-      "blob_sha": "e9d6c0386feeefc60cedcdbc6bbf4574a723489d",
-      "bytes": 57616,
-      "lines": 3168,
+      "blob_sha": "3d7f24477a85c958b9bc532c663477ff2d86b7d7",
+      "bytes": 57852,
+      "lines": 3175,
       "top_level_categories": 11
     }
   ],
-  "history": [],
+  "history": [
+    {
+      "checked_at": "2026-10-24T09:05:31+08:00",
+      "title": "雞塊新文進索引，校園頁也換了資源版本",
+      "summary": "嘖嘖，今天新增一篇麥克雞塊商業系統文章，文章索引從 413 筆增至 414 筆；分類詞彙表也添了一個系列名稱。校園頁入口換了資源版本標記，作品索引的版本也有更新，但連線讀不到正文，先不替它補故事。",
+      "url": "https://github.com/537SONIC/SONIC/commit/dc190445a7d1f3fb5ecb5aa882db2b1067cb31ff",
+      "changes": [
+        {
+          "path": "components/sonic-voxel-campus-hero/index.html",
+          "old_sha": "3db5cd5f5c8063400a44615da5d5c67800b99bb7",
+          "new_sha": "976fc8737716566c4656b40861ffb712187e95ca",
+          "summary": "頁面資源參照改用版本化網址；HTML 維持 3,411 bytes、50 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/components/sonic-voxel-campus-hero/index.html"
+        },
+        {
+          "path": "share/blog/blog-index.json",
+          "old_sha": "1cd9acfece54bbd60e6b1b7e4cf0ee3236455221",
+          "new_sha": "5e74192de6e10beb4b6a6838d40bf4f6cfffc130",
+          "summary": "新增文章〈做雞塊的技術誰都拿得到，為什麼是一家賣漢堡的公司？〉；索引由 413 筆增為 414 筆。",
+          "url": "https://github.com/537SONIC/SONIC/commit/dc190445a7d1f3fb5ecb5aa882db2b1067cb31ff"
+        },
+        {
+          "path": "works/works-index.json",
+          "old_sha": "39cf2400b585b5dd2cdea31143e86e4ea2b73070",
+          "new_sha": "2acd3484153280b6cb505f27d336cca930e49c83",
+          "summary": "版本 SHA 已變更，但目前讀不到檔案正文，無法核實項目數或內容。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json"
+        },
+        {
+          "path": "works/taxonomy.json",
+          "old_sha": "e9d6c0386feeefc60cedcdbc6bbf4574a723489d",
+          "new_sha": "3d7f24477a85c958b9bc532c663477ff2d86b7d7",
+          "summary": "series 新增「絕對C位！超能力女團的秘密巡演」；頂層詞彙群組仍為 11 個。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/works/taxonomy.json"
+        }
+      ]
+    }
+  ],
   "current_snapshot": {
-    "captured_at": "2026-10-23",
+    "captured_at": "2026-10-24",
     "homepage": {
       "path": "index.html",
       "blob_sha": "7e3d1b4401a6d02654e7c51b02ccc351e9488f6a",
@@ -109,21 +146,21 @@
     },
     "blog_index": {
       "path": "share/blog/blog-index.json",
-      "blob_sha": "1cd9acfece54bbd60e6b1b7e4cf0ee3236455221",
-      "bytes": 431610,
-      "lines": 8723,
-      "entries": 413
+      "blob_sha": "5e74192de6e10beb4b6a6838d40bf4f6cfffc130",
+      "bytes": 433117,
+      "lines": 8770,
+      "entries": 414
     },
     "works_taxonomy": {
       "path": "works/taxonomy.json",
-      "blob_sha": "e9d6c0386feeefc60cedcdbc6bbf4574a723489d",
-      "bytes": 57616,
-      "lines": 3168,
+      "blob_sha": "3d7f24477a85c958b9bc532c663477ff2d86b7d7",
+      "bytes": 57852,
+      "lines": 3175,
       "top_level_categories": 11
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "39cf2400b585b5dd2cdea31143e86e4ea2b73070",
+      "blob_sha": "2acd3484153280b6cb505f27d336cca930e49c83",
       "bytes": null,
       "lines": null,
       "item_count": null,
