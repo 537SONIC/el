@@ -235,9 +235,9 @@
       <section class="hero" aria-labelledby="page-title">
         <div class="hero-copy">
           <p class="issue-line">一則關於首頁搬家的小記</p>
-          <h1 id="page-title">格鬥遊戲<br><em>也上線了。</em></h1>
-          <p class="intro">正式門面已經搬到 SONIC 首頁，這裡繼續記錄那些零碎但看得出進度的更新。最近連 THINKERS 100 管理思想格鬥大會都開放線上遊玩了；首頁、索引和作品入口，還是持續有人在整理。</p>
-          <p class="aside-voice">「哎呦喂，管理思想格鬥大會現在連線上版都能直接玩，下載版也沒忘。看起來大有進展喔，連管理思想都要上擂台了。」</p>
+          <h1 id="page-title">最近又有<br><em>新動靜。</em></h1>
+          <p class="intro">正式門面已經搬到 SONIC 首頁，這裡繼續記錄那些零碎但看得出進度的更新。文章索引、作品清單和首頁改版，能核對的都留在這本手記裡。</p>
+          <p class="aside-voice">「有時候只是修幾個字，有時候乾脆把作品做成能玩的樣子。每天翻一遍，倒也挺有意思。」</p>
           <a class="home-link" href="https://537sonic.cc/" rel="noopener">去 SONIC 正式首頁看看 <span class="arrow" aria-hidden="true">↗</span></a>
         </div>
 
@@ -295,6 +295,16 @@
   <script>
     const formatNumber = (value) => new Intl.NumberFormat("zh-Hant").format(value);
     const put = (id, value) => { document.getElementById(id).textContent = value; };
+    const formatDateTime = (value) => {
+      if (!value) return "日期未提供";
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime()) || !value.includes("T")) return value;
+      const parts = new Intl.DateTimeFormat("en-CA", {
+        timeZone: "Asia/Taipei", year: "numeric", month: "2-digit", day: "2-digit",
+        hour: "2-digit", minute: "2-digit", hourCycle: "h23"
+      }).formatToParts(date).reduce((all, part) => (all[part.type] = part.value, all), {});
+      return parts.year + "-" + parts.month + "-" + parts.day + " · " + parts.hour + ":" + parts.minute;
+    };
     const make = (tag, className, value) => {
       const node = document.createElement(tag);
       if (className) node.className = className;
@@ -305,7 +315,7 @@
     function appendBaselineEntry(root, baseline) {
       const known = baseline.latest_known_change || {};
       const article = make("article", "journal-entry");
-      article.append(make("time", "journal-date", (known.date || baseline.captured_at || "追蹤起點") + " · 追蹤開始前的已知改版"));
+      article.append(make("time", "journal-date", formatDateTime(known.date || baseline.captured_at || "追蹤起點") + " · 追蹤開始前的已知改版"));
       article.append(make("h3", "", "追蹤開始前的線索"));
       article.append(make("p", "", known.summary_zh || ("每日檢查從 " + baseline.captured_at + " 的快照開始；有新變動才會接著往下寫。")));
       if (known.url) {
@@ -322,7 +332,7 @@
       root.replaceChildren();
       entries.slice().reverse().forEach((entry) => {
         const article = make("article", "journal-entry");
-        article.append(make("time", "journal-date", entry.checked_at || entry.date || "日期未提供"));
+        article.append(make("time", "journal-date", formatDateTime(entry.checked_at || entry.date || "日期未提供")));
         article.append(make("h3", "", entry.title || "首頁又有新動靜"));
         article.append(make("p", "", entry.summary || ""));
         if (Array.isArray(entry.changes) && entry.changes.length) {
@@ -356,7 +366,7 @@
         const hasNewEntries = Array.isArray(status.history) && status.history.length > 0;
         const latest = hasNewEntries ? status.history[status.history.length - 1] : status.latest_known_change;
         put("latest-label", hasNewEntries ? "最近一次新動靜" : "最近一筆線索");
-        put("revision-date", latest.checked_at || latest.date || "日期未提供");
+        put("revision-date", formatDateTime(latest.checked_at || latest.date || "日期未提供"));
         if (hasNewEntries) {
           put("latest-title", latest.title || "首頁又有新動靜");
           put("revision-message", latest.summary || "這次有來源變更，細節已記在下面。");
