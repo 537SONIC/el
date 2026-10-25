@@ -77,14 +77,14 @@
     },
     {
       "path": "share/blog/blog-index.json",
-      "blob_sha": "5e74192de6e10beb4b6a6838d40bf4f6cfffc130",
+      "blob_sha": "43c45e8d5f41737490dcb4e3ee12f5440cb03930",
       "bytes": 433117,
       "lines": 8770,
       "entries": 414
     },
     {
       "path": "works/works-index.json",
-      "blob_sha": "2acd3484153280b6cb505f27d336cca930e49c83",
+      "blob_sha": "24d9b8558322ab88e4b48378924a665e90ff338a",
       "bytes": null,
       "lines": null
     },
@@ -132,10 +132,32 @@
           "url": "https://github.com/537SONIC/SONIC/blob/main/works/taxonomy.json"
         }
       ]
+    },
+    {
+      "checked_at": "2026-10-25T09:09:33+08:00",
+      "title": "三筆文章資料修正了作者姓名字形",
+      "summary": "文章索引仍是 414 筆、檔案大小也沒變；我看到三筆舊文章的作者姓名字形在標籤、關鍵字或摘要欄位做了校正。嘖嘖，這回動的是資料裡的小地方。作品索引的版本 SHA 也更新了，但正文讀不到，先只記版本。",
+      "url": "https://github.com/537SONIC/SONIC/blob/main/share/blog/blog-index.json",
+      "changes": [
+        {
+          "path": "share/blog/blog-index.json",
+          "old_sha": "5e74192de6e10beb4b6a6838d40bf4f6cfffc130",
+          "new_sha": "43c45e8d5f41737490dcb4e3ee12f5440cb03930",
+          "summary": "三筆既有文章資料的作者姓名字形有校正；索引維持 414 筆，仍為 433,117 bytes、8,770 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/share/blog/blog-index.json"
+        },
+        {
+          "path": "works/works-index.json",
+          "old_sha": "2acd3484153280b6cb505f27d336cca930e49c83",
+          "new_sha": "24d9b8558322ab88e4b48378924a665e90ff338a",
+          "summary": "版本 SHA 已變更，但目前讀不到檔案正文，無法核實項目數或內容。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json"
+        }
+      ]
     }
   ],
   "current_snapshot": {
-    "captured_at": "2026-10-24",
+    "captured_at": "2026-10-25",
     "homepage": {
       "path": "index.html",
       "blob_sha": "7e3d1b4401a6d02654e7c51b02ccc351e9488f6a",
@@ -146,7 +168,7 @@
     },
     "blog_index": {
       "path": "share/blog/blog-index.json",
-      "blob_sha": "5e74192de6e10beb4b6a6838d40bf4f6cfffc130",
+      "blob_sha": "43c45e8d5f41737490dcb4e3ee12f5440cb03930",
       "bytes": 433117,
       "lines": 8770,
       "entries": 414
@@ -160,7 +182,7 @@
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "2acd3484153280b6cb505f27d336cca930e49c83",
+      "blob_sha": "24d9b8558322ab88e4b48378924a665e90ff338a",
       "bytes": null,
       "lines": null,
       "item_count": null,
