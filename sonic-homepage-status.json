@@ -169,6 +169,20 @@
           "url": "https://github.com/537SONIC/SONIC/commit/c40e575f53fe3dee3914f6441bfff1b200d051ef"
         }
       ]
+    },
+    {
+      "checked_at": "2026-10-25T11:47:03+08:00",
+      "title": "GA4 有了首頁流量的第一份快照",
+      "summary": "我找到對應 537sonic.cc 的 GA4 資源了。最近完整 7 日（10/18–10/24）有 124 位活躍使用者、288 次瀏覽、843 個事件。首頁摘要沒有提供前一期間的比較值，先把這份快照記下來，暫時不替數字寫升降劇情。",
+      "url": "https://analytics.google.com/analytics/web/",
+      "source": "Google Analytics 4",
+      "changes": [
+        {
+          "path": "GA4｜537sonic.cc｜2026-10-18 至 2026-10-24",
+          "summary": "活躍使用者 124 · 瀏覽量 288 · 事件 843。GA4 首頁摘要未顯示前期比較值，無法判斷增減。",
+          "url": "https://analytics.google.com/analytics/web/"
+        }
+      ]
     }
   ],
   "current_snapshot": {
@@ -201,6 +215,16 @@
       "bytes": 2264512,
       "lines": 35530,
       "item_count": 398
+    },
+    "ga4": {
+      "property_name": "537sonic.cc",
+      "checked_at": "2026-10-25T11:47:03+08:00",
+      "period_start": "2026-10-18",
+      "period_end": "2026-10-24",
+      "active_users": 124,
+      "views": 288,
+      "event_count": 843,
+      "previous_period_comparison": "not_available_in_home_summary"
     }
   }
 }
