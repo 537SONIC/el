@@ -146,7 +146,7 @@
     .section-caption { max-width: 370px; margin: 0; color: var(--muted); font-size: .78rem; text-align: right; }
     .facts {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
       background: rgba(255, 253, 247, .62);
@@ -235,30 +235,31 @@
       <section class="hero" aria-labelledby="page-title">
         <div class="hero-copy">
           <p class="issue-line">一則關於首頁搬家的小記</p>
-          <h1 id="page-title">他又把首頁<br><em>搬了一次。</em></h1>
-          <p class="intro">嗯，正式門面現在住在 SONIC 的首頁。這個舊網址就留下來當旁觀席，記下他最近又做了什麼，也順手把那些看起來很有事的數字整理一下。</p>
-          <p class="aside-voice">「嘖嘖，說是改首頁，結果又多了 3D 校園、角色和 API 面板。某方面來說，還蠻有趣的。」</p>
+          <h1 id="page-title">格鬥遊戲<br><em>也上線了。</em></h1>
+          <p class="intro">正式門面已經搬到 SONIC 首頁，這裡繼續記錄那些零碎但看得出進度的更新。最近連 THINKERS 100 管理思想格鬥大會都開放線上遊玩了；首頁、索引和作品入口，還是持續有人在整理。</p>
+          <p class="aside-voice">「哎呦喂，管理思想格鬥大會現在連線上版都能直接玩，下載版也沒忘。看起來大有進展喔，連管理思想都要上擂台了。」</p>
           <a class="home-link" href="https://537sonic.cc/" rel="noopener">去 SONIC 正式首頁看看 <span class="arrow" aria-hidden="true">↗</span></a>
         </div>
 
         <aside class="margin-note" aria-labelledby="latest-title">
           <div class="note-label"><span id="latest-label">最近一筆線索</span><time id="revision-date">2026-10-20</time></div>
-          <h2 id="latest-title">3D 校園頁登場，還帶了 12 個角色</h2>
-          <p id="revision-message">最近一次確認的提交也提到 API 面板，以及首頁的捲動提示。嗯，這回不只換門牌。</p>
-          <a class="note-link" id="revision-commit" href="https://github.com/537SONIC/SONIC/commit/7a01c8f04809be025d638594125bb61cdc7c159b">翻原始提交 ↗</a>
+          <h2 id="latest-title">管理思想格鬥大會開放線上遊玩</h2>
+          <p id="revision-message">THINKERS 100 有可直接遊玩的線上版，也保留下載版；遊戲入口、介紹頁和 12 位格鬥家都已接上。</p>
+          <a class="note-link" id="revision-commit" href="https://github.com/537SONIC/SONIC/commit/c40e575f53fe3dee3914f6441bfff1b200d051ef">翻原始提交 ↗</a>
         </aside>
       </section>
 
       <section class="section" aria-labelledby="stats-title">
         <div class="section-top">
           <div><span class="section-tag">翻一下頁邊的數字</span><h2 id="stats-title">目前這個首頁，大概長這樣</h2></div>
-          <p class="section-caption">這些是程式與內容索引的盤點，不是訪客數。訪客流量要看網站分析工具。</p>
+          <p class="section-caption">這些是程式與內容索引的盤點，不是訪客數。GA4 有可讀且明顯的變化時，也會另外記在手記裡。</p>
         </div>
         <div class="facts" aria-label="首頁與索引統計">
           <div class="fact"><strong class="fact-num" id="metric-sections">6</strong><span class="fact-label">首頁主要區塊</span><span class="fact-note">內容地圖有幾站</span></div>
           <div class="fact"><strong class="fact-num" id="metric-links">85</strong><span class="fact-label">首頁連結</span><span class="fact-note">往外通到不少地方</span></div>
           <div class="fact"><strong class="fact-num" id="metric-blog">413</strong><span class="fact-label">文章索引筆數</span><span class="fact-note">還在繼續長</span></div>
           <div class="fact"><strong class="fact-num" id="metric-taxonomy">11</strong><span class="fact-label">作品分類群組</span><span class="fact-note">分類索引頂層項目</span></div>
+          <div class="fact"><strong class="fact-num" id="metric-works">398</strong><span class="fact-label">作品索引項目</span><span class="fact-note">入口、教材與作品清單</span></div>
         </div>
         <p class="source-caption" id="homepage-size">首頁原始碼 96,605 bytes · 2,625 行 · 追蹤基準 2026-10-23</p>
       </section>
@@ -277,7 +278,7 @@
         </div>
       </section>
 
-      <div class="quiet-note" id="tracking-note"><strong>更新規則：</strong>每日檢查 8 個來源檔，只在確認內容有變更時追加日記；舊版首頁與追蹤起始基準都會留下來。</div>
+      <div class="quiet-note" id="tracking-note"><strong>更新規則：</strong>每日檢查 8 個來源檔；大檔會改用 Git blob 讀取完整正文。有新內容或可核實的 GA4 明顯變化才追加日記，舊版首頁與追蹤起始基準都會留下來。</div>
 
       <details class="source-details">
         <summary>想知道這本手記每天翻哪些檔案？</summary>
@@ -380,6 +381,7 @@
         put("metric-links", formatNumber(snapshot.homepage.links));
         put("metric-blog", formatNumber(snapshot.blog_index.entries));
         put("metric-taxonomy", formatNumber(snapshot.works_taxonomy.top_level_categories));
+        put("metric-works", formatNumber(snapshot.works_index.item_count));
         const sizeLine = document.getElementById("homepage-size");
         sizeLine.textContent = "首頁原始碼 " + formatNumber(snapshot.homepage.bytes) + " bytes · " +
           formatNumber(snapshot.homepage.lines) + " 行 · 追蹤基準 " + status.tracking_started_at;
@@ -390,7 +392,7 @@
         status.tracked_files.forEach((file) => {
           const li = make("li");
           li.append(make("code", "", file.path));
-          const meta = (file.bytes == null ? "大小與筆數尚無可讀正文" : formatNumber(file.bytes) + " bytes · " + formatNumber(file.lines) + " 行") +
+          const meta = (file.bytes == null ? "尚未取得正文統計" : formatNumber(file.bytes) + " bytes · " + formatNumber(file.lines) + " 行") +
             " · SHA " + file.blob_sha.slice(0, 10);
           li.append(make("span", "source-meta", meta));
           list.append(li);
