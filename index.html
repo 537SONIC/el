@@ -357,7 +357,7 @@
       appendBaselineEntry(root, baseline);
     }
 
-    fetch("./sonic-homepage-status.json", { cache: "no-store" })
+    fetch("./sonic-homepage-status.json?refresh=" + Date.now(), { cache: "no-store" })
       .then((response) => {
         if (!response.ok) throw new Error("status unavailable");
         return response.json();
