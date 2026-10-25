@@ -84,9 +84,9 @@
     },
     {
       "path": "works/works-index.json",
-      "blob_sha": "24d9b8558322ab88e4b48378924a665e90ff338a",
-      "bytes": null,
-      "lines": null
+      "blob_sha": "530afd7fc9d960e94f9f48392f6a74dea3b97ce0",
+      "bytes": 2264512,
+      "lines": 35530
     },
     {
       "path": "works/taxonomy.json",
@@ -154,6 +154,21 @@
           "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json"
         }
       ]
+    },
+    {
+      "checked_at": "2026-10-25T11:33:15+08:00",
+      "title": "管理思想格鬥大會開放線上遊玩",
+      "summary": "看起來大有進展喔：管理思想格鬥大會現在有可直接遊玩的線上版，也保留下載版；介紹頁、遊戲入口和 12 位格鬥家都已接上。作品索引仍是 398 項，這次改的是 THINKERS 100 的摘要、標籤與日期欄位。",
+      "url": "https://github.com/537SONIC/SONIC/commit/c40e575f53fe3dee3914f6441bfff1b200d051ef",
+      "changes": [
+        {
+          "path": "works/works-index.json",
+          "old_sha": "24d9b8558322ab88e4b48378924a665e90ff338a",
+          "new_sha": "530afd7fc9d960e94f9f48392f6a74dea3b97ce0",
+          "summary": "索引維持 398 項；THINKERS 100 條目更新摘要、搜尋標籤與日期欄位。檔案增至 2,264,512 bytes、35,530 行。線上版及下載版可由來源提交核對。",
+          "url": "https://github.com/537SONIC/SONIC/commit/c40e575f53fe3dee3914f6441bfff1b200d051ef"
+        }
+      ]
     }
   ],
   "current_snapshot": {
@@ -182,11 +197,10 @@
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "24d9b8558322ab88e4b48378924a665e90ff338a",
-      "bytes": null,
-      "lines": null,
-      "item_count": null,
-      "note": "目前連線可驗證版本 SHA，但無法取得此大檔正文；變更時只記錄可核實的提交與版本資訊。"
+      "blob_sha": "530afd7fc9d960e94f9f48392f6a74dea3b97ce0",
+      "bytes": 2264512,
+      "lines": 35530,
+      "item_count": 398
     }
   }
 }
