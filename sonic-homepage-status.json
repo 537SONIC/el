@@ -77,16 +77,17 @@
     },
     {
       "path": "share/blog/blog-index.json",
-      "blob_sha": "43c45e8d5f41737490dcb4e3ee12f5440cb03930",
-      "bytes": 433117,
-      "lines": 8770,
-      "entries": 414
+      "blob_sha": "68d9769c0c0a946592d670b04c4175c649ff6066",
+      "bytes": 435888,
+      "lines": 8840,
+      "entries": 416
     },
     {
       "path": "works/works-index.json",
-      "blob_sha": "530afd7fc9d960e94f9f48392f6a74dea3b97ce0",
-      "bytes": 2264512,
-      "lines": 35530
+      "blob_sha": "14bbdc2cb76adb62a03755ed21dfe620c1df4bff",
+      "bytes": 2269382,
+      "lines": 35643,
+      "item_count": 399
     },
     {
       "path": "works/taxonomy.json",
@@ -183,10 +184,32 @@
           "url": "https://analytics.google.com/analytics/web/"
         }
       ]
+    },
+    {
+      "checked_at": "2026-10-26T09:16:49+08:00",
+      "title": "兩篇新文章進索引，作品也添了新動畫",
+      "summary": "看起來大有進展喔：文章索引多了兩篇新文，作品索引新增一項 AI 自我描繪時間軸動畫，總數由 398 增至 399；THINKERS 100 也更新到 v1.4.0。",
+      "url": "https://github.com/537SONIC/SONIC/commit/f1d822c39218360ff9d91dbdc48f144db83e113f",
+      "changes": [
+        {
+          "path": "share/blog/blog-index.json",
+          "old_sha": "43c45e8d5f41737490dcb4e3ee12f5440cb03930",
+          "new_sha": "68d9769c0c0a946592d670b04c4175c649ff6066",
+          "summary": "新增 2 篇文章，從 414 篇增至 416 篇；索引 435888 bytes、8840 行，新增 AI 自我描繪研究與夢時代／Dream Plaza 分析。",
+          "url": "https://github.com/537SONIC/SONIC/commit/bfa1f1d7d0f6536cf53067266e9c3d1a350df9b0"
+        },
+        {
+          "path": "works/works-index.json",
+          "old_sha": "530afd7fc9d960e94f9f48392f6a74dea3b97ce0",
+          "new_sha": "14bbdc2cb76adb62a03755ed21dfe620c1df4bff",
+          "summary": "完整 blob 比對確認索引由 398 項增至 399 項，新增 AI 自我描繪概念時間軸動畫，沒有移除項目；THINKERS 100 摘要更新為 v1.4.0。檔案 2269382 bytes、35643 行。",
+          "url": "https://github.com/537SONIC/SONIC/commit/f1d822c39218360ff9d91dbdc48f144db83e113f"
+        }
+      ]
     }
   ],
   "current_snapshot": {
-    "captured_at": "2026-10-25",
+    "captured_at": "2026-10-26",
     "homepage": {
       "path": "index.html",
       "blob_sha": "7e3d1b4401a6d02654e7c51b02ccc351e9488f6a",
@@ -197,10 +220,10 @@
     },
     "blog_index": {
       "path": "share/blog/blog-index.json",
-      "blob_sha": "43c45e8d5f41737490dcb4e3ee12f5440cb03930",
-      "bytes": 433117,
-      "lines": 8770,
-      "entries": 414
+      "blob_sha": "68d9769c0c0a946592d670b04c4175c649ff6066",
+      "bytes": 435888,
+      "lines": 8840,
+      "entries": 416
     },
     "works_taxonomy": {
       "path": "works/taxonomy.json",
@@ -211,10 +234,10 @@
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "530afd7fc9d960e94f9f48392f6a74dea3b97ce0",
-      "bytes": 2264512,
-      "lines": 35530,
-      "item_count": 398
+      "blob_sha": "14bbdc2cb76adb62a03755ed21dfe620c1df4bff",
+      "bytes": 2269382,
+      "lines": 35643,
+      "item_count": 399
     },
     "ga4": {
       "property_name": "537sonic.cc",
