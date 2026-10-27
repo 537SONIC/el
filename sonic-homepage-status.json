@@ -84,10 +84,10 @@
     },
     {
       "path": "works/works-index.json",
-      "blob_sha": "14bbdc2cb76adb62a03755ed21dfe620c1df4bff",
-      "bytes": 2269382,
-      "lines": 35643,
-      "item_count": 399
+      "blob_sha": "315bfd791322a57a13dbea887e6e3767ce7df6b3",
+      "bytes": 2284859,
+      "lines": 35972,
+      "item_count": 402
     },
     {
       "path": "works/taxonomy.json",
@@ -206,10 +206,25 @@
           "url": "https://github.com/537SONIC/SONIC/commit/f1d822c39218360ff9d91dbdc48f144db83e113f"
         }
       ]
+    },
+    {
+      "checked_at": "2026-10-27T09:05:33+08:00",
+      "title": "作品索引添了三項新內容",
+      "summary": "哎呦喂，作品索引從 399 項增至 402 項，新增 3 項：三個 AI 互相點評，一份教案越改越扎實｜Gemini、ChatGPT、Claude 交互辯證的備課流程（動態時序圖）、霽行的兩難｜537 CASEBOOK No.02（品牌與定價教學個案）、霽行的兩難｜教學指引（教師版）｜537 CASEBOOK No.02；沒有移除項目，既有項目未見欄位改動。索引正文已由 Git blob 完整讀取並逐項比對。",
+      "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json",
+      "changes": [
+        {
+          "path": "works/works-index.json",
+          "old_sha": "14bbdc2cb76adb62a03755ed21dfe620c1df4bff",
+          "new_sha": "315bfd791322a57a13dbea887e6e3767ce7df6b3",
+          "summary": "完整 blob 比對：399 項增至 402 項，新增 3、移除 0；新增：三個 AI 互相點評，一份教案越改越扎實｜Gemini、ChatGPT、Claude 交互辯證的備課流程（動態時序圖）、霽行的兩難｜537 CASEBOOK No.02（品牌與定價教學個案）、霽行的兩難｜教學指引（教師版）｜537 CASEBOOK No.02。檔案 2284859 bytes、35972 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json"
+        }
+      ]
     }
   ],
   "current_snapshot": {
-    "captured_at": "2026-10-26",
+    "captured_at": "2026-10-27",
     "homepage": {
       "path": "index.html",
       "blob_sha": "7e3d1b4401a6d02654e7c51b02ccc351e9488f6a",
@@ -234,10 +249,10 @@
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "14bbdc2cb76adb62a03755ed21dfe620c1df4bff",
-      "bytes": 2269382,
-      "lines": 35643,
-      "item_count": 399
+      "blob_sha": "315bfd791322a57a13dbea887e6e3767ce7df6b3",
+      "bytes": 2284859,
+      "lines": 35972,
+      "item_count": 402
     },
     "ga4": {
       "property_name": "537sonic.cc",
