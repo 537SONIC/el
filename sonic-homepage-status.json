@@ -84,8 +84,8 @@
     },
     {
       "path": "works/works-index.json",
-      "blob_sha": "315bfd791322a57a13dbea887e6e3767ce7df6b3",
-      "bytes": 2284859,
+      "blob_sha": "ab6c29db97c4f4452ecafa7ac340f76fb7b3011d",
+      "bytes": 2285540,
       "lines": 35972,
       "item_count": 402
     },
@@ -221,10 +221,25 @@
           "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json"
         }
       ]
+    },
+    {
+      "checked_at": "2026-10-28T09:41:35+08:00",
+      "title": "AI 自評問卷的說明文字又修了一輪",
+      "summary": "看起來大有進展喔，作品索引仍是 402 項，沒有新增或移除。〈AI 叢林圖鑑｜企業 AI 生態自評問卷（精簡版／完整版）〉的 summary、searchKeywords、searchText 三個欄位更新；索引檔為 2,285,540 bytes、35,972 行。內容變動確實存在，項目數則原地踏步。",
+      "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json",
+      "changes": [
+        {
+          "path": "works/works-index.json",
+          "old_sha": "315bfd791322a57a13dbea887e6e3767ce7df6b3",
+          "new_sha": "ab6c29db97c4f4452ecafa7ac340f76fb7b3011d",
+          "summary": "完整 blob 比對前後版：402 項維持不變，新增 0、移除 0；〈AI 叢林圖鑑｜企業 AI 生態自評問卷（精簡版／完整版）〉的 summary、searchKeywords、searchText 欄位有改動。檔案 2,285,540 bytes、35,972 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json"
+        }
+      ]
     }
   ],
   "current_snapshot": {
-    "captured_at": "2026-10-27",
+    "captured_at": "2026-10-28",
     "homepage": {
       "path": "index.html",
       "blob_sha": "7e3d1b4401a6d02654e7c51b02ccc351e9488f6a",
@@ -249,8 +264,8 @@
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "315bfd791322a57a13dbea887e6e3767ce7df6b3",
-      "bytes": 2284859,
+      "blob_sha": "ab6c29db97c4f4452ecafa7ac340f76fb7b3011d",
+      "bytes": 2285540,
       "lines": 35972,
       "item_count": 402
     },
