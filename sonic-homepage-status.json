@@ -84,16 +84,16 @@
     },
     {
       "path": "works/works-index.json",
-      "blob_sha": "ab6c29db97c4f4452ecafa7ac340f76fb7b3011d",
-      "bytes": 2285540,
-      "lines": 35972,
-      "item_count": 402
+      "blob_sha": "ebcb146d361a0bcc600ebfc1a2f2108e391cfb68",
+      "bytes": 2291807,
+      "lines": 36097,
+      "item_count": 403
     },
     {
       "path": "works/taxonomy.json",
-      "blob_sha": "3d7f24477a85c958b9bc532c663477ff2d86b7d7",
-      "bytes": 57852,
-      "lines": 3175,
+      "blob_sha": "3d9bf25e6eb212a0ab3dfaef8ad5d31a6ffe67e7",
+      "bytes": 58062,
+      "lines": 3182,
       "top_level_categories": 11
     }
   ],
@@ -236,10 +236,32 @@
           "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json"
         }
       ]
+    },
+    {
+      "checked_at": "2026-10-29T09:41:34+08:00",
+      "title": "作品索引添一份講義，分類裡也有新場域",
+      "summary": "哎呦喂，作品索引新增「霽行的兩難｜教學討論講義」，由 402 項增至 403 項；詞彙表則把「實踐大學」列為新系列。既有作品沒有觀察到欄位變動。其餘首頁來源版本未變，今天能確認的進展大致就這兩筆。",
+      "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json",
+      "changes": [
+        {
+          "path": "works/works-index.json",
+          "old_sha": "ab6c29db97c4f4452ecafa7ac340f76fb7b3011d",
+          "new_sha": "ebcb146d361a0bcc600ebfc1a2f2108e391cfb68",
+          "summary": "完整 Git blob 比對確認索引由 402 項增至 403 項，新增 1、移除 0；新增「霽行的兩難｜教學討論講義」（slug：shihchien-judgment-class-handout-20261031）。既有項目欄位未見改動。檔案 2,291,807 bytes、36,097 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json"
+        },
+        {
+          "path": "works/taxonomy.json",
+          "old_sha": "3d7f24477a85c958b9bc532c663477ff2d86b7d7",
+          "new_sha": "3d9bf25e6eb212a0ab3dfaef8ad5d31a6ffe67e7",
+          "summary": "series 新增「實踐大學」；series 項目由 135 增至 136，頂層分類維持 11 組。檔案 58,062 bytes、3,182 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/works/taxonomy.json"
+        }
+      ]
     }
   ],
   "current_snapshot": {
-    "captured_at": "2026-10-28",
+    "captured_at": "2026-10-29",
     "homepage": {
       "path": "index.html",
       "blob_sha": "7e3d1b4401a6d02654e7c51b02ccc351e9488f6a",
@@ -257,17 +279,17 @@
     },
     "works_taxonomy": {
       "path": "works/taxonomy.json",
-      "blob_sha": "3d7f24477a85c958b9bc532c663477ff2d86b7d7",
-      "bytes": 57852,
-      "lines": 3175,
+      "blob_sha": "3d9bf25e6eb212a0ab3dfaef8ad5d31a6ffe67e7",
+      "bytes": 58062,
+      "lines": 3182,
       "top_level_categories": 11
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "ab6c29db97c4f4452ecafa7ac340f76fb7b3011d",
-      "bytes": 2285540,
-      "lines": 35972,
-      "item_count": 402
+      "blob_sha": "ebcb146d361a0bcc600ebfc1a2f2108e391cfb68",
+      "bytes": 2291807,
+      "lines": 36097,
+      "item_count": 403
     },
     "ga4": {
       "property_name": "537sonic.cc",
