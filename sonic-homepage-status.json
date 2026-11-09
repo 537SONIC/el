@@ -77,23 +77,23 @@
     },
     {
       "path": "share/blog/blog-index.json",
-      "blob_sha": "68d9769c0c0a946592d670b04c4175c649ff6066",
-      "bytes": 435888,
-      "lines": 8840,
-      "entries": 416
+      "blob_sha": "8ab4997dc541f87cff738df2885fe6557816978d",
+      "bytes": 443026,
+      "lines": 9019,
+      "entries": 421
     },
     {
       "path": "works/works-index.json",
-      "blob_sha": "ebcb146d361a0bcc600ebfc1a2f2108e391cfb68",
-      "bytes": 2291807,
-      "lines": 36097,
-      "item_count": 403
+      "blob_sha": "477907b55cb4d97aba491b32586db98798134442",
+      "bytes": 2390548,
+      "lines": 38093,
+      "item_count": 420
     },
     {
       "path": "works/taxonomy.json",
-      "blob_sha": "3d9bf25e6eb212a0ab3dfaef8ad5d31a6ffe67e7",
-      "bytes": 58062,
-      "lines": 3182,
+      "blob_sha": "150038589c5a798e010bcdb732f2b50e1549772f",
+      "bytes": 57876,
+      "lines": 3179,
       "top_level_categories": 11
     }
   ],
@@ -258,10 +258,39 @@
           "url": "https://github.com/537SONIC/SONIC/blob/main/works/taxonomy.json"
         }
       ]
+    },
+    {
+      "checked_at": "2026-11-09T23:10:32+08:00",
+      "title": "文章與作品索引添了新項目，分類詞也有調整",
+      "summary": "文章索引新增 5 篇（416→421），作品索引新增 17 項（403→420）；分類索引有詞彙狀態調整。索引裡的數字又往前走了一截，分類名稱則照例慢慢校正。",
+      "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json",
+      "changes": [
+        {
+          "path": "share/blog/blog-index.json",
+          "old_sha": "68d9769c0c0a946592d670b04c4175c649ff6066",
+          "new_sha": "8ab4997dc541f87cff738df2885fe6557816978d",
+          "summary": "完整索引比對：文章由 416 篇增至 421 篇，新增 5、移除 0、既有項目欄位改動 0。新增：為什麼資深工作者更懂對 AI 下指令？從雙視窗檔案管理看人機互動與管理控制的世代演進、鯨魚躍出水面之後，才是撞上現實力場的開始：從禹英禑、Roger Martin 與 S.T.A.R. 系統看限制下的策略創新（下）、為什麼我們明明知道未來不同，提出來的行動卻那麼像過去？從《非常律師禹英禑》與《南田南》看企業框架外思考的困境（上）、AI 應用的落差正在拉大：企業開始算 ROI，卻未必想清楚該投資什麼、集團綜效與資源配置：母公司如何讓每個事業變得更好？。檔案 443,026 bytes、9,019 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/share/blog/blog-index.json"
+        },
+        {
+          "path": "works/works-index.json",
+          "old_sha": "ebcb146d361a0bcc600ebfc1a2f2108e391cfb68",
+          "new_sha": "477907b55cb4d97aba491b32586db98798134442",
+          "summary": "完整 Git blob 比對：作品由 403 項增至 420 項，新增 17、移除 0；新增：看得見的保費，算不準的損失｜個案架構與教學指引｜537 CASEBOOK No.03、人才不足危機下的聘用決策：德心醫院的「燙手王牌」｜個案架構與教學指引｜537 CASEBOOK No.04、你家是哪一種 AI 叢林？｜先看懂生態、選對場景，再算 ROI（AI Strategy Lab 整合頁）、判斷力課堂教學歷程｜實踐大學 10/31 從 AI 助教、Skills 到 Scheduling 的完整工作流程、公司擋了 Google 文件，我只好自己蓋一面白板｜課堂即時白板從開帳號到上線的七步與五個坑、一張會自己更新的分行情報看板｜國泰世華基層主管訓 11/3 課程網頁、基層主管訓教學歷程｜國泰世華 11/3 從對話、到專案，再到 Skills 的完整紀實、議題浮現：DBA 個案寫作｜元智大學 DBA 博一課堂直式短片 5 集（每集約 3.5 分鐘）、太空資料中心散熱｜在真空中，熱要怎麼離開？（3D 熱平衡模擬・旁白簡報・損益試算）、156 堂課裡的臺灣管理難題｜HBR 個案共學會 2021–2027 授課紀錄查核與視覺化研究、答案可以抄，改變抄不來｜一堂 HSBC 個案課，如何走進 B 公司的討論現場（個案教學動畫）、交接分支與多模型交叉查核｜揚明光學 AI 協作工作者指引手冊、從零建立一個文獻庫：讓 AI 找得到，也讓你查得回原文｜CM979B 11/07 實作講義、查得回原文的文獻庫｜CM979B DBA 博士班 11/07 實作課動畫（約 12 分鐘）、能力不足卻不自知｜主管如何校正自己的那把尺（九段短講，播放清單接續播放）、守門人的債｜537 CASEBOOK No.05（公司治理教學個案）、守門人的債｜教學指引（教師版）｜537 CASEBOOK No.05。既有項目欄位改動 3 項（AI 協作研究｜吳相勳老師授課單元 HTML 課程教材包：summary、searchKeywords、searchText、updatedAt、publishedAt；AI 叢林圖鑑｜企業 AI 生態自評問卷（精簡版／完整版）：summary、searchKeywords、searchText；元智 3D 校園實驗室｜12 位角色、節日裝飾與爆笑事件，串接天氣、時間與 AI 配樂：pageTags、searchKeywords、searchText）。檔案 2,390,548 bytes、38,093 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json"
+        },
+        {
+          "path": "works/taxonomy.json",
+          "old_sha": "3d9bf25e6eb212a0ab3dfaef8ad5d31a6ffe67e7",
+          "new_sha": "150038589c5a798e010bcdb732f2b50e1549772f",
+          "summary": "頂層分類鍵維持 11 組；topics 453→452，移除候選詞「API 串接」，更新：API（aliases）；3D 互動（status）；series 136→136，項目數不變，狀態／類型更新：台林電通（status）；Anatomy 互動機台（status）；537 CASEBOOK（status）；揚明光學（status）；絕對C位！超能力女團的秘密巡演（status）；實踐大學（status、type）。檔案 57,876 bytes、3,179 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/works/taxonomy.json"
+        }
+      ]
     }
   ],
   "current_snapshot": {
-    "captured_at": "2026-10-29",
+    "captured_at": "2026-11-09",
     "homepage": {
       "path": "index.html",
       "blob_sha": "7e3d1b4401a6d02654e7c51b02ccc351e9488f6a",
@@ -272,24 +301,24 @@
     },
     "blog_index": {
       "path": "share/blog/blog-index.json",
-      "blob_sha": "68d9769c0c0a946592d670b04c4175c649ff6066",
-      "bytes": 435888,
-      "lines": 8840,
-      "entries": 416
+      "blob_sha": "8ab4997dc541f87cff738df2885fe6557816978d",
+      "bytes": 443026,
+      "lines": 9019,
+      "entries": 421
     },
     "works_taxonomy": {
       "path": "works/taxonomy.json",
-      "blob_sha": "3d9bf25e6eb212a0ab3dfaef8ad5d31a6ffe67e7",
-      "bytes": 58062,
-      "lines": 3182,
+      "blob_sha": "150038589c5a798e010bcdb732f2b50e1549772f",
+      "bytes": 57876,
+      "lines": 3179,
       "top_level_categories": 11
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "ebcb146d361a0bcc600ebfc1a2f2108e391cfb68",
-      "bytes": 2291807,
-      "lines": 36097,
-      "item_count": 403
+      "blob_sha": "477907b55cb4d97aba491b32586db98798134442",
+      "bytes": 2390548,
+      "lines": 38093,
+      "item_count": 420
     },
     "ga4": {
       "property_name": "537sonic.cc",
