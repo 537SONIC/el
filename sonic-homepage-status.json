@@ -47,8 +47,8 @@
   "tracked_files": [
     {
       "path": "index.html",
-      "blob_sha": "7e3d1b4401a6d02654e7c51b02ccc351e9488f6a",
-      "bytes": 96605,
+      "blob_sha": "a25ca33936eef3ac8ed1a22157a0ea125f68da0c",
+      "bytes": 96593,
       "lines": 2625
     },
     {
@@ -71,7 +71,7 @@
     },
     {
       "path": "components/sonic-voxel-campus-hero/index.html",
-      "blob_sha": "976fc8737716566c4656b40861ffb712187e95ca",
+      "blob_sha": "eec572a28c7a38ddc37abbc07c4933421368db56",
       "bytes": 3411,
       "lines": 50
     },
@@ -84,16 +84,16 @@
     },
     {
       "path": "works/works-index.json",
-      "blob_sha": "477907b55cb4d97aba491b32586db98798134442",
-      "bytes": 2390548,
-      "lines": 38093,
-      "item_count": 420
+      "blob_sha": "3cdb25435bddd662227115c41ecb65a59c5e833c",
+      "bytes": 2419335,
+      "lines": 38664,
+      "item_count": 425
     },
     {
       "path": "works/taxonomy.json",
-      "blob_sha": "150038589c5a798e010bcdb732f2b50e1549772f",
-      "bytes": 57876,
-      "lines": 3179,
+      "blob_sha": "0a80ad6b46b4075f6f1107ecda951b8849dd3969",
+      "bytes": 58124,
+      "lines": 3186,
       "top_level_categories": 11
     }
   ],
@@ -287,14 +287,50 @@
           "url": "https://github.com/537SONIC/SONIC/blob/main/works/taxonomy.json"
         }
       ]
+    },
+    {
+      "checked_at": "2026-11-12T09:45:42+08:00",
+      "title": "首頁資料校正，作品索引又添五項",
+      "summary": "哎呦喂，首頁學歷欄修正博士學位描述，校園主視覺頁換了資源版本；作品索引新增 5 項，總數 420→425，沒有移除或改動既有作品。分類詞彙新增 PMF-Game-Levels，頂層仍是 11 組。文章索引維持 421 篇。首頁仍有 6 個區塊、85 個連結。",
+      "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json",
+      "changes": [
+        {
+          "path": "index.html",
+          "old_sha": "7e3d1b4401a6d02654e7c51b02ccc351e9488f6a",
+          "new_sha": "a25ca33936eef3ac8ed1a22157a0ea125f68da0c",
+          "summary": "首頁學歷欄將博士學位描述由「企業管理博士，主修策略管理」修訂為「國際企業策略組博士」；首頁維持 6 個 section、85 個連結，檔案 96,593 bytes、2,625 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/index.html"
+        },
+        {
+          "path": "components/sonic-voxel-campus-hero/index.html",
+          "old_sha": "976fc8737716566c4656b40861ffb712187e95ca",
+          "new_sha": "eec572a28c7a38ddc37abbc07c4933421368db56",
+          "summary": "hero-scene.js 資源版本由 20261023a 更新為 20261111c；檔案維持 3,411 bytes、50 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/components/sonic-voxel-campus-hero/index.html"
+        },
+        {
+          "path": "works/works-index.json",
+          "old_sha": "477907b55cb4d97aba491b32586db98798134442",
+          "new_sha": "3cdb25435bddd662227115c41ecb65a59c5e833c",
+          "summary": "完整 Git blob 比對：作品索引由 420 項增至 425 項，新增 5、移除 0、既有項目欄位改動 0。新增「AI 會幫你做事，但不能替你思考｜元智國際書院講座：AI 時代的溝通、判斷與職涯競爭力（34 頁投影片）」、「用八款經典遊戲，看懂產品市場契合｜PMF-Game-Levels 說明頁（內嵌可玩遊戲）」、「PMF 8 IN 1｜八款經典遊戲改編的產品市場契合闖關合集（可玩）」、「一個人，向前走｜格狀光點的 3D 步行遊戲：四季、語錄與每日感觸」、「文件整理與 AI 知識查詢實務｜中衛發展中心生活產業部課程講義（42 頁投影片，需輸入密碼）」。檔案 2,419,335 bytes、38,664 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json"
+        },
+        {
+          "path": "works/taxonomy.json",
+          "old_sha": "150038589c5a798e010bcdb732f2b50e1549772f",
+          "new_sha": "0a80ad6b46b4075f6f1107ecda951b8849dd3969",
+          "summary": "頂層分類維持 11 組；新增系列「PMF-Game-Levels」。檔案 58,124 bytes、3,186 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/works/taxonomy.json"
+        }
+      ]
     }
   ],
   "current_snapshot": {
-    "captured_at": "2026-11-09",
+    "captured_at": "2026-11-12",
     "homepage": {
       "path": "index.html",
-      "blob_sha": "7e3d1b4401a6d02654e7c51b02ccc351e9488f6a",
-      "bytes": 96605,
+      "blob_sha": "a25ca33936eef3ac8ed1a22157a0ea125f68da0c",
+      "bytes": 96593,
       "lines": 2625,
       "sections": 6,
       "links": 85
@@ -308,17 +344,17 @@
     },
     "works_taxonomy": {
       "path": "works/taxonomy.json",
-      "blob_sha": "150038589c5a798e010bcdb732f2b50e1549772f",
-      "bytes": 57876,
-      "lines": 3179,
+      "blob_sha": "0a80ad6b46b4075f6f1107ecda951b8849dd3969",
+      "bytes": 58124,
+      "lines": 3186,
       "top_level_categories": 11
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "477907b55cb4d97aba491b32586db98798134442",
-      "bytes": 2390548,
-      "lines": 38093,
-      "item_count": 420
+      "blob_sha": "3cdb25435bddd662227115c41ecb65a59c5e833c",
+      "bytes": 2419335,
+      "lines": 38664,
+      "item_count": 425
     },
     "ga4": {
       "property_name": "537sonic.cc",
