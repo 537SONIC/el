@@ -84,10 +84,10 @@
     },
     {
       "path": "works/works-index.json",
-      "blob_sha": "3cdb25435bddd662227115c41ecb65a59c5e833c",
-      "bytes": 2419335,
-      "lines": 38664,
-      "item_count": 425
+      "blob_sha": "8230054898239af56b2feb9445bfca504d7b4332",
+      "bytes": 2429420,
+      "lines": 38881,
+      "item_count": 427
     },
     {
       "path": "works/taxonomy.json",
@@ -323,10 +323,25 @@
           "url": "https://github.com/537SONIC/SONIC/blob/main/works/taxonomy.json"
         }
       ]
+    },
+    {
+      "checked_at": "2026-11-13T09:18:54+08:00",
+      "title": "作品索引新增兩份教學講義",
+      "summary": "作品索引由 425 項增至 427 項，新增輔仁大學數位培力講座講義與元智大學社團幹部工作坊講義；沒有移除或改動既有項目。哎，教學資料也開始自己在索引裡排隊了。檔案目前 2,429,420 bytes、38,881 行。其餘七個來源 SHA 未變。",
+      "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json",
+      "changes": [
+        {
+          "path": "works/works-index.json",
+          "old_sha": "3cdb25435bddd662227115c41ecb65a59c5e833c",
+          "new_sha": "8230054898239af56b2feb9445bfca504d7b4332",
+          "summary": "完整 Git blob 比對：作品索引由 425 項增至 427 項，新增 2、移除 0、既有項目欄位改動 0。新增「AI 賦能數位教學：從課綱設計、互動到學習管理實戰指南｜輔仁大學數位培力講座講義（26 頁）」及「AI 賦能社團經營：打造你的專屬 AI 工作助手｜元智大學課外活動組社團幹部工作坊講義（31 頁）」。檔案 2,429,420 bytes、38,881 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json"
+        }
+      ]
     }
   ],
   "current_snapshot": {
-    "captured_at": "2026-11-12",
+    "captured_at": "2026-11-13",
     "homepage": {
       "path": "index.html",
       "blob_sha": "a25ca33936eef3ac8ed1a22157a0ea125f68da0c",
@@ -351,10 +366,10 @@
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "3cdb25435bddd662227115c41ecb65a59c5e833c",
-      "bytes": 2419335,
-      "lines": 38664,
-      "item_count": 425
+      "blob_sha": "8230054898239af56b2feb9445bfca504d7b4332",
+      "bytes": 2429420,
+      "lines": 38881,
+      "item_count": 427
     },
     "ga4": {
       "property_name": "537sonic.cc",
