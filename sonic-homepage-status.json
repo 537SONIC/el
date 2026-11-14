@@ -84,16 +84,16 @@
     },
     {
       "path": "works/works-index.json",
-      "blob_sha": "8230054898239af56b2feb9445bfca504d7b4332",
-      "bytes": 2429420,
-      "lines": 38881,
-      "item_count": 427
+      "blob_sha": "6ee9768ce7e2b87baf51755f920a3ff5f522a8a4",
+      "bytes": 2435665,
+      "lines": 39010,
+      "item_count": 428
     },
     {
       "path": "works/taxonomy.json",
-      "blob_sha": "0a80ad6b46b4075f6f1107ecda951b8849dd3969",
-      "bytes": 58124,
-      "lines": 3186,
+      "blob_sha": "a37c5f8df8f1733093e6d6cbe281abcd93263cbe",
+      "bytes": 58393,
+      "lines": 3193,
       "top_level_categories": 11
     }
   ],
@@ -338,10 +338,32 @@
           "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json"
         }
       ]
+    },
+    {
+      "checked_at": "2026-11-14T09:03:09+08:00",
+      "title": "Sarvam 個案也有了自己的步行播放系列",
+      "summary": "作品索引由 427 項增至 428 項，新增「走路閒聊談個案：Sarvam 與印度的主權 AI｜步行紀錄片式個案播放（四季八段，約 22 分鐘）」，沒有移除或改動既有項目。分類索引新增候選系列「走路閒聊談個案」，頂層分類仍為 11 組。其餘六個來源 SHA 未變。看起來步行時聊個案，現在也正式留下索引了。",
+      "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json",
+      "changes": [
+        {
+          "path": "works/works-index.json",
+          "old_sha": "8230054898239af56b2feb9445bfca504d7b4332",
+          "new_sha": "6ee9768ce7e2b87baf51755f920a3ff5f522a8a4",
+          "summary": "完整 Git blob 比對：作品索引由 427 項增至 428 項，新增 1、移除 0、既有項目欄位改動 0。新增「走路閒聊談個案：Sarvam 與印度的主權 AI｜步行紀錄片式個案播放（四季八段，約 22 分鐘）」。檔案 2,435,665 bytes、39,010 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json"
+        },
+        {
+          "path": "works/taxonomy.json",
+          "old_sha": "0a80ad6b46b4075f6f1107ecda951b8849dd3969",
+          "new_sha": "a37c5f8df8f1733093e6d6cbe281abcd93263cbe",
+          "summary": "頂層分類維持 11 組；series 新增候選系列「走路閒聊談個案」，分類檔由 58,124 bytes、3,186 行增至 58,393 bytes、3,193 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/works/taxonomy.json"
+        }
+      ]
     }
   ],
   "current_snapshot": {
-    "captured_at": "2026-11-13",
+    "captured_at": "2026-11-14",
     "homepage": {
       "path": "index.html",
       "blob_sha": "a25ca33936eef3ac8ed1a22157a0ea125f68da0c",
@@ -359,17 +381,17 @@
     },
     "works_taxonomy": {
       "path": "works/taxonomy.json",
-      "blob_sha": "0a80ad6b46b4075f6f1107ecda951b8849dd3969",
-      "bytes": 58124,
-      "lines": 3186,
+      "blob_sha": "a37c5f8df8f1733093e6d6cbe281abcd93263cbe",
+      "bytes": 58393,
+      "lines": 3193,
       "top_level_categories": 11
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "8230054898239af56b2feb9445bfca504d7b4332",
-      "bytes": 2429420,
-      "lines": 38881,
-      "item_count": 427
+      "blob_sha": "6ee9768ce7e2b87baf51755f920a3ff5f522a8a4",
+      "bytes": 2435665,
+      "lines": 39010,
+      "item_count": 428
     },
     "ga4": {
       "property_name": "537sonic.cc",
