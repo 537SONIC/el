@@ -77,16 +77,16 @@
     },
     {
       "path": "share/blog/blog-index.json",
-      "blob_sha": "8ab4997dc541f87cff738df2885fe6557816978d",
-      "bytes": 443026,
+      "blob_sha": "219635379455fd407f766d21a0b4f59e71c603c4",
+      "bytes": 443038,
       "lines": 9019,
       "entries": 421
     },
     {
       "path": "works/works-index.json",
-      "blob_sha": "6ee9768ce7e2b87baf51755f920a3ff5f522a8a4",
-      "bytes": 2435665,
-      "lines": 39010,
+      "blob_sha": "27062a83c3b770ad6463b581a1398cbf3e9400ff",
+      "bytes": 2437039,
+      "lines": 39015,
       "item_count": 428
     },
     {
@@ -360,10 +360,32 @@
           "url": "https://github.com/537SONIC/SONIC/blob/main/works/taxonomy.json"
         }
       ]
+    },
+    {
+      "checked_at": "2026-11-15T09:13:38+08:00",
+      "title": "索引項目數不動，幾段文字重新校準",
+      "summary": "文章索引仍為 421 篇，夢時代與 Dream Plaza 文章標題修正了「四層租賃」的描述，XSight 文章摘要也更新。作品索引維持 428 項，沒有增減；兩項作品的標題、摘要與搜尋資料等欄位更新，另有一項 PMF 說明頁調整摘要、搜尋資料與日期欄位。嘖嘖，項目數站著不動，文字倒是還在慢慢挪位置。",
+      "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json",
+      "changes": [
+        {
+          "path": "share/blog/blog-index.json",
+          "old_sha": "8ab4997dc541f87cff738df2885fe6557816978d",
+          "new_sha": "219635379455fd407f766d21a0b4f59e71c603c4",
+          "summary": "文章索引維持 421 篇，新增 0、移除 0；〈從高雄夢時代與台北Dream Plaza，拆解集團擴張、四層租賃關係的損益與網路口碑的落差〉標題調整；〈準備 XSight 這堂課，讓我想起當年看平台案的自己〉summary 更新。檔案 443,038 bytes、9,019 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/share/blog/blog-index.json"
+        },
+        {
+          "path": "works/works-index.json",
+          "old_sha": "6ee9768ce7e2b87baf51755f920a3ff5f522a8a4",
+          "new_sha": "27062a83c3b770ad6463b581a1398cbf3e9400ff",
+          "summary": "完整 Git blob 比對：索引維持 428 項，新增 0、移除 0。三項既有作品資料改動：〈如意銀行的 AI 效益評估｜省下的時間，去了哪裡（中階主管情境動畫）〉及〈好菌生技：省下的時間去哪了？｜葡萄王「組織文化再設計：AI 時代的領導與人才策略」動畫講義〉的 title、summary、searchKeywords、searchText、updatedAt、publishedAt 更新；〈用八款經典遊戲，看懂產品市場契合｜PMF-Game-Levels 說明頁（內嵌可玩遊戲）〉的 summary、searchKeywords、searchText、updatedAt、publishedAt 更新。檔案 2,437,039 bytes、39,015 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json"
+        }
+      ]
     }
   ],
   "current_snapshot": {
-    "captured_at": "2026-11-14",
+    "captured_at": "2026-11-15",
     "homepage": {
       "path": "index.html",
       "blob_sha": "a25ca33936eef3ac8ed1a22157a0ea125f68da0c",
@@ -374,8 +396,8 @@
     },
     "blog_index": {
       "path": "share/blog/blog-index.json",
-      "blob_sha": "8ab4997dc541f87cff738df2885fe6557816978d",
-      "bytes": 443026,
+      "blob_sha": "219635379455fd407f766d21a0b4f59e71c603c4",
+      "bytes": 443038,
       "lines": 9019,
       "entries": 421
     },
@@ -388,9 +410,9 @@
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "6ee9768ce7e2b87baf51755f920a3ff5f522a8a4",
-      "bytes": 2435665,
-      "lines": 39010,
+      "blob_sha": "27062a83c3b770ad6463b581a1398cbf3e9400ff",
+      "bytes": 2437039,
+      "lines": 39015,
       "item_count": 428
     },
     "ga4": {
