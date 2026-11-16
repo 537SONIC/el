@@ -47,9 +47,9 @@
   "tracked_files": [
     {
       "path": "index.html",
-      "blob_sha": "a25ca33936eef3ac8ed1a22157a0ea125f68da0c",
-      "bytes": 96593,
-      "lines": 2625
+      "blob_sha": "7e9dc43b0444bfa8a1929c5db1e181b73c392aef",
+      "bytes": 57799,
+      "lines": 772
     },
     {
       "path": "components/sonic-voxel-campus-hero/home-integration.css",
@@ -71,9 +71,9 @@
     },
     {
       "path": "components/sonic-voxel-campus-hero/index.html",
-      "blob_sha": "eec572a28c7a38ddc37abbc07c4933421368db56",
-      "bytes": 3411,
-      "lines": 50
+      "blob_sha": "49727b4ba2265022a33352ed781c53c9383d2df5",
+      "bytes": 3946,
+      "lines": 60
     },
     {
       "path": "share/blog/blog-index.json",
@@ -84,10 +84,10 @@
     },
     {
       "path": "works/works-index.json",
-      "blob_sha": "27062a83c3b770ad6463b581a1398cbf3e9400ff",
-      "bytes": 2437039,
-      "lines": 39015,
-      "item_count": 428
+      "blob_sha": "2581f1fb51ae3b93a240bf6f5a7c417edc11f238",
+      "bytes": 2452855,
+      "lines": 39185,
+      "item_count": 425
     },
     {
       "path": "works/taxonomy.json",
@@ -382,17 +382,46 @@
           "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json"
         }
       ]
+    },
+    {
+      "checked_at": "2026-11-16T09:38:46+08:00",
+      "title": "首頁換上插畫舞台，作品索引重新整理一輪",
+      "summary": "首頁改為淺綠色插畫舞台版，6 個區塊保留，連結數由 85 降至 31。體素校園入口加入新版樣式表。作品索引由 428 項調整為 425 項：新增 5 項、移除 8 項，另有 27 項既有資料欄位更新。變動幅度不小，索引也順手做了刪減，內容總數倒是只少了 3 項。",
+      "url": "https://github.com/537SONIC/SONIC/blob/main/index.html",
+      "changes": [
+        {
+          "path": "index.html",
+          "old_sha": "a25ca33936eef3ac8ed1a22157a0ea125f68da0c",
+          "new_sha": "7e9dc43b0444bfa8a1929c5db1e181b73c392aef",
+          "summary": "首頁改為淺綠色插畫舞台版，採用 Huninn、Noto Sans TC、Noto Serif TC 與 Caveat 字型；首頁仍有 6 個 section，連結 31 個。檔案 57,799 bytes、772 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/index.html"
+        },
+        {
+          "path": "components/sonic-voxel-campus-hero/index.html",
+          "old_sha": "eec572a28c7a38ddc37abbc07c4933421368db56",
+          "new_sha": "49727b4ba2265022a33352ed781c53c9383d2df5",
+          "summary": "體素校園頁新增 Google Fonts 連線及 home-t2.css?v=20261115a 樣式表；原有 3D 校園主畫布、控制介面與入口連結仍在。檔案 3946 bytes、60 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/components/sonic-voxel-campus-hero/index.html"
+        },
+        {
+          "path": "works/works-index.json",
+          "old_sha": "27062a83c3b770ad6463b581a1398cbf3e9400ff",
+          "new_sha": "2581f1fb51ae3b93a240bf6f5a7c417edc11f238",
+          "summary": "完整 Git blob 比對：作品由 428 項變為 425 項，新增 5、移除 8；另有 27 項既有資料欄位改動。新增：「這輛車該掛我們的廠徽嗎？｜537 CASEBOOK No.06（品牌與國際擴張教學個案）」、「這輛車該掛我們的廠徽嗎？｜教學指引（教師版）｜537 CASEBOOK No.06」、「CM108G 管理學：從一個人到一家公司｜課程首頁（115 學年度第 1 學期）」、「省下的時間，去了哪裡？｜國泰世華經理級主管 AI 課程講義（11/19）」、「從 ASCII 鯊魚到部落格錦鯉池｜ascii-sharks 改寫幕後 1 分鐘短片」。移除 8 項：PIMQ，我要提問！、PIMQ Panel 提問系統、AAMA 成長策略矩陣、Lab 1: 鎖定核心難題、Project Titan: Sales Leadership Challenge、成長策略工作坊、【AAMA】成長策略工作坊：課前問卷、Project Titan 領導力挑戰。索引檔 2,452,855 bytes、39,185 行。",
+          "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json"
+        }
+      ]
     }
   ],
   "current_snapshot": {
-    "captured_at": "2026-11-15",
+    "captured_at": "2026-11-16",
     "homepage": {
       "path": "index.html",
-      "blob_sha": "a25ca33936eef3ac8ed1a22157a0ea125f68da0c",
-      "bytes": 96593,
-      "lines": 2625,
+      "blob_sha": "7e9dc43b0444bfa8a1929c5db1e181b73c392aef",
+      "bytes": 57799,
+      "lines": 772,
       "sections": 6,
-      "links": 85
+      "links": 31
     },
     "blog_index": {
       "path": "share/blog/blog-index.json",
@@ -410,10 +439,10 @@
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "27062a83c3b770ad6463b581a1398cbf3e9400ff",
-      "bytes": 2437039,
-      "lines": 39015,
-      "item_count": 428
+      "blob_sha": "2581f1fb51ae3b93a240bf6f5a7c417edc11f238",
+      "bytes": 2452855,
+      "lines": 39185,
+      "item_count": 425
     },
     "ga4": {
       "property_name": "537sonic.cc",
