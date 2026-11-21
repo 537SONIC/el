@@ -5,11 +5,11 @@
   "github_pages_fallback": "https://537sonic.github.io/SONIC/",
   "archive_url": "archive/index-original-20261023.html",
   "latest_known_change": {
-    "date": "2026-10-20",
-    "commit": "7a01c8f04809be025d638594125bb61cdc7c159b",
-    "url": "https://github.com/537SONIC/SONIC/commit/7a01c8f04809be025d638594125bb61cdc7c159b",
-    "message": "Add 3D campus lab page with 12 characters and API panel; homepage scroll guard.",
-    "summary_zh": "提交說明：新增 3D 校園頁、12 個角色與 API 面板，並加入首頁捲動導引。"
+    "date": "2026-11-21",
+    "commit": "27ef039bb5338380f50500df70bae4c6412f294e",
+    "url": "https://github.com/537SONIC/537sonic.cc/commit/27ef039bb5338380f50500df70bae4c6412f294e",
+    "message": "BMW dual-AI casewalk comparison added to Works index.",
+    "summary_zh": "作品索引新增〈走路閒聊談個案：BMW 從 1.0 到 2.0〉雙 AI 步行動畫對照。"
   },
   "baseline": {
     "captured_at": "2026-10-23",
@@ -46,10 +46,22 @@
   },
   "tracked_files": [
     {
-      "path": "index.html",
-      "blob_sha": "7e9dc43b0444bfa8a1929c5db1e181b73c392aef",
-      "bytes": 57799,
-      "lines": 772
+      "path": "components/sonic-voxel-campus-hero/assets/sonic-voxel-avatar.glb",
+      "blob_sha": "abad6af4fbec53a2bb97716d44c3b64d50861735",
+      "bytes": 37444,
+      "lines": null
+    },
+    {
+      "path": "components/sonic-voxel-campus-hero/cjk-linebreak.js",
+      "blob_sha": "382f04d6c6149b86e3e550c86435572b4ad6edf2",
+      "bytes": 4467,
+      "lines": 101
+    },
+    {
+      "path": "components/sonic-voxel-campus-hero/hero-scene.js",
+      "blob_sha": "4dec4a27f9c267275dec343f9c1d2b2244cfdb80",
+      "bytes": 40767,
+      "lines": 952
     },
     {
       "path": "components/sonic-voxel-campus-hero/home-integration.css",
@@ -64,37 +76,130 @@
       "lines": 128
     },
     {
-      "path": "components/sonic-voxel-campus-hero/cjk-linebreak.js",
-      "blob_sha": "382f04d6c6149b86e3e550c86435572b4ad6edf2",
-      "bytes": 4467,
-      "lines": 101
+      "path": "components/sonic-voxel-campus-hero/home-t2.css",
+      "blob_sha": "a48d889090b4e95f374aaae44311557017ad0806",
+      "bytes": 2709,
+      "lines": 106
     },
     {
       "path": "components/sonic-voxel-campus-hero/index.html",
-      "blob_sha": "49727b4ba2265022a33352ed781c53c9383d2df5",
+      "blob_sha": "2eb896eb44796d707076694cca00174578883932",
       "bytes": 3946,
       "lines": 60
     },
     {
-      "path": "share/blog/blog-index.json",
-      "blob_sha": "219635379455fd407f766d21a0b4f59e71c603c4",
-      "bytes": 443038,
-      "lines": 9019,
-      "entries": 421
+      "path": "components/sonic-voxel-campus-hero/models/building1.js",
+      "blob_sha": "30e86b6704afcd598fe1ad32e2a79431ad935b25",
+      "bytes": 7896,
+      "lines": 153
     },
     {
-      "path": "works/works-index.json",
-      "blob_sha": "2581f1fb51ae3b93a240bf6f5a7c417edc11f238",
-      "bytes": 2452855,
-      "lines": 39185,
-      "item_count": 425
+      "path": "components/sonic-voxel-campus-hero/models/building2.js",
+      "blob_sha": "542dddc3c27f52a85de0a37ea58b533955cb0efb",
+      "bytes": 9857,
+      "lines": 184
+    },
+    {
+      "path": "components/sonic-voxel-campus-hero/models/building3.js",
+      "blob_sha": "76b78664af3f9b2f43e4b22dba7846eb95ad9474",
+      "bytes": 9966,
+      "lines": 179
+    },
+    {
+      "path": "components/sonic-voxel-campus-hero/models/building5.js",
+      "blob_sha": "e49c92815990b945d557c08bc58fbcfc4a99a8c1",
+      "bytes": 12577,
+      "lines": 222
+    },
+    {
+      "path": "components/sonic-voxel-campus-hero/models/building6.js",
+      "blob_sha": "d37084fe2a4687adb1ffcbdddcb6ab263fd71182",
+      "bytes": 9975,
+      "lines": 184
+    },
+    {
+      "path": "components/sonic-voxel-campus-hero/models/building7.js",
+      "blob_sha": "99baaf2e67cbd386ce6e961151e8da3298b9b67c",
+      "bytes": 13342,
+      "lines": 248
+    },
+    {
+      "path": "components/sonic-voxel-campus-hero/models/campus-collision.js",
+      "blob_sha": "d489734b7e44b733167b5609c3a5a71a35234489",
+      "bytes": 21467,
+      "lines": 597
+    },
+    {
+      "path": "components/sonic-voxel-campus-hero/models/campus-core.js",
+      "blob_sha": "a683de00ba68f53ca2d590ddee91bd646054c3f8",
+      "bytes": 8858,
+      "lines": 156
+    },
+    {
+      "path": "components/sonic-voxel-campus-hero/models/campus-life.js",
+      "blob_sha": "8d7618897ecab960c1ab1fd5b6c4b011d2648306",
+      "bytes": 33295,
+      "lines": 617
+    },
+    {
+      "path": "components/sonic-voxel-campus-hero/models/campus-map.js",
+      "blob_sha": "cdc27c8126d0365ade9acd2d9bdb61d2d3817d89",
+      "bytes": 90710,
+      "lines": 1780
+    },
+    {
+      "path": "components/sonic-voxel-campus-hero/models/campus-music.js",
+      "blob_sha": "2a88d92913963028373c60794c2e969036c51163",
+      "bytes": 4635,
+      "lines": 129
+    },
+    {
+      "path": "components/sonic-voxel-campus-hero/models/campus-pavilions.js",
+      "blob_sha": "aa9bbd93e4e68704a8158aabc2e6c9e2105d70d3",
+      "bytes": 5381,
+      "lines": 113
+    },
+    {
+      "path": "components/sonic-voxel-campus-hero/models/sonic-avatar.js",
+      "blob_sha": "402beae2e0f88d335cf1857c0a71e17808912b6e",
+      "bytes": 17190,
+      "lines": 419
+    },
+    {
+      "path": "components/sonic-voxel-campus-hero/models/walker-nav.js",
+      "blob_sha": "1fcb1006617b04c34709e6e7fa323d3a6079920e",
+      "bytes": 10270,
+      "lines": 274
+    },
+    {
+      "path": "components/sonic-voxel-campus-hero/styles.css",
+      "blob_sha": "95585a743b19fdca7dc603c4743d8eb809aad978",
+      "bytes": 5137,
+      "lines": 208
+    },
+    {
+      "path": "index.html",
+      "blob_sha": "1de24a9e91d5754e3f0002dc802303417fbb35c4",
+      "bytes": 57789,
+      "lines": 772
+    },
+    {
+      "path": "share/blog/blog-index.json",
+      "blob_sha": "7bfb1c25631588b2befb13fc023f47951758496c",
+      "bytes": 445202,
+      "lines": 9087
     },
     {
       "path": "works/taxonomy.json",
-      "blob_sha": "a37c5f8df8f1733093e6d6cbe281abcd93263cbe",
-      "bytes": 58393,
-      "lines": 3193,
-      "top_level_categories": 11
+      "blob_sha": "460031ff92db480f3c7c33643a7f4d67f2509761",
+      "bytes": 58589,
+      "lines": 3199
+    },
+    {
+      "path": "works/works-index.json",
+      "blob_sha": "ae758f2b14e5128d0bd9b9d5a1f9cd9458c02166",
+      "bytes": 2509464,
+      "lines": 40374
     }
   ],
   "history": [
@@ -411,38 +516,164 @@
           "url": "https://github.com/537SONIC/SONIC/blob/main/works/works-index.json"
         }
       ]
+    },
+    {
+      "checked_at": "2026-11-17T23:07:42+08:00",
+      "title": "作品索引新增六項，首頁校園模組同步重整",
+      "summary": "作品索引由 425 項增至 431 項，新增 6 項、移除 0 項，另有 3 項既有資料更新。新增 Garmin 2026、IKEA 四模型比較與三語導覽、〈同學，上課啦！〉等作品。首頁校園主視覺抽出共用模組，並更新元件入口。",
+      "url": "https://github.com/537SONIC/537sonic.cc/commit/460b24aebf15607db3839990237bc23374e196f9",
+      "changes": [
+        {
+          "path": "works/works-index.json",
+          "old_sha": "2581f1fb51ae3b93a240bf6f5a7c417edc11f238",
+          "new_sha": "23b177e395df2f47df4eb8bfffe3b757608a21ab",
+          "summary": "完整索引比對：425→431 項，新增 6、移除 0、既有項目更新 3。新增職務代理檢查器講義、兩部台北手繪動畫、Garmin 2026、IKEA 四模型比較、IKEA 三語語音導覽及〈同學，上課啦！〉。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/460b24aebf15607db3839990237bc23374e196f9"
+        },
+        {
+          "path": "components/sonic-voxel-campus-hero/index.html",
+          "old_sha": "49727b4ba2265022a33352ed781c53c9383d2df5",
+          "new_sha": "2eb896eb44796d707076694cca00174578883932",
+          "summary": "首頁校園主視覺入口改用共用校園模組；檔案 3,946 bytes、60 行。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/85ba96db5da5183c4b41459dbb2e6f6b3df11b33"
+        },
+        {
+          "path": "components/sonic-voxel-campus-hero/hero-scene.js",
+          "old_sha": "607d9cf911df029a174b05a6aac6a7b87c6d0e6f",
+          "new_sha": "4dec4a27f9c267275dec343f9c1d2b2244cfdb80",
+          "summary": "主視覺場景抽出共用校園組裝模組；檔案 40,767 bytes、952 行。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/85ba96db5da5183c4b41459dbb2e6f6b3df11b33"
+        },
+        {
+          "path": "components/sonic-voxel-campus-hero/models/campus-collision.js",
+          "old_sha": "e94f00029401a8d4b40a0758016d116ba8abf1fc",
+          "new_sha": "d489734b7e44b733167b5609c3a5a71a35234489",
+          "summary": "碰撞模組加入共用校園世界介面；檔案 21,467 bytes、597 行。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/85ba96db5da5183c4b41459dbb2e6f6b3df11b33"
+        },
+        {
+          "path": "components/sonic-voxel-campus-hero/models/campus-core.js",
+          "old_sha": null,
+          "new_sha": "a683de00ba68f53ca2d590ddee91bd646054c3f8",
+          "summary": "新增首頁、實驗室與趕課遊戲共用的校園組裝模組；檔案 8,858 bytes、156 行。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/85ba96db5da5183c4b41459dbb2e6f6b3df11b33"
+        }
+      ]
+    },
+    {
+      "checked_at": "2026-11-18T22:49:00+08:00",
+      "title": "兩項新作品與一篇新文章進入索引",
+      "summary": "作品索引由 431 項增至 433 項，新增地圖投影實驗室與國泰世華 AI 學習圖譜；文章索引由 421 篇增至 422 篇，新增〈《同學，上課啦！》開發歷程與心得〉。分類詞彙索引新增 1 個 topic，系列數維持 138。",
+      "url": "https://github.com/537SONIC/537sonic.cc/commit/6c771bc710634a7e0d8f81c1f94c0f9eafee41b5",
+      "changes": [
+        {
+          "path": "works/works-index.json",
+          "old_sha": "23b177e395df2f47df4eb8bfffe3b757608a21ab",
+          "new_sha": "dbc551ed750afc340793189eaa19734752aa041f",
+          "summary": "完整索引比對：431→433 項，新增地圖投影實驗室、國泰世華 AI 學習圖譜，移除 0。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/6c771bc710634a7e0d8f81c1f94c0f9eafee41b5"
+        },
+        {
+          "path": "share/blog/blog-index.json",
+          "old_sha": "219635379455fd407f766d21a0b4f59e71c603c4",
+          "new_sha": "32619cbbab01c179312efaf45978fc3b2c52009c",
+          "summary": "文章索引由 421 篇增至 422 篇，新增〈《同學，上課啦！》開發歷程與心得〉。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/b14d9c149ad582ad2e6a1ebf13237b3375a360a6"
+        },
+        {
+          "path": "works/taxonomy.json",
+          "old_sha": "a37c5f8df8f1733093e6d6cbe281abcd93263cbe",
+          "new_sha": "460031ff92db480f3c7c33643a7f4d67f2509761",
+          "summary": "topics 由 452 增至 453，series 維持 138；索引新增地圖投影實驗室相關詞彙。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/bdde2bd39ce73630886af531da8c585a1113722c"
+        }
+      ]
+    },
+    {
+      "checked_at": "2026-11-19T14:50:48+08:00",
+      "title": "新增國泰世華 AI 課程 ROI 回顧作品",
+      "summary": "作品索引由 433 項增至 434 項，新增〈AI 專案的 ROI 怎麼看：策略觀點與管理觀點〉課後回顧頁，沒有移除項目。",
+      "url": "https://github.com/537SONIC/537sonic.cc/commit/4c52057beec8d7c222859b9d5d9d06842b4f1514",
+      "changes": [
+        {
+          "path": "works/works-index.json",
+          "old_sha": "dbc551ed750afc340793189eaa19734752aa041f",
+          "new_sha": "8f91725915bc978f0e2d4f6f9bf589323d8c8460",
+          "summary": "完整索引比對：433→434 項，新增國泰世華 AI 課程 ROI 回顧頁，移除 0。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/4c52057beec8d7c222859b9d5d9d06842b4f1514"
+        }
+      ]
+    },
+    {
+      "checked_at": "2026-11-20T16:18:12+08:00",
+      "title": "街頭疾走更新，另有一篇 BMW 教學文章上線",
+      "summary": "作品索引由 434 項增至 435 項，新增〈街頭疾走〉；文章索引由 422 篇增至 423 篇，新增 BMW 個案「一問再帶」教學筆記。",
+      "url": "https://github.com/537SONIC/537sonic.cc/commit/d39cd7793a7fcfd78d58fee397895f7da4344137",
+      "changes": [
+        {
+          "path": "works/works-index.json",
+          "old_sha": "8f91725915bc978f0e2d4f6f9bf589323d8c8460",
+          "new_sha": "1b05e6c03d2389d518ad7b88bf72abd41c185094",
+          "summary": "完整索引比對：434→435 項，新增〈街頭疾走〉，移除 0。當日同時上架 1.7.0 版本。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/d39cd7793a7fcfd78d58fee397895f7da4344137"
+        },
+        {
+          "path": "share/blog/blog-index.json",
+          "old_sha": "32619cbbab01c179312efaf45978fc3b2c52009c",
+          "new_sha": "7bfb1c25631588b2befb13fc023f47951758496c",
+          "summary": "文章索引由 422 篇增至 423 篇，新增 BMW 個案「一問再帶」教學筆記。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/3ddd8a186f92e42ec6fe7390dbfcecd851ee51b7"
+        }
+      ]
+    },
+    {
+      "checked_at": "2026-11-21T06:59:22+08:00",
+      "title": "BMW 雙 AI 對照作品加入索引",
+      "summary": "作品索引由 435 項增至 436 項，新增〈走路閒聊談個案：BMW 從 1.0 到 2.0〉Claude 與 Antigravity 雙 AI 步行動畫對照；沒有移除項目。",
+      "url": "https://github.com/537SONIC/537sonic.cc/commit/27ef039bb5338380f50500df70bae4c6412f294e",
+      "changes": [
+        {
+          "path": "works/works-index.json",
+          "old_sha": "1b05e6c03d2389d518ad7b88bf72abd41c185094",
+          "new_sha": "ae758f2b14e5128d0bd9b9d5a1f9cd9458c02166",
+          "summary": "完整索引比對：435→436 項，新增 BMW 雙 AI 步行動畫對照作品，移除 0。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/27ef039bb5338380f50500df70bae4c6412f294e"
+        }
+      ]
     }
   ],
   "current_snapshot": {
-    "captured_at": "2026-11-16",
+    "captured_at": "2026-11-21",
     "homepage": {
       "path": "index.html",
-      "blob_sha": "7e9dc43b0444bfa8a1929c5db1e181b73c392aef",
-      "bytes": 57799,
+      "blob_sha": "1de24a9e91d5754e3f0002dc802303417fbb35c4",
+      "bytes": 57789,
       "lines": 772,
       "sections": 6,
       "links": 31
     },
     "blog_index": {
       "path": "share/blog/blog-index.json",
-      "blob_sha": "219635379455fd407f766d21a0b4f59e71c603c4",
-      "bytes": 443038,
-      "lines": 9019,
-      "entries": 421
+      "blob_sha": "7bfb1c25631588b2befb13fc023f47951758496c",
+      "bytes": 445202,
+      "lines": 9087,
+      "entries": 423
     },
     "works_taxonomy": {
       "path": "works/taxonomy.json",
-      "blob_sha": "a37c5f8df8f1733093e6d6cbe281abcd93263cbe",
-      "bytes": 58393,
-      "lines": 3193,
-      "top_level_categories": 11
+      "blob_sha": "460031ff92db480f3c7c33643a7f4d67f2509761",
+      "bytes": 58589,
+      "lines": 3199,
+      "top_level_categories": 11,
+      "topics": 453,
+      "series": 138
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "2581f1fb51ae3b93a240bf6f5a7c417edc11f238",
-      "bytes": 2452855,
-      "lines": 39185,
-      "item_count": 425
+      "blob_sha": "ae758f2b14e5128d0bd9b9d5a1f9cd9458c02166",
+      "bytes": 2509464,
+      "lines": 40374,
+      "item_count": 436
     },
     "ga4": {
       "property_name": "537sonic.cc",
