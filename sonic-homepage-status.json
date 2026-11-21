@@ -8,7 +8,7 @@
     "date": "2026-11-21",
     "commit": "27ef039bb5338380f50500df70bae4c6412f294e",
     "url": "https://github.com/537SONIC/537sonic.cc/commit/27ef039bb5338380f50500df70bae4c6412f294e",
-    "message": "BMW dual-AI casewalk comparison added to Works index.",
+    "message": "BMW 雙 AI 步行動畫對照新增至 Works 索引。",
     "summary_zh": "作品索引新增〈走路閒聊談個案：BMW 從 1.0 到 2.0〉雙 AI 步行動畫對照。"
   },
   "baseline": {
@@ -518,7 +518,7 @@
       ]
     },
     {
-      "checked_at": "2026-11-17T23:07:42+08:00",
+      "checked_at": "2026-11-17T23:07:54+08:00",
       "title": "作品索引新增六項，首頁校園模組同步重整",
       "summary": "作品索引由 425 項增至 431 項，新增 6 項、移除 0 項，另有 3 項既有資料更新。新增 Garmin 2026、IKEA 四模型比較與三語導覽、〈同學，上課啦！〉等作品。首頁校園主視覺抽出共用模組，並更新元件入口。",
       "url": "https://github.com/537SONIC/537sonic.cc/commit/460b24aebf15607db3839990237bc23374e196f9",
@@ -561,7 +561,7 @@
       ]
     },
     {
-      "checked_at": "2026-11-18T22:49:00+08:00",
+      "checked_at": "2026-11-18T22:51:27+08:00",
       "title": "兩項新作品與一篇新文章進入索引",
       "summary": "作品索引由 431 項增至 433 項，新增地圖投影實驗室與國泰世華 AI 學習圖譜；文章索引由 421 篇增至 422 篇，新增〈《同學，上課啦！》開發歷程與心得〉。分類詞彙索引新增 1 個 topic，系列數維持 138。",
       "url": "https://github.com/537SONIC/537sonic.cc/commit/6c771bc710634a7e0d8f81c1f94c0f9eafee41b5",
@@ -590,7 +590,7 @@
       ]
     },
     {
-      "checked_at": "2026-11-19T14:50:48+08:00",
+      "checked_at": "2026-11-19T14:51:36+08:00",
       "title": "新增國泰世華 AI 課程 ROI 回顧作品",
       "summary": "作品索引由 433 項增至 434 項，新增〈AI 專案的 ROI 怎麼看：策略觀點與管理觀點〉課後回顧頁，沒有移除項目。",
       "url": "https://github.com/537SONIC/537sonic.cc/commit/4c52057beec8d7c222859b9d5d9d06842b4f1514",
@@ -605,7 +605,7 @@
       ]
     },
     {
-      "checked_at": "2026-11-20T16:18:12+08:00",
+      "checked_at": "2026-11-20T16:18:14+08:00",
       "title": "街頭疾走更新，另有一篇 BMW 教學文章上線",
       "summary": "作品索引由 434 項增至 435 項，新增〈街頭疾走〉；文章索引由 422 篇增至 423 篇，新增 BMW 個案「一問再帶」教學筆記。",
       "url": "https://github.com/537SONIC/537sonic.cc/commit/d39cd7793a7fcfd78d58fee397895f7da4344137",
@@ -627,7 +627,7 @@
       ]
     },
     {
-      "checked_at": "2026-11-21T06:59:22+08:00",
+      "checked_at": "2026-11-21T07:07:08+08:00",
       "title": "BMW 雙 AI 對照作品加入索引",
       "summary": "作品索引由 435 項增至 436 項，新增〈走路閒聊談個案：BMW 從 1.0 到 2.0〉Claude 與 Antigravity 雙 AI 步行動畫對照；沒有移除項目。",
       "url": "https://github.com/537SONIC/537sonic.cc/commit/27ef039bb5338380f50500df70bae4c6412f294e",
