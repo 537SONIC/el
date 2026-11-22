@@ -6,10 +6,10 @@
   "archive_url": "archive/index-original-20261023.html",
   "latest_known_change": {
     "date": "2026-11-21",
-    "commit": "27ef039bb5338380f50500df70bae4c6412f294e",
-    "url": "https://github.com/537SONIC/537sonic.cc/commit/27ef039bb5338380f50500df70bae4c6412f294e",
-    "message": "BMW 雙 AI 步行動畫對照新增至 Works 索引。",
-    "summary_zh": "作品索引新增〈走路閒聊談個案：BMW 從 1.0 到 2.0〉雙 AI 步行動畫對照。"
+    "commit": "1fa9a1f56d184d1f9c2b90d0e1efb148a3c8d2eb",
+    "url": "https://github.com/537SONIC/537sonic.cc/commit/1fa9a1f56d184d1f9c2b90d0e1efb148a3c8d2eb",
+    "message": "台灣街頭騎車探險更新雙難度路線、光影與六站事件，Works 索引同步重建。",
+    "summary_zh": "作品索引 435→439 項；11 月 21 日共新增 4 項，日終版本已納入 BMW 像素堆疊番外篇、Voxel／Sprite Stack 多場景與台灣街頭騎車強化內容。"
   },
   "baseline": {
     "captured_at": "2026-10-23",
@@ -197,9 +197,10 @@
     },
     {
       "path": "works/works-index.json",
-      "blob_sha": "ae758f2b14e5128d0bd9b9d5a1f9cd9458c02166",
-      "bytes": 2509464,
-      "lines": 40374
+      "blob_sha": "6f1a22c6098922cc92353f80a28651ec5ee18a64",
+      "bytes": 2523065,
+      "lines": 40678,
+      "item_count": 439
     }
   ],
   "history": [
@@ -627,23 +628,23 @@
       ]
     },
     {
-      "checked_at": "2026-11-21T07:07:08+08:00",
-      "title": "BMW 雙 AI 對照作品加入索引",
-      "summary": "作品索引由 435 項增至 436 項，新增〈走路閒聊談個案：BMW 從 1.0 到 2.0〉Claude 與 Antigravity 雙 AI 步行動畫對照；沒有移除項目。",
-      "url": "https://github.com/537SONIC/537sonic.cc/commit/27ef039bb5338380f50500df70bae4c6412f294e",
+      "checked_at": "2026-11-21T20:51:58+08:00",
+      "title": "四項作品排進索引，像素、體素和街頭騎車都來了",
+      "summary": "作品索引由 435 項增至 439 項，新增 4、移除 0，既有項目未改動。新增 BMW 雙 AI 步行動畫對照、〈小城兜風〉Sprite-stacking 製作指南、Voxel 3D／Sprite Stack 互動教學實驗室，以及〈台灣街頭騎車探險〉雙版本實作。嘖嘖，這一天的作品索引，從課堂個案一路騎到台灣街頭。",
+      "url": "https://github.com/537SONIC/537sonic.cc/commit/1fa9a1f56d184d1f9c2b90d0e1efb148a3c8d2eb",
       "changes": [
         {
           "path": "works/works-index.json",
           "old_sha": "1b05e6c03d2389d518ad7b88bf72abd41c185094",
-          "new_sha": "ae758f2b14e5128d0bd9b9d5a1f9cd9458c02166",
-          "summary": "完整索引比對：435→436 項，新增 BMW 雙 AI 步行動畫對照作品，移除 0。",
-          "url": "https://github.com/537SONIC/537sonic.cc/commit/27ef039bb5338380f50500df70bae4c6412f294e"
+          "new_sha": "6f1a22c6098922cc92353f80a28651ec5ee18a64",
+          "summary": "完整索引日初／日終比對：435→439 項，新增 4、移除 0、既有項目改動 0。新增〈走路閒聊談個案：BMW 從 1.0 到 2.0｜Claude 與 Antigravity 雙 AI 步行動畫對照〉、〈小城兜風｜用 Sprite-stacking skill 製作街頭開車遊戲〉、〈一座小世界，兩種立體｜用生成式 AI 製作 Voxel 3D 與 Sprite Stack 場景〉、〈台灣街頭騎車探險｜3D 第一人稱與像素堆疊雙版本實作與 One-Shot 教學〉。同日後續提交已納入各新增項目的日終版本：BMW 條目補入像素堆疊番外篇；Voxel／Sprite Stack 條目擴充校園與工廠場景；台灣街頭騎車條目更新 summary、searchKeywords 與 searchText，反映雙難度路線、明隧道與六站事件。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/1fa9a1f56d184d1f9c2b90d0e1efb148a3c8d2eb"
         }
       ]
     }
   ],
   "current_snapshot": {
-    "captured_at": "2026-11-21",
+    "captured_at": "2026-11-22",
     "homepage": {
       "path": "index.html",
       "blob_sha": "1de24a9e91d5754e3f0002dc802303417fbb35c4",
@@ -670,10 +671,10 @@
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "ae758f2b14e5128d0bd9b9d5a1f9cd9458c02166",
-      "bytes": 2509464,
-      "lines": 40374,
-      "item_count": 436
+      "blob_sha": "6f1a22c6098922cc92353f80a28651ec5ee18a64",
+      "bytes": 2523065,
+      "lines": 40678,
+      "item_count": 439
     },
     "ga4": {
       "property_name": "537sonic.cc",
