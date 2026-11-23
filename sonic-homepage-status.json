@@ -5,11 +5,11 @@
   "github_pages_fallback": "https://537sonic.github.io/SONIC/",
   "archive_url": "archive/index-original-20261023.html",
   "latest_known_change": {
-    "date": "2026-11-21",
-    "commit": "1fa9a1f56d184d1f9c2b90d0e1efb148a3c8d2eb",
-    "url": "https://github.com/537SONIC/537sonic.cc/commit/1fa9a1f56d184d1f9c2b90d0e1efb148a3c8d2eb",
-    "message": "台灣街頭騎車探險更新雙難度路線、光影與六站事件，Works 索引同步重建。",
-    "summary_zh": "作品索引 435→439 項；11 月 21 日共新增 4 項，日終版本已納入 BMW 像素堆疊番外篇、Voxel／Sprite Stack 多場景與台灣街頭騎車強化內容。"
+    "date": "2026-11-22",
+    "commit": "6bcb7300904487318406f3bc91e5d348c6d246b9",
+    "url": "https://github.com/537SONIC/537sonic.cc/commit/6bcb7300904487318406f3bc91e5d348c6d246b9",
+    "message": "發布山城五三七中學麻辣牛肉麵競速遊戲並收錄 Works",
+    "summary_zh": "作品索引 439→451 項，新增 12 項、移除 0、既有項目改動 0；分類索引新增「跑不停系列」，系列總數 138→139。"
   },
   "baseline": {
     "captured_at": "2026-10-23",
@@ -191,16 +191,16 @@
     },
     {
       "path": "works/taxonomy.json",
-      "blob_sha": "460031ff92db480f3c7c33643a7f4d67f2509761",
-      "bytes": 58589,
-      "lines": 3199
+      "blob_sha": "8e7025705a8d8011190edf738efbb3389586b5fd",
+      "bytes": 58867,
+      "lines": 3206
     },
     {
       "path": "works/works-index.json",
-      "blob_sha": "6f1a22c6098922cc92353f80a28651ec5ee18a64",
-      "bytes": 2523065,
-      "lines": 40678,
-      "item_count": 439
+      "blob_sha": "a88b7f62b4afce77468a021503392064eaa9c57c",
+      "bytes": 2575433,
+      "lines": 41894,
+      "item_count": 451
     }
   ],
   "history": [
@@ -641,10 +641,32 @@
           "url": "https://github.com/537SONIC/537sonic.cc/commit/1fa9a1f56d184d1f9c2b90d0e1efb148a3c8d2eb"
         }
       ]
+    },
+    {
+      "checked_at": "2026-11-22T23:54:31+08:00",
+      "title": "十二項作品趕在午夜前排進索引",
+      "summary": "作品索引由 439 項增至 451 項，新增 12、移除 0，既有項目未改動；分類索引的系列由 138 組增至 139 組，新增「跑不停系列」。新增作品包括〈紙鈔與零錢存取款 ATM 3D 機構拆解｜前置座標契約與省配額蜂群實作〉、〈純程式碼 3D 與省配額蜂群實作三部曲｜機電拆解、體素雙管線與生物透明解剖總覽〉、〈九六式重工巨神兵｜《汴河一日》體素管線評估與單一母檔雙管線步行實作〉、〈Glass-Terrapin｜生物透明光學提示詞反向推導與臺灣斑龜解剖翻轉實作〉、〈別再只看對話框裡的可愛龍：從模型大腦到工作流外骨骼｜16:9 原音互動展示影片〉、〈HR × AI｜從 AI 工具到人資管理流程〉、〈跑不停系列｜戰術電子犬與 Horizon Runner 兩個版本的開發歷程〉、〈戰術電子犬｜無邊界地景與合成電音的 3D 奔跑〉、〈Horizon Runner 水墨山徑｜沿古牆長跑，看十九處地標在霧中浮現〉、〈預見 AI 分行：分行主管的一天｜國泰世華初階主管 AI 工作坊 A 場講義（11/24）〉、〈預見 AI 分行：一件客訴，逐步完成協調助手｜國泰世華初階主管 AI 工作坊 B 場講義（11/25）〉、〈山城五三七中學：下課五秒搶麻辣牛肉麵〉。哎呦喂，從 ATM 機構拆解一路跑到校園搶麻辣牛肉麵，這一天的索引還真沒閒著。",
+      "url": "https://github.com/537SONIC/537sonic.cc/commit/6bcb7300904487318406f3bc91e5d348c6d246b9",
+      "changes": [
+        {
+          "path": "works/works-index.json",
+          "old_sha": "6f1a22c6098922cc92353f80a28651ec5ee18a64",
+          "new_sha": "a88b7f62b4afce77468a021503392064eaa9c57c",
+          "summary": "完整索引日初／日終比對：439→451 項，新增 12、移除 0、既有項目改動 0。新增〈紙鈔與零錢存取款 ATM 3D 機構拆解｜前置座標契約與省配額蜂群實作〉、〈純程式碼 3D 與省配額蜂群實作三部曲｜機電拆解、體素雙管線與生物透明解剖總覽〉、〈九六式重工巨神兵｜《汴河一日》體素管線評估與單一母檔雙管線步行實作〉、〈Glass-Terrapin｜生物透明光學提示詞反向推導與臺灣斑龜解剖翻轉實作〉、〈別再只看對話框裡的可愛龍：從模型大腦到工作流外骨骼｜16:9 原音互動展示影片〉、〈HR × AI｜從 AI 工具到人資管理流程〉、〈跑不停系列｜戰術電子犬與 Horizon Runner 兩個版本的開發歷程〉、〈戰術電子犬｜無邊界地景與合成電音的 3D 奔跑〉、〈Horizon Runner 水墨山徑｜沿古牆長跑，看十九處地標在霧中浮現〉、〈預見 AI 分行：分行主管的一天｜國泰世華初階主管 AI 工作坊 A 場講義（11/24）〉、〈預見 AI 分行：一件客訴，逐步完成協調助手｜國泰世華初階主管 AI 工作坊 B 場講義（11/25）〉、〈山城五三七中學：下課五秒搶麻辣牛肉麵〉。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/6bcb7300904487318406f3bc91e5d348c6d246b9"
+        },
+        {
+          "path": "works/taxonomy.json",
+          "old_sha": "460031ff92db480f3c7c33643a7f4d67f2509761",
+          "new_sha": "8e7025705a8d8011190edf738efbb3389586b5fd",
+          "summary": "分類索引完整比對：系列 138→139 組，新增「跑不停系列」；頂層欄位、主題與其他分類清單未增減。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/b392e0a6e755e7df333266d73e5af7cdac36f634"
+        }
+      ]
     }
   ],
   "current_snapshot": {
-    "captured_at": "2026-11-22",
+    "captured_at": "2026-11-23",
     "homepage": {
       "path": "index.html",
       "blob_sha": "1de24a9e91d5754e3f0002dc802303417fbb35c4",
@@ -662,19 +684,19 @@
     },
     "works_taxonomy": {
       "path": "works/taxonomy.json",
-      "blob_sha": "460031ff92db480f3c7c33643a7f4d67f2509761",
-      "bytes": 58589,
-      "lines": 3199,
+      "blob_sha": "8e7025705a8d8011190edf738efbb3389586b5fd",
+      "bytes": 58867,
+      "lines": 3206,
       "top_level_categories": 11,
       "topics": 453,
-      "series": 138
+      "series": 139
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "6f1a22c6098922cc92353f80a28651ec5ee18a64",
-      "bytes": 2523065,
-      "lines": 40678,
-      "item_count": 439
+      "blob_sha": "a88b7f62b4afce77468a021503392064eaa9c57c",
+      "bytes": 2575433,
+      "lines": 41894,
+      "item_count": 451
     },
     "ga4": {
       "property_name": "537sonic.cc",
