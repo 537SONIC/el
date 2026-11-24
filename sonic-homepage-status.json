@@ -5,11 +5,11 @@
   "github_pages_fallback": "https://537sonic.github.io/SONIC/",
   "archive_url": "archive/index-original-20261023.html",
   "latest_known_change": {
-    "date": "2026-11-22",
-    "commit": "6bcb7300904487318406f3bc91e5d348c6d246b9",
-    "url": "https://github.com/537SONIC/537sonic.cc/commit/6bcb7300904487318406f3bc91e5d348c6d246b9",
-    "message": "發布山城五三七中學麻辣牛肉麵競速遊戲並收錄 Works",
-    "summary_zh": "作品索引 439→451 項，新增 12 項、移除 0、既有項目改動 0；分類索引新增「跑不停系列」，系列總數 138→139。"
+    "date": "2026-11-23",
+    "commit": "f5dc4539066ca25154272e9909c77a27ef60ffc0",
+    "url": "https://github.com/537SONIC/537sonic.cc/commit/f5dc4539066ca25154272e9909c77a27ef60ffc0",
+    "message": "HR × AI 講義封面改為 3D 街景，作為 WebGL 技術展示頁",
+    "summary_zh": "作品索引維持 451 項；〈HR × AI｜從 AI 工具到人資管理流程〉補入 3D 商業街景 WebGL 技術展示說明、互動標籤與相關搜尋詞。"
   },
   "baseline": {
     "captured_at": "2026-10-23",
@@ -197,9 +197,9 @@
     },
     {
       "path": "works/works-index.json",
-      "blob_sha": "a88b7f62b4afce77468a021503392064eaa9c57c",
-      "bytes": 2575433,
-      "lines": 41894,
+      "blob_sha": "d06adafc5a766d65324fbed6357f9f93bd3bf3a3",
+      "bytes": 2576104,
+      "lines": 41902,
       "item_count": 451
     }
   ],
@@ -663,10 +663,25 @@
           "url": "https://github.com/537SONIC/537sonic.cc/commit/b392e0a6e755e7df333266d73e5af7cdac36f634"
         }
       ]
+    },
+    {
+      "checked_at": "2026-11-23T21:56:30+08:00",
+      "title": "一項作品沒增加，索引倒多了 3D 街景",
+      "summary": "作品索引維持 451 項，新增 0、移除 0；既有〈HR × AI｜從 AI 工具到人資管理流程〉更新 summary、pageTags、searchKeywords、searchText 與 updatedAt。內容補上封面 3D 商業街景的 WebGL 技術展示說明、拖曳視角與開關方式，主題標籤新增「3D 互動」，搜尋詞加入 WebGL、WebGPU、three.js、3D 街景、技術展示與即時渲染。檔案由 2,575,433 增至 2,576,104 bytes，行數由 41,894 增至 41,902。看起來大有進展喔，作品數沒有排隊增加，描述倒是多了一整條可轉動的街景。",
+      "url": "https://github.com/537SONIC/537sonic.cc/commit/f5dc4539066ca25154272e9909c77a27ef60ffc0",
+      "changes": [
+        {
+          "path": "works/works-index.json",
+          "old_sha": "a88b7f62b4afce77468a021503392064eaa9c57c",
+          "new_sha": "d06adafc5a766d65324fbed6357f9f93bd3bf3a3",
+          "summary": "完整索引比對：451→451 項，新增 0、移除 0；既有〈HR × AI｜從 AI 工具到人資管理流程〉改動 1 項，欄位為 summary、pageTags、searchKeywords、searchText、updatedAt。新增封面 3D 商業街景的 WebGL 技術展示說明與「3D 互動」相關標籤／搜尋詞；2,575,433→2,576,104 bytes，41,894→41,902 行。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/f5dc4539066ca25154272e9909c77a27ef60ffc0"
+        }
+      ]
     }
   ],
   "current_snapshot": {
-    "captured_at": "2026-11-23",
+    "captured_at": "2026-11-24",
     "homepage": {
       "path": "index.html",
       "blob_sha": "1de24a9e91d5754e3f0002dc802303417fbb35c4",
@@ -693,9 +708,9 @@
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "a88b7f62b4afce77468a021503392064eaa9c57c",
-      "bytes": 2575433,
-      "lines": 41894,
+      "blob_sha": "d06adafc5a766d65324fbed6357f9f93bd3bf3a3",
+      "bytes": 2576104,
+      "lines": 41902,
       "item_count": 451
     },
     "ga4": {
