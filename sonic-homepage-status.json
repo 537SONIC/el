@@ -5,11 +5,11 @@
   "github_pages_fallback": "https://537sonic.github.io/SONIC/",
   "archive_url": "archive/index-original-20261023.html",
   "latest_known_change": {
-    "date": "2026-11-23",
-    "commit": "f5dc4539066ca25154272e9909c77a27ef60ffc0",
-    "url": "https://github.com/537SONIC/537sonic.cc/commit/f5dc4539066ca25154272e9909c77a27ef60ffc0",
-    "message": "HR × AI 講義封面改為 3D 街景，作為 WebGL 技術展示頁",
-    "summary_zh": "作品索引維持 451 項；〈HR × AI｜從 AI 工具到人資管理流程〉補入 3D 商業街景 WebGL 技術展示說明、互動標籤與相關搜尋詞。"
+    "date": "2026-11-24",
+    "commit": "d6b405637ae91dd8e89559464756b5f638535f03",
+    "url": "https://github.com/537SONIC/537sonic.cc/commit/d6b405637ae91dd8e89559464756b5f638535f03",
+    "message": "新增 C 銀行 11/24 預見 AI 分行三系統海洋探索頁橫向比較與子站並登錄 Works",
+    "summary_zh": "作品索引 451→452 項；新增〈同一場銀行工作坊，三個 AI 系統做出的海洋探索頁｜Antigravity（Gemini）、Claude、Astra 橫向比較〉，並改寫國泰世華 11/25 B 場講義的主題、內容、標籤與搜尋資料。"
   },
   "baseline": {
     "captured_at": "2026-10-23",
@@ -197,10 +197,10 @@
     },
     {
       "path": "works/works-index.json",
-      "blob_sha": "d06adafc5a766d65324fbed6357f9f93bd3bf3a3",
-      "bytes": 2576104,
-      "lines": 41902,
-      "item_count": 451
+      "blob_sha": "f01a71ebe20273e77f9d19883b64fb577018df3f",
+      "bytes": 2583958,
+      "lines": 42068,
+      "item_count": 452
     }
   ],
   "history": [
@@ -678,10 +678,25 @@
           "url": "https://github.com/537SONIC/537sonic.cc/commit/f5dc4539066ca25154272e9909c77a27ef60ffc0"
         }
       ]
+    },
+    {
+      "checked_at": "2026-11-24T23:07:34+08:00",
+      "title": "銀行講義換了主線，三套 AI 海洋頁也入列",
+      "summary": "作品索引由 451 項增至 452 項，新增 1、移除 0；既有 1 項改動。新增〈同一場銀行工作坊，三個 AI 系統做出的海洋探索頁｜Antigravity（Gemini）、Claude、Astra 橫向比較〉，整理同一場銀行工作坊交由 Antigravity（Gemini）、Claude 與 Astra 製作海洋探索回顧頁的橫向比較。〈預見 AI 分行：一件客訴引出的新服務，先請十位虛擬客戶試聽｜國泰世華初階主管 AI 工作坊 B 場講義（11/25）〉則改寫 title、summary、pageTags、searchKeywords、searchText 與 updatedAt：講義調整為 S0–S7 八個單元，以十位虛擬客戶、NPS 三版本比較為主練習，並納入 ChatGPT 專案轉 Skill、去識別化、連接器、排程、Markmap 與高橋流文字動態簡報。索引由 2,576,104 增至 2,583,958 bytes，行數由 41,902 增至 42,068。嘖嘖，同一天一邊重寫課堂主線，一邊把三套 AI 的海洋頁排在一起比較，索引也跟著忙了起來。",
+      "url": "https://github.com/537SONIC/537sonic.cc/commit/d6b405637ae91dd8e89559464756b5f638535f03",
+      "changes": [
+        {
+          "path": "works/works-index.json",
+          "old_sha": "d06adafc5a766d65324fbed6357f9f93bd3bf3a3",
+          "new_sha": "f01a71ebe20273e77f9d19883b64fb577018df3f",
+          "summary": "完整索引日初／日終比對：451→452 項，新增 1、移除 0、既有項目改動 1。新增〈同一場銀行工作坊，三個 AI 系統做出的海洋探索頁｜Antigravity（Gemini）、Claude、Astra 橫向比較〉。既有〈預見 AI 分行：一件客訴引出的新服務，先請十位虛擬客戶試聽｜國泰世華初階主管 AI 工作坊 B 場講義（11/25）〉改動 title、summary、pageTags、searchKeywords、searchText、updatedAt；內容改為 S0–S7 八單元，加入十位虛擬客戶座談、NPS 三版本比較、專案轉 Skill、去識別化、連接器、排程、Markmap 與高橋流動態簡報。檔案 2,576,104→2,583,958 bytes，41,902→42,068 行。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/d6b405637ae91dd8e89559464756b5f638535f03"
+        }
+      ]
     }
   ],
   "current_snapshot": {
-    "captured_at": "2026-11-24",
+    "captured_at": "2026-11-25",
     "homepage": {
       "path": "index.html",
       "blob_sha": "1de24a9e91d5754e3f0002dc802303417fbb35c4",
@@ -708,10 +723,10 @@
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "d06adafc5a766d65324fbed6357f9f93bd3bf3a3",
-      "bytes": 2576104,
-      "lines": 41902,
-      "item_count": 451
+      "blob_sha": "f01a71ebe20273e77f9d19883b64fb577018df3f",
+      "bytes": 2583958,
+      "lines": 42068,
+      "item_count": 452
     },
     "ga4": {
       "property_name": "537sonic.cc",
