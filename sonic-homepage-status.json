@@ -5,11 +5,11 @@
   "github_pages_fallback": "https://537sonic.github.io/SONIC/",
   "archive_url": "archive/index-original-20261023.html",
   "latest_known_change": {
-    "date": "2026-11-24",
-    "commit": "d6b405637ae91dd8e89559464756b5f638535f03",
-    "url": "https://github.com/537SONIC/537sonic.cc/commit/d6b405637ae91dd8e89559464756b5f638535f03",
-    "message": "新增 C 銀行 11/24 預見 AI 分行三系統海洋探索頁橫向比較與子站並登錄 Works",
-    "summary_zh": "作品索引 451→452 項；新增〈同一場銀行工作坊，三個 AI 系統做出的海洋探索頁｜Antigravity（Gemini）、Claude、Astra 橫向比較〉，並改寫國泰世華 11/25 B 場講義的主題、內容、標籤與搜尋資料。"
+    "date": "2026-11-25",
+    "commit": "c86b611d45a7905a93b475d20045a4027131f736",
+    "url": "https://github.com/537SONIC/537sonic.cc/commit/c86b611d45a7905a93b475d20045a4027131f736",
+    "message": "新增 C 銀行 11/25 預見 AI 分行三模型雲龍學習頁橫向比較與子站並登錄 Works",
+    "summary_zh": "作品索引 452→453 項；新增〈同一份指令與課堂素材，三個 AI 工具做出的雲龍學習頁｜Antigravity（Gemini）、Claude、Codex 橫向比較〉，既有項目未改動。"
   },
   "baseline": {
     "captured_at": "2026-10-23",
@@ -197,10 +197,10 @@
     },
     {
       "path": "works/works-index.json",
-      "blob_sha": "f01a71ebe20273e77f9d19883b64fb577018df3f",
-      "bytes": 2583958,
-      "lines": 42068,
-      "item_count": 452
+      "blob_sha": "fda59cb15251782060f49214835c328e1217c9e1",
+      "bytes": 2591487,
+      "lines": 42234,
+      "item_count": 453
     }
   ],
   "history": [
@@ -693,10 +693,25 @@
           "url": "https://github.com/537SONIC/537sonic.cc/commit/d6b405637ae91dd8e89559464756b5f638535f03"
         }
       ]
+    },
+    {
+      "checked_at": "2026-11-25T20:01:50+08:00",
+      "title": "海洋頁才排好，雲龍比較頁又跟著進場",
+      "summary": "作品索引由 452 項增至 453 項，新增 1、移除 0，既有項目未改動。新增〈同一份指令與課堂素材，三個 AI 工具做出的雲龍學習頁｜Antigravity（Gemini）、Claude、Codex 橫向比較〉：使用相同提示詞、全日逐字稿、課堂對話與成品、25 則即時公告，以及六階段青瓷雲龍 SVG，並排比較 Antigravity（Gemini）、Claude 與 OpenAI Codex 製作的雲海互動學習頁，內容涵蓋六幕故事重建、策略與時間差異、個人記憶與模型偏好，以及三份交接檔呈現的長處與不足。索引由 2,583,958 增至 2,591,487 bytes，行數由 42,068 增至 42,234。海洋探索頁才剛站穩，雲龍又從雲裡探頭，這幾天的作品索引倒是很懂得接續主題。",
+      "url": "https://github.com/537SONIC/537sonic.cc/commit/c86b611d45a7905a93b475d20045a4027131f736",
+      "changes": [
+        {
+          "path": "works/works-index.json",
+          "old_sha": "f01a71ebe20273e77f9d19883b64fb577018df3f",
+          "new_sha": "fda59cb15251782060f49214835c328e1217c9e1",
+          "summary": "完整索引比對：452→453 項，新增 1、移除 0、既有項目改動 0。新增〈同一份指令與課堂素材，三個 AI 工具做出的雲龍學習頁｜Antigravity（Gemini）、Claude、Codex 橫向比較〉，比較 Antigravity（Gemini）、Claude 與 OpenAI Codex 以相同提示詞與 11/25 課堂素材製作的雲龍互動學習頁。檔案 2,583,958→2,591,487 bytes，42,068→42,234 行。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/c86b611d45a7905a93b475d20045a4027131f736"
+        }
+      ]
     }
   ],
   "current_snapshot": {
-    "captured_at": "2026-11-25",
+    "captured_at": "2026-11-26",
     "homepage": {
       "path": "index.html",
       "blob_sha": "1de24a9e91d5754e3f0002dc802303417fbb35c4",
@@ -723,10 +738,10 @@
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "f01a71ebe20273e77f9d19883b64fb577018df3f",
-      "bytes": 2583958,
-      "lines": 42068,
-      "item_count": 452
+      "blob_sha": "fda59cb15251782060f49214835c328e1217c9e1",
+      "bytes": 2591487,
+      "lines": 42234,
+      "item_count": 453
     },
     "ga4": {
       "property_name": "537sonic.cc",
