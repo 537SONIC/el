@@ -5,11 +5,11 @@
   "github_pages_fallback": "https://537sonic.github.io/SONIC/",
   "archive_url": "archive/index-original-20261023.html",
   "latest_known_change": {
-    "date": "2026-11-25",
-    "commit": "c86b611d45a7905a93b475d20045a4027131f736",
-    "url": "https://github.com/537SONIC/537sonic.cc/commit/c86b611d45a7905a93b475d20045a4027131f736",
-    "message": "新增 C 銀行 11/25 預見 AI 分行三模型雲龍學習頁橫向比較與子站並登錄 Works",
-    "summary_zh": "作品索引 452→453 項；新增〈同一份指令與課堂素材，三個 AI 工具做出的雲龍學習頁｜Antigravity（Gemini）、Claude、Codex 橫向比較〉，既有項目未改動。"
+    "date": "2026-11-27",
+    "commit": "a23520075864ebb0f54fdb7683e32acfd209b737",
+    "url": "https://github.com/537SONIC/537sonic.cc/commit/a23520075864ebb0f54fdb7683e32acfd209b737",
+    "message": "Add 走路閒聊談個案：Altana 九段播放頁並登記 Works",
+    "summary_zh": "作品索引 455→456 項；新增〈走路閒聊談個案：Altana 從圖譜到產品護照｜步行紀錄片式個案播放（九段，約 23 分鐘）〉，既有項目未改動。"
   },
   "baseline": {
     "captured_at": "2026-10-23",
@@ -197,10 +197,10 @@
     },
     {
       "path": "works/works-index.json",
-      "blob_sha": "fda59cb15251782060f49214835c328e1217c9e1",
-      "bytes": 2591487,
-      "lines": 42234,
-      "item_count": 453
+      "blob_sha": "2fe0236f5ac15ce05ff057bc0a6179e1ffbd846e",
+      "bytes": 2606329,
+      "lines": 42564,
+      "item_count": 456
     }
   ],
   "history": [
@@ -708,10 +708,40 @@
           "url": "https://github.com/537SONIC/537sonic.cc/commit/c86b611d45a7905a93b475d20045a4027131f736"
         }
       ]
+    },
+    {
+      "checked_at": "2026-11-26T18:55:37+08:00",
+      "title": "方塊城和立體書，同一天進了作品索引",
+      "summary": "作品索引由 453 項增至 455 項，新增 2、移除 0，既有項目未改動。新增〈Altana 聯邦式貿易網路與產品護照｜3D 互動解釋地圖與學員七大解惑〉，以 3D 方塊小鎮解釋聯邦學習、產品護照與學員七項疑問；另新增〈從摺紙到校園｜以 Three.js 打造的兩件 360° 互動立體書〉，整理教師研究室與元智大學五館、六館兩件 360° 互動立體書。索引由 2,591,487 增至 2,600,156 bytes，行數由 42,234 增至 42,442。這一天從全球貿易網路逛到校園立體書，3D 題材倒是一路沒停。",
+      "url": "https://github.com/537SONIC/537sonic.cc/commit/9de4da4880db3b080218b5cb13fc2a15351e4647",
+      "changes": [
+        {
+          "path": "works/works-index.json",
+          "old_sha": "fda59cb15251782060f49214835c328e1217c9e1",
+          "new_sha": "715d5ed25aaab480a59b64a602a5ab63dc99c3b2",
+          "summary": "完整索引日初／日終比對：453→455 項，新增 2、移除 0、既有項目改動 0。新增〈Altana 聯邦式貿易網路與產品護照｜3D 互動解釋地圖與學員七大解惑〉與〈從摺紙到校園｜以 Three.js 打造的兩件 360° 互動立體書〉。檔案 2,591,487→2,600,156 bytes，42,234→42,442 行。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/9de4da4880db3b080218b5cb13fc2a15351e4647"
+        }
+      ]
+    },
+    {
+      "checked_at": "2026-11-27T08:28:19+08:00",
+      "title": "Altana 從地圖走上街，九段個案播放入列",
+      "summary": "作品索引由 455 項增至 456 項，新增 1、移除 0，既有項目未改動。新增〈走路閒聊談個案：Altana 從圖譜到產品護照｜步行紀錄片式個案播放（九段，約 23 分鐘）〉：把 Altana 個案整理成九段、約 23 分鐘的步行紀錄片式播放，從越南工廠、港口到美國海關，依序帶出產品護照、X 光閘門、政府與企業推動順序、付費者及台灣位置；旁白與同學語音為 AI 合成，同學已去識別。索引由 2,600,156 增至 2,606,329 bytes，行數由 42,442 增至 42,564。早上八點多，Altana 換了走路說故事的方式又回到索引，連供應鏈個案也開始有了散步節奏。",
+      "url": "https://github.com/537SONIC/537sonic.cc/commit/a23520075864ebb0f54fdb7683e32acfd209b737",
+      "changes": [
+        {
+          "path": "works/works-index.json",
+          "old_sha": "715d5ed25aaab480a59b64a602a5ab63dc99c3b2",
+          "new_sha": "2fe0236f5ac15ce05ff057bc0a6179e1ffbd846e",
+          "summary": "完整索引比對：455→456 項，新增 1、移除 0、既有項目改動 0。新增〈走路閒聊談個案：Altana 從圖譜到產品護照｜步行紀錄片式個案播放（九段，約 23 分鐘）〉，為九段、約 23 分鐘的步行紀錄片式個案播放。檔案 2,600,156→2,606,329 bytes，42,442→42,564 行。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/a23520075864ebb0f54fdb7683e32acfd209b737"
+        }
+      ]
     }
   ],
   "current_snapshot": {
-    "captured_at": "2026-11-26",
+    "captured_at": "2026-11-27",
     "homepage": {
       "path": "index.html",
       "blob_sha": "1de24a9e91d5754e3f0002dc802303417fbb35c4",
@@ -738,10 +768,10 @@
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "fda59cb15251782060f49214835c328e1217c9e1",
-      "bytes": 2591487,
-      "lines": 42234,
-      "item_count": 453
+      "blob_sha": "2fe0236f5ac15ce05ff057bc0a6179e1ffbd846e",
+      "bytes": 2606329,
+      "lines": 42564,
+      "item_count": 456
     },
     "ga4": {
       "property_name": "537sonic.cc",
