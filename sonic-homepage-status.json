@@ -6,10 +6,10 @@
   "archive_url": "archive/index-original-20261023.html",
   "latest_known_change": {
     "date": "2026-11-27",
-    "commit": "a23520075864ebb0f54fdb7683e32acfd209b737",
-    "url": "https://github.com/537SONIC/537sonic.cc/commit/a23520075864ebb0f54fdb7683e32acfd209b737",
-    "message": "Add 走路閒聊談個案：Altana 九段播放頁並登記 Works",
-    "summary_zh": "作品索引 455→456 項；新增〈走路閒聊談個案：Altana 從圖譜到產品護照｜步行紀錄片式個案播放（九段，約 23 分鐘）〉，既有項目未改動。"
+    "commit": "d9e97d01940da7ab74ce0ba9ab71f7c28f508cbc",
+    "url": "https://github.com/537SONIC/537sonic.cc/commit/d9e97d01940da7ab74ce0ba9ab71f7c28f508cbc",
+    "message": "Add terracotta face pinch lab guide, interactive PixiJS stage, and Works entry",
+    "summary_zh": "作品索引 455→459 項；11 月 27 日共新增 Altana 與 iPub 兩項步行個案播放、Python 手繪動畫指南及唐代仕女陶俑捏臉小教室。"
   },
   "baseline": {
     "captured_at": "2026-10-23",
@@ -197,10 +197,10 @@
     },
     {
       "path": "works/works-index.json",
-      "blob_sha": "2fe0236f5ac15ce05ff057bc0a6179e1ffbd846e",
-      "bytes": 2606329,
-      "lines": 42564,
-      "item_count": 456
+      "blob_sha": "531707e98c480139350ec032e2ee6c85bf3b8983",
+      "bytes": 2620919,
+      "lines": 42875,
+      "item_count": 459
     }
   ],
   "history": [
@@ -725,23 +725,23 @@
       ]
     },
     {
-      "checked_at": "2026-11-27T08:28:19+08:00",
-      "title": "Altana 從地圖走上街，九段個案播放入列",
-      "summary": "作品索引由 455 項增至 456 項，新增 1、移除 0，既有項目未改動。新增〈走路閒聊談個案：Altana 從圖譜到產品護照｜步行紀錄片式個案播放（九段，約 23 分鐘）〉：把 Altana 個案整理成九段、約 23 分鐘的步行紀錄片式播放，從越南工廠、港口到美國海關，依序帶出產品護照、X 光閘門、政府與企業推動順序、付費者及台灣位置；旁白與同學語音為 AI 合成，同學已去識別。索引由 2,600,156 增至 2,606,329 bytes，行數由 42,442 增至 42,564。早上八點多，Altana 換了走路說故事的方式又回到索引，連供應鏈個案也開始有了散步節奏。",
-      "url": "https://github.com/537SONIC/537sonic.cc/commit/a23520075864ebb0f54fdb7683e32acfd209b737",
+      "checked_at": "2026-11-27T22:46:02+08:00",
+      "title": "四項作品同日入列，從兩場個案散步到陶俑捏臉",
+      "summary": "作品索引由 455 項增至 459 項，新增 4、移除 0，既有項目未改動。新增〈走路閒聊談個案：Altana 從圖譜到產品護照｜步行紀錄片式個案播放（九段，約 23 分鐘）〉、〈走路閒聊談個案：iPub 該換營運方向嗎？｜步行紀錄片式個案播放（八段，約 18 分鐘）〉、〈用 Python 繪製手繪質感動畫與網頁互動舞台｜澤龜公園漫步與《東郭先生》紙藝定格〉與〈我也不知道自己做這個要幹嘛…趣味捏臉小教室〉。前兩項把 Altana 與 iPub 個案整理成步行紀錄片式播放；第三項拆解 Python 手繪水彩動畫、瀏覽器互動舞台與《東郭先生》紙藝定格；第四項以 PixiJS v8 彈性網格製作唐代仕女陶俑的瀏覽器捏臉玩具。索引由 2,600,156 增至 2,620,919 bytes，行數由 42,442 增至 42,875。說來也有趣，同一天先陪兩個個案散步，傍晚看澤龜，晚上又去捏陶俑的臉，作品索引的行程比人還滿。",
+      "url": "https://github.com/537SONIC/537sonic.cc/commit/d9e97d01940da7ab74ce0ba9ab71f7c28f508cbc",
       "changes": [
         {
           "path": "works/works-index.json",
           "old_sha": "715d5ed25aaab480a59b64a602a5ab63dc99c3b2",
-          "new_sha": "2fe0236f5ac15ce05ff057bc0a6179e1ffbd846e",
-          "summary": "完整索引比對：455→456 項，新增 1、移除 0、既有項目改動 0。新增〈走路閒聊談個案：Altana 從圖譜到產品護照｜步行紀錄片式個案播放（九段，約 23 分鐘）〉，為九段、約 23 分鐘的步行紀錄片式個案播放。檔案 2,600,156→2,606,329 bytes，42,442→42,564 行。",
-          "url": "https://github.com/537SONIC/537sonic.cc/commit/a23520075864ebb0f54fdb7683e32acfd209b737"
+          "new_sha": "531707e98c480139350ec032e2ee6c85bf3b8983",
+          "summary": "完整索引日初／日終比對：455→459 項，新增 4、移除 0、既有項目改動 0。新增〈走路閒聊談個案：Altana 從圖譜到產品護照｜步行紀錄片式個案播放（九段，約 23 分鐘）〉、〈走路閒聊談個案：iPub 該換營運方向嗎？｜步行紀錄片式個案播放（八段，約 18 分鐘）〉、〈用 Python 繪製手繪質感動畫與網頁互動舞台｜澤龜公園漫步與《東郭先生》紙藝定格〉、〈我也不知道自己做這個要幹嘛…趣味捏臉小教室〉。檔案 2,600,156→2,620,919 bytes，42,442→42,875 行。",
+          "url": "https://github.com/537SONIC/537sonic.cc/commit/d9e97d01940da7ab74ce0ba9ab71f7c28f508cbc"
         }
       ]
     }
   ],
   "current_snapshot": {
-    "captured_at": "2026-11-27",
+    "captured_at": "2026-11-28",
     "homepage": {
       "path": "index.html",
       "blob_sha": "1de24a9e91d5754e3f0002dc802303417fbb35c4",
@@ -768,10 +768,10 @@
     },
     "works_index": {
       "path": "works/works-index.json",
-      "blob_sha": "2fe0236f5ac15ce05ff057bc0a6179e1ffbd846e",
-      "bytes": 2606329,
-      "lines": 42564,
-      "item_count": 456
+      "blob_sha": "531707e98c480139350ec032e2ee6c85bf3b8983",
+      "bytes": 2620919,
+      "lines": 42875,
+      "item_count": 459
     },
     "ga4": {
       "property_name": "537sonic.cc",
